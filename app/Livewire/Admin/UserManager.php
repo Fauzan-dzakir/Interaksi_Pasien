@@ -118,7 +118,7 @@ class UserManager extends Component
         session()->flash('status', 'Data pengguna berhasil disimpan.');
     }
 
-    /** Akun tidak dihapus, hanya dinonaktifkan — jejak audit tindakannya harus tetap utuh. */
+    /** Akun tidak dihapus, hanya dinonaktifkan, jejak audit tindakannya harus tetap utuh. */
     public function toggleActive(int $id): void
     {
         if ($id === auth()->id()) {

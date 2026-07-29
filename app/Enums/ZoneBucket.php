@@ -42,7 +42,7 @@ enum ZoneBucket: string
         return match ($this) {
             self::Dirty => 'bg-amber-50 text-amber-700 ring-amber-200',
             self::Clean => 'bg-sky-50 text-sky-700 ring-sky-200',
-            self::ReadyForDistribution => 'bg-emerald-50 text-emerald-700 ring-emerald-200',
+            self::ReadyForDistribution => 'bg-leaf-50 text-leaf-700 ring-leaf-200',
             self::AtUnit => 'bg-violet-50 text-violet-700 ring-violet-200',
             self::Closed => 'bg-slate-100 text-slate-500 ring-slate-200',
         };

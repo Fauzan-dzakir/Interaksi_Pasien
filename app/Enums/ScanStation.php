@@ -3,66 +3,45 @@
 namespace App\Enums;
 
 /**
- * Stasiun scan fisik di CSSD. Satu scan = satu perpindahan tahap.
+ * Stasiun scan fisik di CSSD pada alur baru. Satu scan = satu perpindahan tahap.
  *
- * Jalur kegagalan yang butuh penilaian petugas (mis. gagal cek label steril:
- * kemas ulang atau cuci ulang?) tidak dijadikan stasiun cepat, melainkan
- * tombol di halaman detail alat — kecuali "Cuci Ulang" yang memang sering
- * dipakai massal saat satu tray dinyatakan tidak bersih.
+ * Tahap "Scan Barcode Baru" TIDAK ada di sini karena butuh input tambahan
+ * (barcode baru, foto set, checklist isi set) sehingga punya halaman sendiri.
  */
 enum ScanStation: string
 {
+    case ReceiveDirty = 'receive_dirty';
     case Washing = 'washing';
-    case Drying = 'drying';
-    case CleanlinessCheck = 'cleanliness_check';
-    case CleanlinessPass = 'cleanliness_pass';
-    case Rewash = 'rewash';
-    case Packaging = 'packaging';
     case Sterilizing = 'sterilizing';
-    case SterileCheck = 'sterile_check';
-    case StoragePass = 'storage_pass';
+    case Complete = 'complete';
 
     public function label(): string
     {
         return match ($this) {
-            self::Washing => 'Pencucian',
-            self::Drying => 'Pengeringan',
-            self::CleanlinessCheck => 'Cek Kebersihan',
-            self::CleanlinessPass => 'Lolos Cek Kebersihan',
-            self::Rewash => 'Cuci Ulang (Tidak Bersih)',
-            self::Packaging => 'Pengemasan & Pelabelan',
-            self::Sterilizing => 'Sterilisasi',
-            self::SterileCheck => 'Cek Label Steril',
-            self::StoragePass => 'Lolos Cek Steril → Gudang',
+            self::ReceiveDirty => 'Terima Alat Kotor',
+            self::Washing => 'Mulai Pencucian',
+            self::Sterilizing => 'Masuk Sterilisasi',
+            self::Complete => 'Selesai, Kembali ke Gudang',
         };
     }
 
     public function description(): string
     {
         return match ($this) {
-            self::Washing => 'Alat masuk perendaman / washer-disinfector',
-            self::Drying => 'Alat masuk drying cabinet atau dilap manual',
-            self::CleanlinessCheck => 'Alat menunggu pemeriksaan kebersihan',
-            self::CleanlinessPass => 'Alat dinyatakan bersih, lanjut ke Zona Bersih',
-            self::Rewash => 'Alat dikembalikan untuk dicuci ulang',
-            self::Packaging => 'Alat dikemas pouch / Tyvek dan diberi label',
-            self::Sterilizing => 'Alat masuk autoclave atau mesin gas',
-            self::SterileCheck => 'Alat menunggu pemeriksaan perubahan label indikator',
-            self::StoragePass => 'Indikator berubah benar, alat masuk gudang steril',
+            self::ReceiveDirty => 'Konfirmasi alat kotor dari unit sudah diterima CSSD',
+            self::Washing => 'Alat masuk perendaman, washer-disinfector, atau pembersihan manual',
+            self::Sterilizing => 'Alat yang sudah dikemas & berbarcode baru masuk autoclave/mesin gas',
+            self::Complete => 'Sterilisasi selesai, alat kembali ke gudang steril atau ke batch unit',
         };
     }
 
-    public function targetStatus(): ItemBatchStatus
+    public function targetStatus(): AssetStatus
     {
         return match ($this) {
-            self::Washing, self::Rewash => ItemBatchStatus::DirtyZoneWashing,
-            self::Drying => ItemBatchStatus::DirtyZoneDrying,
-            self::CleanlinessCheck => ItemBatchStatus::CleanlinessCheckPending,
-            self::CleanlinessPass => ItemBatchStatus::CleanPendingPack,
-            self::Packaging => ItemBatchStatus::Packaging,
-            self::Sterilizing => ItemBatchStatus::Sterilizing,
-            self::SterileCheck => ItemBatchStatus::SterileCheckPending,
-            self::StoragePass => ItemBatchStatus::InStorage,
+            self::ReceiveDirty => AssetStatus::ReturnPending,
+            self::Washing => AssetStatus::Washing,
+            self::Sterilizing => AssetStatus::Sterilizing,
+            self::Complete => AssetStatus::Available,
         };
     }
 

@@ -28,16 +28,16 @@ Route::post('/logout', function (Request $request) {
 })->middleware('auth')->name('logout');
 
 /*
-| Halaman detail & riwayat satu alat — dibuka semua peran, tapi isinya
-| dibatasi ItemBatchPolicy (Nakes hanya boleh melihat alat unitnya sendiri).
+| Halaman lintas peran, isinya dibatasi Policy (Nakes hanya alat unitnya sendiri).
 */
 Route::middleware('auth')->group(function () {
-    Route::get('/alat/{batch}', Shared\BatchShow::class)->name('batches.show');
+    Route::get('/aset/{asset}', Shared\AssetShow::class)->name('assets.show');
     Route::get('/notifikasi', Shared\NotificationCenter::class)->name('notifications');
+    Route::get('/panduan', Shared\Guide::class)->name('guide');
 });
 
 /*
-| Area Admin — manajemen user, master data, penelusuran audit & koreksi.
+| Area Admin.
 */
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', Admin\Dashboard::class)->name('dashboard');
@@ -46,28 +46,34 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/set-alat', Admin\InstrumentSetManager::class)->name('instrument-sets');
     Route::get('/pengguna', Admin\UserManager::class)->name('users');
     Route::get('/telusur', Admin\AuditSearch::class)->name('audit');
+    Route::get('/set-tidak-lengkap', Admin\IncompleteSets::class)->name('incomplete-sets');
 });
 
 /*
-| Area CSSD — Admin ikut diberi akses karena berwenang mengoreksi human error.
+| Area CSSD, Admin ikut diberi akses karena berwenang mengoreksi human error.
 */
 Route::middleware(['auth', 'role:cssd_staff,admin'])->prefix('cssd')->name('cssd.')->group(function () {
     Route::get('/', Cssd\Dashboard::class)->name('dashboard');
     Route::get('/order', Cssd\OrderQueue::class)->name('orders');
-    Route::get('/order/{order}', Cssd\OrderIntake::class)->name('orders.show');
+    Route::get('/order/{order}', Cssd\OrderPrepare::class)->name('orders.show');
+    Route::get('/kiriman', Cssd\ReturnInbox::class)->name('returns');
     Route::get('/scan', Cssd\ScanStation::class)->name('scan');
-    Route::get('/label', Cssd\LabelPrint::class)->name('labels');
-    Route::get('/ganti-barcode', Cssd\BarcodeReplacement::class)->name('barcode-replacement');
-    Route::get('/distribusi', Cssd\Distribution::class)->name('distribution');
+    Route::get('/barcode-baru', Cssd\NewBarcodeScan::class)->name('new-barcode');
+    Route::get('/barcode', Cssd\BarcodeStudio::class)->name('barcodes');
+    Route::get('/stok', Cssd\StockManager::class)->name('stock');
+    Route::get('/batch', Cssd\BatchManager::class)->name('batches');
+    Route::get('/laporan', Cssd\SterilizationReports::class)->name('reports');
+    Route::get('/laporan/{record}/pdf', [Cssd\ReportPdfController::class, 'show'])->name('reports.pdf');
 });
 
 /*
-| Area Unit (Dokter/Perawat/Nakes) — seluruh data ter-scope ke unit user.
+| Area Unit (Dokter/Perawat/Nakes), seluruh data ter-scope ke unit user.
 */
 Route::middleware(['auth', 'role:nakes'])->prefix('unit')->name('unit.')->group(function () {
     Route::get('/', Unit\Dashboard::class)->name('dashboard');
+    Route::get('/progress', Unit\WashProgress::class)->name('progress');
     Route::get('/order', Unit\OrderList::class)->name('orders');
     Route::get('/order/buat', Unit\OrderCreate::class)->name('orders.create');
     Route::get('/order/{order}', Unit\OrderShow::class)->name('orders.show');
-    Route::get('/penerimaan', Unit\PickupInbox::class)->name('pickups');
+    Route::get('/pemakaian', Unit\UsageScan::class)->name('usage');
 });

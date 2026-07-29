@@ -25,6 +25,7 @@
                 <thead>
                     <tr>
                         <th>Kode</th>
+                        <th>Foto</th>
                         <th>Nama Alat</th>
                         <th>Kategori</th>
                         <th>Sensitivitas Bahan</th>
@@ -36,8 +37,9 @@
                     @forelse ($items as $item)
                         <tr wire:key="item-{{ $item->id }}">
                             <td class="font-mono text-xs text-slate-500">{{ $item->code }}</td>
+                            <td><x-item-thumb :photo="$item->photo_path" :name="$item->name" /></td>
                             <td class="font-medium text-slate-900">{{ $item->name }}</td>
-                            <td>{{ $item->category ?? '—' }}</td>
+                            <td>{{ $item->category ?? 'tidak ada' }}</td>
                             <td>
                                 <div class="text-slate-700">{{ $item->material_sensitivity->label() }}</div>
                                 <div class="text-xs text-slate-400">{{ $item->material_sensitivity->cleaningMethod() }}</div>
@@ -55,7 +57,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="px-4 py-10 text-center text-slate-500">Belum ada data alat.</td>
+                            <td colspan="7" class="px-4 py-10 text-center text-slate-500">Belum ada data alat.</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -102,9 +104,38 @@
                     <div class="mt-2 rounded-lg bg-slate-50 p-3 text-xs text-slate-600 ring-1 ring-slate-200">
                         <div><span class="font-medium text-slate-700">Pembersihan:</span> {{ $selectedSensitivity->cleaningMethod() }}</div>
                         <div class="mt-0.5"><span class="font-medium text-slate-700">Pengeringan:</span> {{ $selectedSensitivity->dryingMethod() }}</div>
-                        <div class="mt-1.5 text-slate-400">Panduan SOP — sistem tidak mengunci metode, keputusan tetap di petugas CSSD.</div>
+                        <div class="mt-1.5 text-slate-400">Panduan SOP, sistem tidak mengunci metode, keputusan tetap di petugas CSSD.</div>
                     </div>
                 @endif
+            </div>
+
+            <div>
+                <label class="field-label" for="item-photo">Foto Contoh Alat</label>
+                <div class="flex items-start gap-3">
+                    <div class="h-24 w-24 shrink-0">
+                        @if ($photo)
+                            <img src="{{ $photo->temporaryUrl() }}" alt="Pratinjau"
+                                 class="h-24 w-24 rounded-lg object-cover ring-1 ring-slate-200">
+                        @else
+                            <x-item-thumb :photo="$existingPhoto" :name="$name" class="!h-24 !w-24" />
+                        @endif
+                    </div>
+
+                    <div class="min-w-0 flex-1">
+                        <input wire:model="photo" id="item-photo" type="file" accept="image/*" class="field-input !py-1.5">
+                        <p class="mt-1 text-xs text-slate-400">
+                            Membantu petugas mengenali alat secara visual, bukan hanya dari namanya.
+                        </p>
+                        @error('photo') <p class="field-error">{{ $message }}</p> @enderror
+
+                        <div wire:loading wire:target="photo" class="mt-1 text-xs text-slate-500">Mengunggah foto...</div>
+
+                        @if ($existingPhoto && ! $photo)
+                            <button type="button" wire:click="removePhoto"
+                                    class="mt-1.5 text-xs text-red-600 hover:text-red-700">Hapus foto</button>
+                        @endif
+                    </div>
+                </div>
             </div>
 
             <div>
@@ -114,7 +145,7 @@
             </div>
 
             <label class="flex items-center gap-2 text-sm text-slate-700">
-                <input wire:model="is_active" type="checkbox" class="rounded border-slate-300 text-teal-600 focus:ring-teal-500">
+                <input wire:model="is_active" type="checkbox" class="rounded border-slate-300 text-brand-600 focus:ring-brand-500">
                 Alat aktif
             </label>
         </form>

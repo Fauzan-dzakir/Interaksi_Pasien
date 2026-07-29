@@ -67,7 +67,7 @@ return [
 
     // Sistem hanya dipakai di satu RS (WIB). Timestamp disimpan & ditampilkan
     // dalam zona yang sama supaya jam pada jejak audit tidak perlu dikonversi
-    // saat ditelusuri — penting karena bukti waktu jadi acuan saat audit kehilangan alat.
+    // saat ditelusuri, penting karena bukti waktu jadi acuan saat audit kehilangan alat.
     'timezone' => env('APP_TIMEZONE', 'Asia/Jakarta'),
 
     /*

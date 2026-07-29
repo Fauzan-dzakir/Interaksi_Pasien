@@ -11,7 +11,7 @@ use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 /**
- * Menguji batas hak akses antar peran — inti dari keamanan Fase 1a.
+ * Menguji batas hak akses antar peran, inti dari keamanan Fase 1a.
  */
 class RoleAccessTest extends TestCase
 {

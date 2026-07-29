@@ -23,6 +23,7 @@ Setiap perpindahan status dicatat lengkap dengan **pelaku + waktu** (jejak audit
 | MariaDB 10.4 / MySQL 8 | — | Database |
 | `endroid/qr-code` | 6 | Membuat label QR (SVG) |
 | `qr-scanner` (npm) | 1.4 | Scan QR lewat kamera browser |
+| `barryvdh/laravel-dompdf` | 3 | Cetak laporan sterilisasi (PDF) |
 
 ## Kebutuhan Sistem
 
@@ -107,36 +108,64 @@ CREATE DATABASE sim_cssd_test CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 ## Status Pembangunan
 
-**Fase 1 (MVP) — alur inti: SELESAI ✅**
+**Alur inti: SELESAI ✅** — satu siklus penuh sudah berjalan end-to-end.
 
-- [x] **1a** — Master data & autentikasi per peran
-- [x] **1b** — Order pengiriman dari unit
-- [x] **1c** — Pendataan barang oleh CSSD (Per Set / Per Barang) + notifikasi
-- [x] **1d** — Tracking scan QR per zona (kamera HP + barcode scanner fisik), cetak label, ganti barcode
-- [x] **1e** — Distribusi & konfirmasi penerimaan
-- [x] **1f** — Dashboard live tracking unit + pusat notifikasi
-- [x] **1g** — Telusur riwayat audit & koreksi Admin
+- [x] Master data & autentikasi per peran (Admin / Petugas CSSD / Nakes)
+- [x] Gudang steril, pendaftaran aset, kelola batch per unit
+- [x] Pemesanan alat ala *checkout* + pesan ulang batch
+- [x] Penyiapan CSSD + serah terima berfoto
+- [x] Pengembalian alat kotor dengan **konfirmasi dua sisi** + foto
+- [x] Scan barcode baru: foto set + **checklist isi set** (✓/✗)
+- [x] Sterilisasi & penyelesaian (scan satuan atau satu batch sekaligus)
+- [x] Katalog stok untuk unit, scan pemakaian, live tracking
+- [x] Telusur audit lintas barcode, laporan set tidak lengkap, koreksi Admin
+- [x] **Laporan PDF proses sterilisasi** (pengganti formulir kertas)
 
-**Fase 2 (belum dikerjakan):** formulir siklus sterilisasi digital pengganti kertas
-(tahapan + jam + paraf + hasil indikator biologi yang bisa menahan distribusi),
-laporan/rekap lengkap + ekspor, dan opsi *push* real-time (Laravel Reverb).
+**Belum dikerjakan:** rekap/ekspor lanjutan, *push* real-time (Laravel Reverb),
+integrasi ke SIM RS.
 
 ## Alur Siklus Lengkap
 
 ```
-Unit buat order  →  CSSD data isi kiriman  →  label QR dicetak
-                          ↓
-     Zona Kotor:  Cuci → Keringkan → Cek Kebersihan
-                          ↓ (gagal → cuci ulang)
-     Zona Bersih: Kemas & Label → Sterilisasi → Cek Label Steril
-                          ↓ (gagal → kemas/cuci ulang)
-     Gudang Steril  →  Distribusi  →  Unit konfirmasi "Diterima"
-                          ↓
-                  Unit tandai "Dipakai"  →  kembali ke CSSD (siklus baru)
+        ┌──────────────── Gudang Steril (alat siap dipesan) ────────────────┐
+        │                                                                   │
+        ▼                                                                   │
+  Unit checkout  →  CSSD alokasi & siapkan  →  serah terima (+ FOTO)        │
+        │                                                                   │
+        ▼                                                                   │
+  Unit konfirmasi terima  →  perawat scan "dipakai"                         │
+        │                                                                   │
+        ▼                                                                   │
+  Unit kirim balik (+ foto, tentukan pesan ulang / lepas batch)             │
+        │                                                                   │
+        ▼                                                                   │
+  CSSD konfirmasi terima  ←── KONFIRMASI DUA SISI                           │
+        │                                                                   │
+        ▼                                                                   │
+  Pencucian & dekontaminasi  (barcode LAMA masih berlaku)                   │
+        │                                                                   │
+        ▼                                                                   │
+  Scan Barcode Baru  →  set: FOTO + CHECKLIST ISI (✓ ada / ✗ hilang)        │
+        │                                                                   │
+        ▼                                                                   │
+  Sterilisasi  →  Selesai  ──────────────────────────────────────────────────┘
 ```
 
-Setiap panah di atas menghasilkan **satu baris jejak audit permanen** berisi
-status asal, status tujuan, pelaku, waktu, dan metode input (kamera / scanner / manual).
+Setiap panah menghasilkan **satu baris jejak audit permanen** berisi status asal,
+status tujuan, pelaku, waktu, dan metode input (kamera / scanner / manual).
+
+### Dua jenis barcode
+
+| Jenis | Cakupan | Perlakuan saat barcode diganti |
+|---|---|---|
+| **Set** | Satu barcode mewakili seluruh isi set | Wajib **foto rakitan** + **checklist isi**; isi yang disilang menandai set tidak lengkap |
+| **Alat satuan** | Satu barcode untuk satu alat | Langsung terupdate saat barcode baru discan |
+
+### Batch = "langganan alat" unit
+
+Batch menetap lintas siklus. Saat mengembalikan alat kotor, unit menentukan:
+**pesan ulang** (alat kembali jadi milik batch unit) atau **lepas** (alat masuk
+stok bebas dan bisa dipesan unit lain).
 
 ## Prinsip Perancangan Penting
 
@@ -147,7 +176,10 @@ status asal, status tujuan, pelaku, waktu, dan metode input (kamera / scanner / 
 | **Scan bersifat idempotent** | Scanner HID yang terpicu dua kali tidak membuat jejak kembar. |
 | **Baris dikunci saat transisi** | `lockForUpdate` di dalam transaksi mencegah dua petugas saling menimpa saat men-scan alat yang sama. |
 | **Master data tidak dihapus permanen** | Hanya dinonaktifkan, agar riwayat order lama tetap terbaca. |
-| **Barcode lama tidak hilang saat diganti** | Ditandai "Barcode Diganti" dan tetap tertaut ke barcode baru, sehingga riwayat lintas siklus bisa ditelusuri. |
+| **Barcode lama tetap berlaku selama pencucian** | Label fisiknya dibuang saat kemasan dibuka, tapi karena sudah discan masuk, sistem tetap mengenalinya — pelacakan tidak pernah terputus. Barcode baru menggantikan hanya saat discan. |
+| **Riwayat barcode tersimpan** | Kode lama tetap bisa dicari saat audit walau alat sudah berganti label berkali-kali. |
+| **Set tidak lengkap tidak menahan proses** | Sistem menandai & melaporkan, tapi keputusan menahan diserahkan pada manusia — supaya kerja CSSD tidak macet. |
+| **Konfirmasi dua sisi pada pengembalian** | Selisih serah terima ketahuan saat itu juga, bukan baru saat audit. |
 | **Koreksi Admin wajib beralasan** | Tercatat dengan penanda *override* — bukan perubahan diam-diam. |
 
 ## Data Demo (opsional)
@@ -158,8 +190,10 @@ Untuk melihat sistem dengan alur yang sudah berjalan di berbagai tahap:
 php artisan db:seed --class=DemoFlowSeeder
 ```
 
-Membuat 6 order contoh yang tersebar dari "Menunggu Pendataan" sampai "Selesai",
-sehingga semua zona pada dashboard terisi. **Jangan dijalankan di produksi.**
+Mendaftarkan ~64 aset dan menjalankan 6 skenario yang berhenti di tahap berbeda
+(pesanan menunggu disiapkan, siap diambil, di unit, kiriman menunggu konfirmasi,
+sedang dicuci, sedang disterilkan) — sehingga setiap layar langsung ada isinya.
+**Jangan dijalankan di produksi.**
 
 ## Catatan Deployment
 

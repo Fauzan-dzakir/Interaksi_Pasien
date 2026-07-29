@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-#[Fillable(['code', 'name', 'description', 'is_active'])]
+#[Fillable(['code', 'name', 'description', 'photo_path', 'is_active'])]
 class InstrumentSet extends Model
 {
     protected function casts(): array

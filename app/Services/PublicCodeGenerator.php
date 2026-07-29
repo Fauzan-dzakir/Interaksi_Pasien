@@ -2,11 +2,12 @@
 
 namespace App\Services;
 
-use App\Models\ItemBatch;
+use App\Models\Asset;
+use App\Models\AssetCode;
 use RuntimeException;
 
 /**
- * Membuat kode unik yang dicetak pada label QR, mis. CSSD-7F3K9M2P.
+ * Membuat kode unik yang dicetak pada label barcode, mis. CSSD-7F3K9M2P.
  *
  * Sengaja memakai kode pendek & buram (bukan URL) karena:
  *  - label tidak ikut basi kalau alamat/hostname server RS berubah,
@@ -25,15 +26,19 @@ class PublicCodeGenerator
     public function generate(): string
     {
         // 32^8 kemungkinan; percobaan ulang menutup kemungkinan tabrakan acak.
+        // Riwayat barcode lama ikut dicek supaya kode tidak pernah dipakai ulang.
         for ($attempt = 0; $attempt < 20; $attempt++) {
             $code = self::PREFIX.$this->randomString();
 
-            if (! ItemBatch::where('public_code', $code)->exists()) {
+            $taken = Asset::where('current_code', $code)->exists()
+                || AssetCode::where('code', $code)->exists();
+
+            if (! $taken) {
                 return $code;
             }
         }
 
-        throw new RuntimeException('Gagal membuat kode unik untuk label QR setelah 20 percobaan.');
+        throw new RuntimeException('Gagal membuat kode unik untuk label barcode setelah 20 percobaan.');
     }
 
     private function randomString(): string

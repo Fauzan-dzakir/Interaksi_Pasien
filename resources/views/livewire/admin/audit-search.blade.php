@@ -15,16 +15,17 @@
         </div>
         <div class="card p-5">
             <div class="text-sm text-slate-500">Hasil Pencarian</div>
-            <div class="mt-1 text-3xl font-semibold text-slate-900">{{ $batches->total() }}</div>
+            <div class="mt-1 text-3xl font-semibold text-slate-900">{{ $assets->total() }}</div>
         </div>
     </div>
 
     <div class="card mb-5">
         <div class="grid gap-3 p-4 sm:grid-cols-2 lg:grid-cols-5">
             <div class="lg:col-span-2">
-                <label class="field-label" for="q">Kode label / nama alat / nomor order</label>
+                <label class="field-label" for="q">Barcode (lama/baru), nama alat, atau set</label>
                 <input wire:model.live.debounce.300ms="search" id="q" type="search"
                        class="field-input" placeholder="mis. CSSD-7F3K9M2P atau Set Bedah Minor">
+                <p class="mt-1 text-xs text-slate-400">Barcode lama ikut dicari, walau alatnya sudah berganti label.</p>
             </div>
 
             <div>
@@ -68,27 +69,32 @@
                 <table class="table-base">
                     <thead>
                         <tr>
-                            <th>Kode Label</th>
+                            <th>Barcode</th>
                             <th>Alat / Set</th>
-                            <th>Unit</th>
+                            <th>Batch / Unit</th>
                             <th>Status Terakhir</th>
                             <th>Waktu</th>
                             <th class="text-right">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($batches as $batch)
-                            <tr wire:key="ab-{{ $batch->id }}">
-                                <td class="font-mono text-xs text-slate-600">{{ $batch->public_code }}</td>
+                        @forelse ($assets as $asset)
+                            <tr wire:key="ab-{{ $asset->id }}">
+                                <td class="font-mono text-xs text-slate-600">{{ $asset->current_code }}</td>
                                 <td>
-                                    <div class="font-medium text-slate-900">{{ $batch->displayName() }}</div>
-                                    <div class="text-xs text-slate-400">{{ $batch->displayQuantity() }}</div>
+                                    <div class="font-medium text-slate-900">{{ $asset->displayName() }}</div>
+                                    @unless ($asset->is_complete)
+                                        <span class="text-xs font-medium text-red-600">set tidak lengkap</span>
+                                    @endunless
                                 </td>
-                                <td>{{ $batch->originUnit->name }}</td>
-                                <td><x-state-pill :state="$batch->status" /></td>
-                                <td class="text-xs text-slate-500">{{ $batch->status_changed_at->format('d/m/Y H:i') }}</td>
+                                <td class="text-xs text-slate-500">
+                                    {{ $asset->batch?->name ?? 'stok bebas' }}
+                                    @if ($asset->batch) <br>{{ $asset->batch->unit->name }} @endif
+                                </td>
+                                <td><x-state-pill :state="$asset->status" /></td>
+                                <td class="text-xs text-slate-500">{{ $asset->status_changed_at->format('d/m/Y H:i') }}</td>
                                 <td class="text-right">
-                                    <a href="{{ route('batches.show', $batch->id) }}" wire:navigate
+                                    <a href="{{ route('assets.show', $asset->id) }}" wire:navigate
                                        class="btn-secondary !px-3 !py-1.5">Riwayat</a>
                                 </td>
                             </tr>
@@ -100,22 +106,20 @@
                 </table>
             </div>
 
-            @if ($batches->hasPages())
-                <div class="border-t border-slate-200 p-4">{{ $batches->links() }}</div>
+            @if ($assets->hasPages())
+                <div class="border-t border-slate-200 p-4">{{ $assets->links() }}</div>
             @endif
         </div>
 
         <div class="card p-5">
             <h2 class="mb-3 text-sm font-semibold text-slate-900">Koreksi Admin Terakhir</h2>
-            <p class="mb-3 text-xs text-slate-500">
-                Setiap koreksi yang melompati alur normal tercatat di sini.
-            </p>
+            <p class="mb-3 text-xs text-slate-500">Setiap koreksi yang melompati alur normal tercatat di sini.</p>
 
             @forelse ($recentOverrides as $event)
                 <div wire:key="ov-{{ $event->id }}" class="mb-2 rounded-lg border border-red-200 bg-red-50/50 px-3 py-2">
-                    <a href="{{ route('batches.show', $event->item_batch_id) }}" wire:navigate
-                       class="font-mono text-xs font-medium text-slate-700 hover:text-teal-700">
-                        {{ $event->itemBatch->public_code }}
+                    <a href="{{ route('assets.show', $event->asset_id) }}" wire:navigate
+                       class="font-mono text-xs font-medium text-slate-700 hover:text-brand-700">
+                        {{ $event->asset->current_code }}
                     </a>
                     <div class="mt-0.5 text-xs text-slate-600">→ {{ $event->to_status->label() }}</div>
                     <div class="mt-0.5 text-xs text-slate-400">

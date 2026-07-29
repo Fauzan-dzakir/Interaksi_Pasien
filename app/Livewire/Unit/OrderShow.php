@@ -2,26 +2,38 @@
 
 namespace App\Livewire\Unit;
 
-use App\Enums\ZoneBucket;
-use App\Models\DeliveryOrder;
-use App\Services\DeliveryOrderService;
+use App\Enums\OrderStatus;
+use App\Models\Order;
+use App\Services\OrderService;
+use InvalidArgumentException;
 use Livewire\Component;
 
 class OrderShow extends Component
 {
-    public DeliveryOrder $order;
-
-    public string $cancelReason = '';
+    public Order $order;
 
     public bool $showCancel = false;
 
-    public function mount(DeliveryOrder $order): void
+    public string $cancelReason = '';
+
+    public function mount(Order $order): void
     {
         $this->authorize('view', $order);
         $this->order = $order;
     }
 
-    public function cancel(DeliveryOrderService $service): void
+    /** Unit menyatakan alat sudah kembali, titik perpindahan tanggung jawab. */
+    public function confirmReceipt(OrderService $service): void
+    {
+        $this->authorize('confirmReceipt', $this->order);
+
+        $service->confirmReceipt($this->order, auth()->user());
+        $this->order->refresh();
+
+        session()->flash('status', 'Penerimaan dikonfirmasi. Alat kini tercatat berada di unit Anda.');
+    }
+
+    public function cancel(OrderService $service): void
     {
         $this->authorize('cancel', $this->order);
 
@@ -29,34 +41,67 @@ class OrderShow extends Component
             'cancelReason' => ['required', 'string', 'min:5', 'max:500'],
         ], [], ['cancelReason' => 'alasan pembatalan']);
 
-        $service->cancel($this->order, auth()->user(), $this->cancelReason);
+        try {
+            $service->cancel($this->order, auth()->user(), $this->cancelReason);
+        } catch (InvalidArgumentException $e) {
+            $this->addError('cancelReason', $e->getMessage());
+
+            return;
+        }
 
         $this->showCancel = false;
         $this->cancelReason = '';
         $this->order->refresh();
 
-        session()->flash('status', 'Order dibatalkan.');
+        session()->flash('status', 'Pesanan dibatalkan.');
+    }
+
+    /**
+     * Empat tahap yang dilihat unit. Sengaja tidak sedetail status internal CSSD,
+     * karena unit hanya perlu tahu sudah sampai mana pesanannya.
+     *
+     * @return array<int, array{label: string, state: string}>
+     */
+    private function progressSteps(): array
+    {
+        $status = $this->order->status;
+
+        $reached = match ($status) {
+            OrderStatus::Pending => 0,
+            OrderStatus::Preparing => 1,
+            OrderStatus::ReadyForPickup, OrderStatus::Delivering => 2,
+            OrderStatus::Received => 3,
+            OrderStatus::Cancelled => -1,
+        };
+
+        $labels = [
+            'Pesanan dibuat',
+            'Alat diterima dan diproses CSSD',
+            'Selesai steril',
+            'Kembali ke unit',
+        ];
+
+        return collect($labels)->map(fn (string $label, int $index) => [
+            'label' => $label,
+            'state' => match (true) {
+                $reached < 0 => 'todo',
+                $index < $reached => 'done',
+                $index === $reached => $reached === 3 ? 'done' : 'current',
+                default => 'todo',
+            },
+        ])->all();
     }
 
     public function render()
     {
-        $this->order->load(['originUnit', 'submittedBy', 'intakeRecordedBy', 'events.actor']);
-
-        $batches = $this->order->detailVisibleToUnit()
-            ? $this->order->itemBatches()->with(['instrumentSet', 'item'])->orderBy('public_code')->get()
-            : collect();
+        $this->order->load([
+            'unit', 'requestedBy', 'batch', 'preparedBy', 'receivedBy',
+            'photos', 'assets.instrumentSet', 'assets.item', 'events.actor',
+        ]);
 
         return view('livewire.unit.order-show', [
-            'lines' => $this->order->detailVisibleToUnit()
-                ? $this->order->lines()->with(['instrumentSet', 'item', 'recordedBy'])->get()
-                : collect(),
-            'batches' => $batches,
-            'zoneSummary' => collect(ZoneBucket::cases())
-                ->map(fn (ZoneBucket $zone) => [
-                    'zone' => $zone,
-                    'count' => $batches->filter(fn ($b) => $b->zone() === $zone)->count(),
-                ])
-                ->filter(fn (array $row) => $row['count'] > 0),
+            'canConfirm' => auth()->user()->can('confirmReceipt', $this->order),
+            'progressSteps' => $this->progressSteps(),
         ]);
     }
 }

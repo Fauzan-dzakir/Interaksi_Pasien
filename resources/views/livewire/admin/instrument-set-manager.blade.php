@@ -18,8 +18,9 @@
                 <thead>
                     <tr>
                         <th>Kode</th>
+                        <th>Foto</th>
                         <th>Nama Set</th>
-                        <th>Jenis Alat</th>
+                        <th>Isi Set</th>
                         <th>Total Alat</th>
                         <th>Status</th>
                         <th class="text-right">Aksi</th>
@@ -29,13 +30,16 @@
                     @forelse ($sets as $set)
                         <tr wire:key="set-{{ $set->id }}">
                             <td class="font-mono text-xs text-slate-500">{{ $set->code }}</td>
+                            <td><x-item-thumb :photo="$set->photo_path" :name="$set->name" /></td>
                             <td>
                                 <div class="font-medium text-slate-900">{{ $set->name }}</div>
                                 @if ($set->description)
                                     <div class="text-xs text-slate-400">{{ $set->description }}</div>
                                 @endif
                             </td>
-                            <td>{{ $set->items_count }} jenis</td>
+                            <td class="min-w-[16rem]">
+                                <x-set-contents :set="$set" />
+                            </td>
                             <td>{{ $set->totalItemCount() }} pcs</td>
                             <td><x-status-pill :active="$set->is_active" /></td>
                             <td>
@@ -50,7 +54,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="px-4 py-10 text-center text-slate-500">Belum ada data set alat.</td>
+                            <td colspan="7" class="px-4 py-10 text-center text-slate-500">Belum ada data set alat.</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -79,6 +83,33 @@
             </div>
 
             <div>
+                <label class="field-label" for="set-photo">Foto Contoh Set</label>
+                <div class="flex items-start gap-3">
+                    <div class="h-24 w-24 shrink-0">
+                        @if ($photo)
+                            <img src="{{ $photo->temporaryUrl() }}" alt="Pratinjau"
+                                 class="h-24 w-24 rounded-lg object-cover ring-1 ring-slate-200">
+                        @else
+                            <x-item-thumb :photo="$existingPhoto" :name="$name" class="!h-24 !w-24" />
+                        @endif
+                    </div>
+
+                    <div class="min-w-0 flex-1">
+                        <input wire:model="photo" id="set-photo" type="file" accept="image/*" class="field-input !py-1.5">
+                        <p class="mt-1 text-xs text-slate-400">Jadi acuan visual saat set dirakit ulang.</p>
+                        @error('photo') <p class="field-error">{{ $message }}</p> @enderror
+
+                        <div wire:loading wire:target="photo" class="mt-1 text-xs text-slate-500">Mengunggah foto...</div>
+
+                        @if ($existingPhoto && ! $photo)
+                            <button type="button" wire:click="removePhoto"
+                                    class="mt-1.5 text-xs text-red-600 hover:text-red-700">Hapus foto</button>
+                        @endif
+                    </div>
+                </div>
+            </div>
+
+            <div>
                 <label class="field-label" for="set-desc">Keterangan</label>
                 <textarea wire:model="description" id="set-desc" rows="2" class="field-input" placeholder="Opsional"></textarea>
                 @error('description') <p class="field-error">{{ $message }}</p> @enderror
@@ -102,9 +133,9 @@
                             <div wire:key="row-{{ $index }}" class="flex items-start gap-2">
                                 <div class="flex-1">
                                     <select wire:model="setItems.{{ $index }}.item_id" class="field-input">
-                                        <option value="">— Pilih alat —</option>
+                                        <option value="">Pilih alat</option>
                                         @foreach ($itemOptions as $opt)
-                                            <option value="{{ $opt->id }}">{{ $opt->code }} — {{ $opt->name }}</option>
+                                            <option value="{{ $opt->id }}">{{ $opt->code }}, {{ $opt->name }}</option>
                                         @endforeach
                                     </select>
                                     @error("setItems.{$index}.item_id") <p class="field-error">{{ $message }}</p> @enderror
@@ -130,7 +161,7 @@
             </div>
 
             <label class="flex items-center gap-2 text-sm text-slate-700">
-                <input wire:model="is_active" type="checkbox" class="rounded border-slate-300 text-teal-600 focus:ring-teal-500">
+                <input wire:model="is_active" type="checkbox" class="rounded border-slate-300 text-brand-600 focus:ring-brand-500">
                 Set aktif
             </label>
         </form>

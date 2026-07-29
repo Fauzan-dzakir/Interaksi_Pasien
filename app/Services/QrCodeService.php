@@ -15,7 +15,7 @@ class QrCodeService
      * dan tidak bergantung pada ekstensi GD/Imagick di server RS.
      *
      * Error correction HIGH: label sterilisasi kerap terkena panas, uap, dan
-     * gesekan — QR tetap terbaca walau sebagian permukaannya rusak.
+     * gesekan, QR tetap terbaca walau sebagian permukaannya rusak.
      */
     public function svg(string $data, int $size = 160): string
     {

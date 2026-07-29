@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * Master data unit/ruangan RS — termasuk CSSD sendiri, supaya user CSSD juga
+ * Master data unit/ruangan RS, termasuk CSSD sendiri, supaya user CSSD juga
  * bisa diikat ke satu unit seperti role lainnya.
  */
 return new class extends Migration

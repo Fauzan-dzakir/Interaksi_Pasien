@@ -72,7 +72,7 @@ class UnitManager extends Component
     }
 
     /**
-     * Master data tidak pernah dihapus permanen — hanya dinonaktifkan, supaya
+     * Master data tidak pernah dihapus permanen, hanya dinonaktifkan, supaya
      * riwayat order/pendataan lama yang mengacu ke unit ini tetap utuh.
      */
     public function toggleActive(int $id): void

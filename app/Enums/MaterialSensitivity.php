@@ -6,7 +6,7 @@ namespace App\Enums;
  * Kategori sensitivitas bahan alat, menentukan jalur pembersihan di Zona Kotor.
  *
  * Catatan: nilai ini bersifat INFORMATIF (panduan SOP untuk petugas), sistem tidak
- * mengunci/memblokir metode cuci yang dipilih petugas — keputusan tetap di tangan petugas CSSD.
+ * mengunci/memblokir metode cuci yang dipilih petugas, keputusan tetap di tangan petugas CSSD.
  */
 enum MaterialSensitivity: string
 {

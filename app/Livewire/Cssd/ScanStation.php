@@ -2,48 +2,47 @@
 
 namespace App\Livewire\Cssd;
 
-use App\Enums\ItemBatchStatus;
+use App\Enums\AssetStatus;
 use App\Enums\ScanInputMethod;
 use App\Enums\ScanStation as Station;
+use App\Enums\SterilizationMethod;
 use App\Exceptions\InvalidTransitionException;
-use App\Models\ItemBatch;
-use App\Services\DeliveryOrderService;
-use App\Services\ItemBatchTransitionService;
-use App\Services\PublicCodeGenerator;
+use App\Models\Asset;
+use App\Models\Batch;
+use App\Services\SterilizationService;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
 /**
- * Stasiun scan di tiap tahap proses CSSD.
- *
- * Kamera HP dan scanner barcode fisik memanggil method handleScan() yang sama
- * persis — tidak ada percabangan logika bisnis berdasarkan metode input.
- * Metode input hanya dicatat di jejak audit untuk keperluan penelusuran.
+ * Stasiun scan CSSD. Kamera HP dan scanner barcode fisik memanggil method
+ * handleScan() yang sama persis, tidak ada percabangan logika bisnis
+ * berdasarkan metode input; metode hanya dicatat untuk jejak audit.
  */
 class ScanStation extends Component
 {
     #[Url(as: 'stasiun', keep: true)]
-    public string $station = 'washing';
+    public string $station = 'sterilizing';
+
+    public string $method = 'steam';
 
     public string $code = '';
 
     /** @var array<int, array{status: string, code: string, message: string, at: string}> */
     public array $log = [];
 
+    public string $bulkBatchId = '';
+
     public function updatedStation(): void
     {
         $this->log = [];
     }
 
-    /**
-     * Satu-satunya titik masuk scan — dipanggil dari input scanner fisik (Enter)
-     * maupun dari callback kamera lewat Alpine.
-     */
+    /** Satu-satunya titik masuk scan, dipakai jalur scanner fisik maupun kamera. */
     public function handleScan(?string $raw = null, string $method = 'hid_scanner'): void
     {
-        $this->authorize('advanceStage', ItemBatch::class);
+        $this->authorize('advanceStage', Asset::class);
 
-        $code = PublicCodeGenerator::normalize($raw ?? $this->code);
+        $code = \App\Services\PublicCodeGenerator::normalize($raw ?? $this->code);
         $this->code = '';
 
         if ($code === '') {
@@ -53,46 +52,69 @@ class ScanStation extends Component
         $station = Station::from($this->station);
         $inputMethod = ScanInputMethod::tryFrom($method) ?? ScanInputMethod::Manual;
 
-        $batch = ItemBatch::where('public_code', $code)->first();
+        $asset = Asset::where('current_code', $code)->first();
 
-        if (! $batch) {
-            $this->pushLog('error', $code, 'Kode tidak dikenal. Pastikan label discan dengan benar.');
+        if (! $asset) {
+            $this->pushLog('error', $code, 'Barcode tidak dikenal. Pastikan label discan dengan benar.');
 
             return;
         }
 
-        if (! $batch->status->isActive()) {
-            $this->pushLog('error', $code, "Alat ini berstatus \"{$batch->status->label()}\" dan tidak lagi diproses.");
+        if (! $asset->status->isActive()) {
+            $this->pushLog('error', $code, "Alat berstatus \"{$asset->status->label()}\" dan tidak lagi diproses.");
 
             return;
         }
 
         try {
-            $changed = app(ItemBatchTransitionService::class)->transition(
-                $batch,
-                $station->targetStatus(),
-                auth()->user(),
-                $inputMethod,
-                $station->label(),
-            );
+            $changed = $station === Station::Sterilizing
+                ? app(SterilizationService::class)->startSterilizing(
+                    $asset, auth()->user(), SterilizationMethod::from($this->method), $inputMethod)
+                : ($station === Station::Complete
+                    ? app(SterilizationService::class)->complete($asset, auth()->user(), $inputMethod)
+                    : app(\App\Services\AssetTransitionService::class)->transition(
+                        $asset, $station->targetStatus(), auth()->user(), $inputMethod, $station->label()));
         } catch (InvalidTransitionException $e) {
-            // Ditolak tegas, bukan didiamkan — salah tahap di CSSD berisiko ke pasien.
+            // Ditolak tegas, bukan didiamkan, salah tahap di CSSD berisiko ke pasien.
             $this->pushLog('error', $code, $e->getMessage());
 
             return;
         }
 
         if (! $changed) {
-            $this->pushLog('info', $code, "Sudah berstatus \"{$station->targetStatus()->label()}\" — scan diabaikan.");
+            $this->pushLog('info', $code, "Sudah berstatus \"{$station->targetStatus()->label()}\", scan diabaikan.");
 
             return;
         }
 
-        if ($batch->currentDeliveryOrder) {
-            app(DeliveryOrderService::class)->syncStatus($batch->currentDeliveryOrder, auth()->user());
+        $this->pushLog('success', $code, "{$asset->displayName()} → {$station->targetStatus()->label()}");
+    }
+
+    /**
+     * Menyelesaikan seluruh alat satu batch sekaligus, dipakai saat satu muatan
+     * autoclave keluar bersamaan, supaya petugas tidak perlu scan satu per satu.
+     */
+    public function completeBatch(SterilizationService $service): void
+    {
+        $this->authorize('advanceStage', Asset::class);
+
+        if (! $this->bulkBatchId) {
+            $this->addError('bulkBatchId', 'Pilih batch terlebih dahulu.');
+
+            return;
         }
 
-        $this->pushLog('success', $code, "{$batch->displayName()} → {$station->targetStatus()->label()}");
+        $batch = Batch::findOrFail($this->bulkBatchId);
+        $result = $service->completeBatch($batch, auth()->user());
+
+        if ($result['completed'] === 0) {
+            $this->addError('bulkBatchId', 'Tidak ada alat berstatus "Proses Sterilisasi" pada batch ini.');
+
+            return;
+        }
+
+        $this->bulkBatchId = '';
+        session()->flash('status', "{$result['completed']} alat pada batch \"{$batch->name}\" dinyatakan selesai.");
     }
 
     private function pushLog(string $status, string $code, string $message): void
@@ -111,18 +133,22 @@ class ScanStation extends Component
     {
         $station = Station::from($this->station);
 
-        // Alat yang saat ini berada tepat sebelum tahap stasiun ini — jadi panduan
-        // petugas tentang apa yang seharusnya ada di meja mereka.
-        $waitingStatuses = collect(ItemBatchStatus::cases())
-            ->filter(fn (ItemBatchStatus $s) => $s->canTransitionTo($station->targetStatus()))
-            ->map(fn (ItemBatchStatus $s) => $s->value)
+        $waitingStatuses = collect(AssetStatus::cases())
+            ->filter(fn (AssetStatus $s) => $s->canTransitionTo($station->targetStatus()))
+            ->map(fn (AssetStatus $s) => $s->value)
             ->all();
 
         return view('livewire.cssd.scan-station', [
             'stationEnum' => $station,
             'stationOptions' => Station::cases(),
-            'waitingCount' => ItemBatch::whereIn('status', $waitingStatuses)->count(),
-            'atStationCount' => ItemBatch::where('status', $station->targetStatus())->count(),
+            'methodOptions' => SterilizationMethod::options(),
+            'waitingCount' => Asset::whereIn('status', $waitingStatuses)->count(),
+            'atStationCount' => Asset::where('status', $station->targetStatus())->count(),
+            'sterilizingBatches' => Batch::query()
+                ->whereHas('assets', fn ($q) => $q->where('status', AssetStatus::Sterilizing))
+                ->withCount(['assets' => fn ($q) => $q->where('status', AssetStatus::Sterilizing)])
+                ->with('unit')
+                ->get(),
         ]);
     }
 }

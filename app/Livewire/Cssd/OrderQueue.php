@@ -2,17 +2,13 @@
 
 namespace App\Livewire\Cssd;
 
-use App\Enums\DeliveryOrderStatus;
-use App\Models\DeliveryOrder;
+use App\Enums\OrderStatus;
+use App\Models\Order;
 use App\Models\Unit;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-/**
- * Antrian order masuk dari seluruh unit. Order yang belum didata
- * ditampilkan paling atas karena itulah pekerjaan yang menahan alur.
- */
 class OrderQueue extends Component
 {
     use WithPagination;
@@ -26,42 +22,31 @@ class OrderQueue extends Component
     #[Url(as: 'unit', keep: false)]
     public string $filterUnit = '';
 
-    public function updatedSearch(): void
-    {
-        $this->resetPage();
-    }
-
-    public function updatedFilterStatus(): void
-    {
-        $this->resetPage();
-    }
-
-    public function updatedFilterUnit(): void
+    public function updated(): void
     {
         $this->resetPage();
     }
 
     public function render()
     {
-        $orders = DeliveryOrder::query()
-            ->with(['originUnit', 'submittedBy'])
-            ->withCount(['lines', 'itemBatches'])
-            ->when($this->search, fn ($q) => $q->where(function ($sub) {
-                $sub->where('order_number', 'like', "%{$this->search}%")
-                    ->orWhere('courier_name', 'like', "%{$this->search}%");
-            }))
+        $orders = Order::query()
+            ->with(['unit', 'requestedBy', 'batch', 'photos'])
+            ->withCount('assets')
+            ->when($this->search, fn ($q) => $q->where('order_number', 'like', "%{$this->search}%"))
             ->when($this->filterStatus, fn ($q) => $q->where('status', $this->filterStatus))
-            ->when($this->filterUnit, fn ($q) => $q->where('origin_unit_id', $this->filterUnit))
-            // Yang belum didata naik ke atas: itu antrian kerja yang menahan alur.
-            ->orderByRaw("CASE WHEN status = ? THEN 0 ELSE 1 END", [DeliveryOrderStatus::PendingCssdIntake->value])
-            ->latest('sent_at')
+            ->when($this->filterUnit, fn ($q) => $q->where('unit_id', $this->filterUnit))
+            // Urutan antrian: CITO paling atas (pasien gawat), lalu yang belum disiapkan.
+            ->orderByDesc('is_cito')
+            ->orderByRaw('CASE WHEN status = ? THEN 0 ELSE 1 END', [OrderStatus::Pending->value])
+            ->latest()
             ->paginate(15);
 
         return view('livewire.cssd.order-queue', [
             'orders' => $orders,
-            'statusOptions' => DeliveryOrderStatus::options(),
+            'statusOptions' => OrderStatus::options(),
             'unitOptions' => Unit::active()->orderBy('name')->get(['id', 'name']),
-            'pendingCount' => DeliveryOrder::awaitingIntake()->count(),
+            'pendingCount' => Order::awaitingPreparation()->count(),
+            'citoCount' => Order::open()->where('is_cito', true)->count(),
         ]);
     }
 }

@@ -1,6 +1,6 @@
 <div>
     <x-page-header title="Pengguna"
-                   subtitle="Akun dibuat oleh Admin — tidak ada pendaftaran mandiri.">
+                   subtitle="Akun dibuat oleh Admin, tidak ada pendaftaran mandiri.">
         <x-slot:actions>
             <button wire:click="create" class="btn-primary">+ Tambah Pengguna</button>
         </x-slot:actions>
@@ -42,12 +42,12 @@
                             <td class="font-medium text-slate-900">
                                 {{ $user->name }}
                                 @if ($user->id === auth()->id())
-                                    <span class="ml-1 rounded bg-teal-50 px-1.5 py-0.5 text-xs text-teal-700">Anda</span>
+                                    <span class="ml-1 rounded bg-brand-50 px-1.5 py-0.5 text-xs text-brand-700">Anda</span>
                                 @endif
                             </td>
                             <td class="text-slate-500">{{ $user->email }}</td>
                             <td>{{ $user->role->label() }}</td>
-                            <td>{{ $user->unit?->name ?? '—' }}</td>
+                            <td>{{ $user->unit?->name ?? 'tidak ada' }}</td>
                             <td><x-status-pill :active="$user->is_active" /></td>
                             <td>
                                 <div class="flex justify-end gap-2">
@@ -103,7 +103,7 @@
                 <div>
                     <label class="field-label" for="user-unit">Unit Asal</label>
                     <select wire:model="unit_id" id="user-unit" class="field-input" @disabled(! $roleNeedsUnit)>
-                        <option value="">{{ $roleNeedsUnit ? '— Pilih unit —' : 'Tidak terikat unit' }}</option>
+                        <option value="">{{ $roleNeedsUnit ? 'Pilih unit' : 'Tidak terikat unit' }}</option>
                         @foreach ($unitOptions as $unit)
                             <option value="{{ $unit->id }}">{{ $unit->name }}</option>
                         @endforeach
@@ -128,7 +128,7 @@
             </div>
 
             <label class="flex items-center gap-2 text-sm text-slate-700">
-                <input wire:model="is_active" type="checkbox" class="rounded border-slate-300 text-teal-600 focus:ring-teal-500">
+                <input wire:model="is_active" type="checkbox" class="rounded border-slate-300 text-brand-600 focus:ring-brand-500">
                 Akun aktif
             </label>
         </form>

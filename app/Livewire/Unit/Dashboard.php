@@ -2,64 +2,56 @@
 
 namespace App\Livewire\Unit;
 
-use App\Enums\DeliveryOrderStatus;
-use App\Enums\ItemBatchStatus;
+use App\Enums\AssetStatus;
+use App\Enums\OrderStatus;
 use App\Enums\ZoneBucket;
-use App\Models\DeliveryOrder;
-use App\Models\ItemBatch;
-use App\Models\Pickup;
-use Livewire\Attributes\Url;
+use App\Models\Asset;
+use App\Models\Order;
 use Livewire\Component;
 
 /**
- * Live tracking untuk unit — pengganti kebiasaan menelepon CSSD.
- * Diperbarui otomatis lewat wire:poll, tanpa perlu refresh manual.
+ * Ringkasan untuk unit: apa yang perlu ditindaklanjuti, dan sampai mana
+ * alat kiriman diproses CSSD.
  */
 class Dashboard extends Component
 {
-    #[Url(as: 'zona', keep: false)]
-    public string $zoneFilter = '';
-
     public function render()
     {
         $unitId = auth()->user()->unit_id;
 
-        $activeBatches = ItemBatch::query()
-            ->forUnit($unitId)
-            ->active()
-            ->with(['instrumentSet', 'item', 'currentDeliveryOrder'])
-            ->orderBy('status_changed_at', 'desc')
+        // Alat yang sedang di dalam siklus CSSD lewat pesanan unit ini.
+        $inProcess = Asset::query()
+            ->whereHas('orders', fn ($q) => $q->where('orders.unit_id', $unitId)->whereIn('orders.status', [
+                OrderStatus::Preparing->value,
+                OrderStatus::ReadyForPickup->value,
+                OrderStatus::Delivering->value,
+            ]))
+            ->with(['instrumentSet', 'item'])
             ->get();
 
-        $tracked = collect(ZoneBucket::trackedByUnit())->map(fn (ZoneBucket $zone) => [
-            'zone' => $zone,
-            'count' => $activeBatches->filter(fn (ItemBatch $b) => $b->zone() === $zone)->count(),
-        ]);
-
-        $filtered = $this->zoneFilter
-            ? $activeBatches->filter(fn (ItemBatch $b) => $b->zone()->value === $this->zoneFilter)
-            : $activeBatches;
+        // Alat yang saat ini dipegang unit, terlepas dari pesanan.
+        $atUnit = Asset::query()
+            ->whereIn('status', [AssetStatus::AtUnit, AssetStatus::InUse])
+            ->where(fn ($q) => $q->whereNull('batch_id')
+                ->orWhereHas('batch', fn ($b) => $b->where('unit_id', $unitId)))
+            ->with(['instrumentSet', 'item'])
+            ->get();
 
         return view('livewire.unit.dashboard', [
-            'trackedZones' => $tracked,
-            'batches' => $filtered->take(60),
-            'totalActive' => $activeBatches->count(),
-            'atUnitCount' => $activeBatches->filter(fn (ItemBatch $b) => $b->zone() === ZoneBucket::AtUnit)->count(),
-            'awaitingIntake' => DeliveryOrder::forUnit($unitId)->awaitingIntake()->count(),
-            'awaitingConfirm' => Pickup::forUnit($unitId)->pending()->count(),
-            'readyCount' => $activeBatches->filter(
-                fn (ItemBatch $b) => $b->status === ItemBatchStatus::ReadyForPickup
-            )->count(),
-            'recentOrders' => DeliveryOrder::forUnit($unitId)
-                ->with('originUnit')
-                ->whereIn('status', [
-                    DeliveryOrderStatus::PendingCssdIntake,
-                    DeliveryOrderStatus::IntakeRecorded,
-                    DeliveryOrderStatus::Processing,
-                ])
-                ->latest('sent_at')
-                ->limit(5)
-                ->get(),
+            'zones' => collect(ZoneBucket::trackedByUnit())->map(fn (ZoneBucket $zone) => [
+                'zone' => $zone,
+                'count' => $inProcess->filter(fn (Asset $a) => $a->zone() === $zone)->count(),
+            ]),
+            'inProcessCount' => $inProcess->count(),
+            'atUnitCount' => $atUnit->count(),
+            'inUseCount' => $atUnit->filter(fn (Asset $a) => $a->status === AssetStatus::InUse)->count(),
+
+            'awaitingConfirm' => Order::forUnit($unitId)
+                ->whereIn('status', [OrderStatus::ReadyForPickup->value, OrderStatus::Delivering->value])
+                ->count(),
+            'pendingIntake' => Order::forUnit($unitId)->where('status', OrderStatus::Pending)->count(),
+            'openOrders' => Order::forUnit($unitId)->open()->withCount('assets')->latest()->limit(5)->get(),
+            'recentAssets' => $inProcess->sortByDesc('status_changed_at')->take(8),
         ]);
     }
 }

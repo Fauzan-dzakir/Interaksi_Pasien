@@ -79,7 +79,7 @@
             </div>
 
             <label class="flex items-center gap-2 text-sm text-slate-700">
-                <input wire:model="is_active" type="checkbox" class="rounded border-slate-300 text-teal-600 focus:ring-teal-500">
+                <input wire:model="is_active" type="checkbox" class="rounded border-slate-300 text-brand-600 focus:ring-brand-500">
                 Unit aktif
             </label>
         </form>

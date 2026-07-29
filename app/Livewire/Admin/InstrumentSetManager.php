@@ -4,15 +4,17 @@ namespace App\Livewire\Admin;
 
 use App\Models\InstrumentSet;
 use App\Models\Item;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
 class InstrumentSetManager extends Component
 {
-    use WithPagination;
+    use WithFileUploads, WithPagination;
 
     #[Url(as: 'q', keep: false)]
     public string $search = '';
@@ -28,6 +30,11 @@ class InstrumentSetManager extends Component
     public string $description = '';
 
     public bool $is_active = true;
+
+    /** Foto contoh set, memudahkan pengenalan saat perakitan ulang. */
+    public $photo;
+
+    public ?string $existingPhoto = null;
 
     /** @var array<int, array{item_id: string, quantity: int}> Komposisi isi set. */
     public array $setItems = [];
@@ -52,6 +59,8 @@ class InstrumentSetManager extends Component
         $this->name = $set->name;
         $this->description = $set->description ?? '';
         $this->is_active = $set->is_active;
+        $this->existingPhoto = $set->photo_path;
+        $this->photo = null;
 
         $this->setItems = $set->items
             ->map(fn (Item $item) => [
@@ -83,6 +92,7 @@ class InstrumentSetManager extends Component
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string', 'max:1000'],
             'is_active' => ['boolean'],
+            'photo' => ['nullable', 'image', 'max:4096'],
             'setItems' => ['array'],
             'setItems.*.item_id' => ['required', 'exists:items,id'],
             'setItems.*.quantity' => ['required', 'integer', 'min:1', 'max:999'],
@@ -100,12 +110,23 @@ class InstrumentSetManager extends Component
             return;
         }
 
-        $set = InstrumentSet::updateOrCreate(['id' => $this->editingId], [
+        $attributes = [
             'code' => $data['code'],
             'name' => $data['name'],
             'description' => $data['description'] ?: null,
             'is_active' => $data['is_active'],
-        ]);
+        ];
+
+        // Foto lama dipertahankan bila tidak ada unggahan baru.
+        if ($this->photo) {
+            $attributes['photo_path'] = $this->photo->store('set-photos', 'public');
+
+            if ($this->existingPhoto) {
+                Storage::disk('public')->delete($this->existingPhoto);
+            }
+        }
+
+        $set = InstrumentSet::updateOrCreate(['id' => $this->editingId], $attributes);
 
         $set->items()->sync(
             collect($this->setItems)
@@ -117,6 +138,17 @@ class InstrumentSetManager extends Component
         $this->resetForm();
 
         session()->flash('status', 'Data set alat berhasil disimpan.');
+    }
+
+    public function removePhoto(): void
+    {
+        if ($this->editingId && $this->existingPhoto) {
+            Storage::disk('public')->delete($this->existingPhoto);
+            InstrumentSet::whereKey($this->editingId)->update(['photo_path' => null]);
+        }
+
+        $this->existingPhoto = null;
+        $this->photo = null;
     }
 
     public function toggleActive(int $id): void
@@ -136,7 +168,7 @@ class InstrumentSetManager extends Component
 
     protected function resetForm(): void
     {
-        $this->reset(['editingId', 'code', 'name', 'description', 'is_active', 'setItems']);
+        $this->reset(['editingId', 'code', 'name', 'description', 'is_active', 'setItems', 'photo', 'existingPhoto']);
         $this->is_active = true;
         $this->setItems = [];
         $this->resetErrorBag();
@@ -146,7 +178,8 @@ class InstrumentSetManager extends Component
     {
         $sets = InstrumentSet::query()
             ->withCount('items')
-            ->with('items:id')
+            // Isi set dimuat lengkap agar dropdown "lihat isi" bisa langsung tampil.
+            ->with('items')
             ->when($this->search, fn ($q) => $q->where(function ($sub) {
                 $sub->where('name', 'like', "%{$this->search}%")
                     ->orWhere('code', 'like', "%{$this->search}%");

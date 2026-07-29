@@ -4,10 +4,42 @@
 @source '../../storage/framework/views/*.php';
 @source '../views';
 @source '../../app/Livewire';
+/* Enum menyimpan kelas warna pill status, wajib ikut dipindai Tailwind. */
+@source '../../app/Enums';
 
+/*
+ * Palet mengikuti identitas Kementerian Kesehatan RI (Permenkes No. 7/2017):
+ * biru turquoise, hijau terang, dan hitam.
+ * Kode hex resmi tidak dipublikasikan terbuka, jadi nilai di bawah didekati
+ * dari logo resmi Kemenkes dan logo RS Kemenkes Surabaya.
+ */
 @theme {
     --font-sans: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* Turquoise: warna utama, dipakai untuk aksi utama dan penanda halaman aktif. */
+    --color-brand-50: #eefbfd;
+    --color-brand-100: #d3f4f9;
+    --color-brand-200: #ace9f3;
+    --color-brand-300: #71d8ea;
+    --color-brand-400: #2fbdd8;
+    --color-brand-500: #14a0be;
+    --color-brand-600: #0e8aa8;
+    --color-brand-700: #116a83;
+    --color-brand-800: #16576b;
+    --color-brand-900: #17495b;
+
+    /* Hijau terang: warna pendukung, dipakai untuk status siap/tersedia. */
+    --color-leaf-50: #f4faeb;
+    --color-leaf-100: #e6f4d3;
+    --color-leaf-200: #cfeaac;
+    --color-leaf-300: #b0db7b;
+    --color-leaf-400: #8dc63f;
+    --color-leaf-500: #74ad2b;
+    --color-leaf-600: #598a1e;
+    --color-leaf-700: #45691b;
+    --color-leaf-800: #39541b;
+    --color-leaf-900: #32481b;
 }
 
 [x-cloak] {
@@ -26,7 +58,7 @@
 
     .field-input {
         @apply w-full rounded-lg border border-slate-300 px-3 py-2 text-sm shadow-sm
-               focus:border-teal-500 focus:ring-1 focus:ring-teal-500
+               focus:border-brand-500 focus:ring-1 focus:ring-brand-500
                disabled:bg-slate-100 disabled:text-slate-500;
     }
 
@@ -35,8 +67,8 @@
     }
 
     .btn-primary {
-        @apply inline-flex items-center justify-center gap-1.5 rounded-lg bg-teal-600 px-4 py-2
-               text-sm font-semibold text-white transition hover:bg-teal-700 disabled:opacity-60;
+        @apply inline-flex items-center justify-center gap-1.5 rounded-lg bg-brand-600 px-4 py-2
+               text-sm font-semibold text-white transition hover:bg-brand-700 disabled:opacity-60;
     }
 
     .btn-secondary {
@@ -64,5 +96,34 @@
 
     .table-base tbody tr:hover {
         @apply bg-slate-50/60;
+    }
+
+    /* Kartu produk pada halaman pemesanan, mengikuti pola belanja daring. */
+    .product-card {
+        @apply flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white
+               transition hover:border-brand-300 hover:shadow-md;
+    }
+
+    .product-thumb {
+        @apply flex aspect-4/3 w-full items-center justify-center overflow-hidden bg-slate-100;
+    }
+
+    /* Menu samping */
+    .nav-group-label {
+        @apply px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400;
+    }
+
+    .nav-link {
+        @apply flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition
+               hover:bg-slate-100 hover:text-slate-900;
+    }
+
+    .nav-link.is-active {
+        @apply bg-brand-50 font-semibold text-brand-700 hover:bg-brand-50 hover:text-brand-700;
+    }
+
+    .badge-count {
+        @apply ml-auto inline-flex min-w-5 items-center justify-center rounded-full bg-red-500 px-1.5 py-0.5
+               text-[11px] font-bold leading-none text-white;
     }
 }

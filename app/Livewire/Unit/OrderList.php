@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Unit;
 
-use App\Enums\DeliveryOrderStatus;
-use App\Models\DeliveryOrder;
+use App\Enums\OrderStatus;
+use App\Models\Order;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -18,33 +18,25 @@ class OrderList extends Component
     #[Url(as: 'status', keep: false)]
     public string $filterStatus = '';
 
-    public function updatedSearch(): void
-    {
-        $this->resetPage();
-    }
-
-    public function updatedFilterStatus(): void
+    public function updated(): void
     {
         $this->resetPage();
     }
 
     public function render()
     {
-        $orders = DeliveryOrder::query()
+        $orders = Order::query()
             ->forUnit(auth()->user()->unit_id)
-            ->with(['submittedBy', 'intakeRecordedBy'])
-            ->withCount(['lines', 'itemBatches'])
-            ->when($this->search, fn ($q) => $q->where(function ($sub) {
-                $sub->where('order_number', 'like', "%{$this->search}%")
-                    ->orWhere('courier_name', 'like', "%{$this->search}%");
-            }))
+            ->with(['requestedBy', 'batch', 'photos'])
+            ->withCount('assets')
+            ->when($this->search, fn ($q) => $q->where('order_number', 'like', "%{$this->search}%"))
             ->when($this->filterStatus, fn ($q) => $q->where('status', $this->filterStatus))
-            ->latest('sent_at')
+            ->latest()
             ->paginate(12);
 
         return view('livewire.unit.order-list', [
             'orders' => $orders,
-            'statusOptions' => DeliveryOrderStatus::options(),
+            'statusOptions' => OrderStatus::options(),
         ]);
     }
 }

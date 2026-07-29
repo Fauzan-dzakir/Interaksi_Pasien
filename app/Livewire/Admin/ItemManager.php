@@ -4,15 +4,17 @@ namespace App\Livewire\Admin;
 
 use App\Enums\MaterialSensitivity;
 use App\Models\Item;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
 class ItemManager extends Component
 {
-    use WithPagination;
+    use WithFileUploads, WithPagination;
 
     #[Url(as: 'q', keep: false)]
     public string $search = '';
@@ -35,6 +37,11 @@ class ItemManager extends Component
     public string $notes = '';
 
     public bool $is_active = true;
+
+    /** Foto contoh alat, membantu petugas mengenali alat secara visual. */
+    public $photo;
+
+    public ?string $existingPhoto = null;
 
     public function updatedSearch(): void
     {
@@ -63,6 +70,8 @@ class ItemManager extends Component
         $this->material_sensitivity = $item->material_sensitivity->value;
         $this->notes = $item->notes ?? '';
         $this->is_active = $item->is_active;
+        $this->existingPhoto = $item->photo_path;
+        $this->photo = null;
 
         $this->resetErrorBag();
         $this->showForm = true;
@@ -77,10 +86,24 @@ class ItemManager extends Component
             'material_sensitivity' => ['required', Rule::enum(MaterialSensitivity::class)],
             'notes' => ['nullable', 'string', 'max:1000'],
             'is_active' => ['boolean'],
-        ]);
+            'photo' => ['nullable', 'image', 'max:4096'],
+        ], [], ['photo' => 'foto alat']);
 
         $data['category'] = $data['category'] ?: null;
         $data['notes'] = $data['notes'] ?: null;
+
+        // Foto lama dipertahankan bila tidak ada unggahan baru.
+        if ($this->photo) {
+            $data['photo_path'] = $this->photo->store('item-photos', 'public');
+
+            if ($this->existingPhoto) {
+                Storage::disk('public')->delete($this->existingPhoto);
+            }
+        } else {
+            unset($data['photo']);
+        }
+
+        unset($data['photo']);
 
         Item::updateOrCreate(['id' => $this->editingId], $data);
 
@@ -90,7 +113,18 @@ class ItemManager extends Component
         session()->flash('status', 'Data alat berhasil disimpan.');
     }
 
-    /** Katalog alat hanya dinonaktifkan, tidak dihapus — riwayat lama tetap terbaca. */
+    public function removePhoto(): void
+    {
+        if ($this->editingId && $this->existingPhoto) {
+            Storage::disk('public')->delete($this->existingPhoto);
+            Item::whereKey($this->editingId)->update(['photo_path' => null]);
+        }
+
+        $this->existingPhoto = null;
+        $this->photo = null;
+    }
+
+    /** Katalog alat hanya dinonaktifkan, tidak dihapus, riwayat lama tetap terbaca. */
     public function toggleActive(int $id): void
     {
         $item = Item::findOrFail($id);
@@ -108,7 +142,7 @@ class ItemManager extends Component
 
     protected function resetForm(): void
     {
-        $this->reset(['editingId', 'code', 'name', 'category', 'material_sensitivity', 'notes', 'is_active']);
+        $this->reset(['editingId', 'code', 'name', 'category', 'material_sensitivity', 'notes', 'is_active', 'photo', 'existingPhoto']);
         $this->material_sensitivity = 'heat_water_resistant';
         $this->is_active = true;
         $this->resetErrorBag();

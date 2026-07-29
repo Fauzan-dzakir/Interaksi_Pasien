@@ -39,7 +39,8 @@
                 <li class="px-5 py-12 text-center">
                     <div class="text-sm font-medium text-slate-600">Belum ada notifikasi</div>
                     <div class="mt-1 text-sm text-slate-400">
-                        Notifikasi muncul saat CSSD selesai mendata kiriman atau alat steril siap diterima.
+                        Notifikasi muncul saat pesanan siap, kiriman alat kotor perlu dikonfirmasi,
+                        atau alat selesai disterilkan.
                     </div>
                 </li>
             @endforelse

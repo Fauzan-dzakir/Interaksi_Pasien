@@ -12,7 +12,7 @@ use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 /**
- * Login-only. Tidak ada registrasi mandiri — akun dibuat oleh Admin,
+ * Login-only. Tidak ada registrasi mandiri, akun dibuat oleh Admin,
  * sesuai kebijakan sistem informasi rumah sakit.
  */
 #[Layout('layouts.guest')]

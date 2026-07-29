@@ -4,7 +4,7 @@ namespace App\Enums;
 
 /**
  * Dicatat murni untuk keperluan audit/penelusuran masalah.
- * Logika bisnis TIDAK boleh bercabang berdasarkan nilai ini —
+ * Logika bisnis TIDAK boleh bercabang berdasarkan nilai ini,
  * kamera dan scanner fisik memanggil handler yang sama persis.
  */
 enum ScanInputMethod: string
