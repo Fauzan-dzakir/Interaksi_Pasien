@@ -21,6 +21,13 @@
  * 3. Periksa hasilnya — pastikan semua ✅
  * 4. HAPUS file ini segera setelah selesai!
  *
+ * TAMBAHAN DATA DEMO (opsional, untuk simulasi/uji coba di web):
+ * Tambahkan &seed_demo=1 di URL, mis.:
+ * https://cobafkkits.my.id/migrate_deploy.php?key=RSKEMENKES&seed_demo=1
+ * Ini membuat BANYAK order/alat contoh tersebar di berbagai unit & tahap
+ * (pakai akun demo yang SUDAH ada, TIDAK membuat user baru). Aman dijalankan
+ * berkali-kali — cuma menambah data baru, tidak menghapus/menimpa yang lama.
+ *
  * PERINGATAN: Jangan biarkan file ini online lebih dari perlu!
  * ============================================================
  */
@@ -137,6 +144,18 @@ if (isset($GLOBALS['laravelApp'])) {
         \Illuminate\Support\Facades\Artisan::call('optimize:clear');
         return '<pre style="white-space:pre-wrap">' . htmlspecialchars(\Illuminate\Support\Facades\Artisan::output()) . '</pre>';
     });
+
+    // Opsional — cuma jalan kalau URL diberi &seed_demo=1. TIDAK membuat user baru,
+    // TIDAK menghapus data lama — cuma menambah banyak order/alat contoh untuk uji coba.
+    if (($_GET['seed_demo'] ?? '') === '1') {
+        run('Isi Data Demo Tambahan (DemoBulkSeeder)', function () {
+            \Illuminate\Support\Facades\Artisan::call('db:seed', [
+                '--class' => 'Database\\Seeders\\DemoBulkSeeder',
+                '--force' => true,
+            ]);
+            return '<pre style="white-space:pre-wrap">' . htmlspecialchars(\Illuminate\Support\Facades\Artisan::output()) . '</pre>';
+        });
+    }
 }
 
 // --- RENDER HTML ---

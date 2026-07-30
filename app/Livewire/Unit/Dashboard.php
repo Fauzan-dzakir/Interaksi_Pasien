@@ -67,9 +67,6 @@ class Dashboard extends Component
             'atUnitCount' => $activeBatches->filter(fn (ItemBatch $b) => $b->zone() === ZoneBucket::AtUnit)->count(),
             'awaitingIntake' => DeliveryOrder::forUnit($unitId)->awaitingIntake()->count(),
             'awaitingConfirm' => Pickup::forUnit($unitId)->pending()->count(),
-            'readyCount' => $activeBatches->filter(
-                fn (ItemBatch $b) => $b->status === ItemBatchStatus::ReadyForPickup
-            )->count(),
             'recentOrders' => DeliveryOrder::forUnit($unitId)
                 ->with('originUnit')
                 ->whereIn('status', [

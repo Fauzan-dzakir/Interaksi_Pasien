@@ -6,70 +6,6 @@
         </x-slot:actions>
     </x-page-header>
 
-    {{--
-        Alat yang sudah ditandai dipakai (lewat menu "Pendataan Alat di Unit") — ini
-        alat kotor yang akan ikut dikirim balik lewat order ini. TAMPILAN SAJA, tidak
-        bisa diubah dari sini — untuk menandai alat mana yang dipakai, buka menu
-        "Pendataan Alat di Unit".
-    --}}
-    <div class="card mb-5">
-        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 px-5 py-4">
-            <div>
-                <h2 class="text-sm font-semibold text-slate-900">Alat Kotor (Sudah Dipakai)</h2>
-                <p class="mt-0.5 text-xs text-slate-500">
-                    Alat yang sudah ditandai dipakai — akan ikut dikirim balik lewat order ini.
-                </p>
-            </div>
-            <a href="{{ route('unit.inventory') }}" wire:navigate class="btn-secondary !px-3 !py-1.5 shrink-0">
-                Kelola di Pendataan Alat
-            </a>
-        </div>
-
-        @if ($heldBatches->isEmpty())
-            <div class="px-5 py-8 text-center text-sm text-slate-400">
-                Belum ada alat yang ditandai dipakai. Buka menu
-                <a href="{{ route('unit.inventory') }}" wire:navigate class="text-teal-700 hover:underline">Pendataan Alat di Unit</a>
-                untuk menandainya.
-            </div>
-        @else
-            <div class="divide-y divide-slate-100">
-                @foreach ($heldBatches as $batch)
-                    <div wire:key="held-{{ $batch->id }}" class="px-5 py-4">
-                        <div class="flex flex-wrap items-center justify-between gap-2">
-                            <div>
-                                <span class="font-mono text-xs text-slate-500">{{ $batch->public_code }}</span>
-                                <div class="font-medium text-slate-900">{{ $batch->displayName() }}</div>
-                            </div>
-                            <x-state-pill :state="$batch->status" />
-                        </div>
-
-                        @if ($batch->batch_type === \App\Enums\BatchType::Set && $batch->instrumentSet)
-                            <div class="mt-3 rounded-lg border border-slate-200 bg-slate-50/50 p-3">
-                                <p class="mb-2 text-xs font-semibold text-slate-500">Isi set yang ditandai dipakai</p>
-                                <div class="space-y-1">
-                                    @foreach ($batch->instrumentSet->items as $setItem)
-                                        @php
-                                            $mark = $batch->usageMarks->firstWhere('item_id', $setItem->id);
-                                            $isUsed = $mark?->is_used ?? false;
-                                        @endphp
-                                        <div class="flex items-center gap-2 text-sm text-slate-700">
-                                            <span @class([
-                                                'text-emerald-600' => $isUsed,
-                                                'text-slate-300' => ! $isUsed,
-                                            ])>{{ $isUsed ? '✓' : '—' }}</span>
-                                            {{ $setItem->name }}
-                                            <span class="text-xs text-slate-400">({{ $setItem->pivot->quantity }}x)</span>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        @endif
-                    </div>
-                @endforeach
-            </div>
-        @endif
-    </div>
-
     <div class="grid gap-5 lg:grid-cols-3">
         <div class="card p-6 lg:col-span-2">
             <form wire:submit="save" class="space-y-4">
@@ -79,6 +15,66 @@
                     @else
                         Alat kotor diantar sendiri oleh petugas unit Anda ke CSSD (bukan CSSD yang menjemput).
                         Isi nama petugas pengantar di bawah.
+                    @endif
+                </div>
+
+                {{--
+                    Rincian alat yang dikirim — satu baris per alat, sama pola dengan
+                    pendataan CSSD (baris + dropdown), tapi dropdown-nya HANYA berisi alat
+                    yang SUDAH ditandai dipakai (menu Pendataan Alat di Unit), bukan ketik
+                    bebas. Ini rujukan pembanding untuk CSSD, bukan pengganti hitung fisik mereka.
+                --}}
+                <div class="rounded-lg border border-slate-200">
+                    <div class="border-b border-slate-200 bg-slate-50 px-4 py-3">
+                        <h3 class="text-sm font-semibold text-slate-900">Rincian Alat yang Dikirim</h3>
+                        <p class="mt-0.5 text-xs text-slate-500">
+                            Pilih alat yang benar-benar ikut dikirim dalam pengiriman ini. Hanya alat yang
+                            sudah ditandai "dipakai" di menu
+                            <a href="{{ route('unit.inventory') }}" wire:navigate class="text-teal-700 hover:underline">Pendataan Alat di Unit</a>
+                            yang bisa dipilih — CSSD tetap menghitung fisiknya sendiri saat menerima.
+                        </p>
+                    </div>
+
+                    @error('declaredLines') <p class="field-error px-4 pt-3">{{ $message }}</p> @enderror
+
+                    @if ($heldBatches->isEmpty())
+                        <div class="px-4 py-6 text-center text-sm text-slate-400">
+                            Belum ada alat yang ditandai dipakai. Buka
+                            <a href="{{ route('unit.inventory') }}" wire:navigate class="text-teal-700 hover:underline">Pendataan Alat di Unit</a>
+                            dulu untuk menandainya, baru bisa membuat order.
+                        </div>
+                    @else
+                        <div class="space-y-2 p-4">
+                            @foreach ($declaredLines as $index => $line)
+                                <div wire:key="declare-line-{{ $index }}" class="flex items-center gap-2">
+                                    <div class="flex-1" wire:ignore x-data="{
+                                        init() {
+                                            let ts = new TomSelect(this.$refs.select, { create: false, placeholder: '— Pilih alat —' });
+                                            ts.on('change', (val) => { $wire.set('declaredLines.{{ $index }}.item_batch_id', val); });
+                                        }
+                                    }">
+                                        <select x-ref="select" class="field-input">
+                                            <option value="">— Pilih alat —</option>
+                                            @foreach ($heldBatches as $batch)
+                                                <option value="{{ $batch->id }}">{{ $batch->public_code }} — {{ $batch->displayName() }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    @if (count($declaredLines) > 1)
+                                        <button type="button" wire:click="removeDeclaredLine({{ $index }})"
+                                                class="shrink-0 rounded-md p-1.5 text-slate-400 transition hover:bg-red-50 hover:text-red-600"
+                                                title="Hapus baris">
+                                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                            </svg>
+                                        </button>
+                                    @endif
+                                </div>
+                            @endforeach
+
+                            <button type="button" wire:click="addDeclaredLine" class="btn-secondary w-full !py-1.5 text-sm">+ Tambah Baris</button>
+                        </div>
                     @endif
                 </div>
 
@@ -101,7 +97,7 @@
                         @error('box_count') <p class="field-error">{{ $message }}</p> @enderror
                     </div>
                 </div>
-                
+
                 <div>
                     <label class="field-label" for="pickup-location">{{ $isIbs ? 'Lokasi Pengambilan (Spesifik)' : 'Ruangan / Lokasi Asal' }}</label>
                     <select wire:model.live="pickup_location_id" id="pickup-location" class="field-input">
@@ -158,7 +154,7 @@
                     <div wire:loading wire:target="photos" class="text-xs text-slate-500 mt-1">Mengunggah...</div>
                     @error('photos') <p class="field-error">{{ $message }}</p> @enderror
                     @error('photos.*') <p class="field-error">{{ $message }}</p> @enderror
-                    
+
                     @if ($photos)
                         <div class="mt-3 flex flex-wrap gap-2">
                             @foreach ($photos as $index => $photo)
@@ -187,15 +183,80 @@
         </div>
 
         <div class="card h-fit border-sky-200 bg-sky-50/50 p-5">
-            <h2 class="text-sm font-semibold text-sky-900">Kenapa tidak ada rincian alat?</h2>
+            <h2 class="text-sm font-semibold text-sky-900">Kenapa rincian alat cuma daftar centang?</h2>
             <p class="mt-2 text-sm text-sky-800">
-                Rincian alat didata oleh <strong>petugas CSSD</strong> saat barang diterima dan dihitung fisik.
-                Ini mencegah selisih antara catatan unit dan jumlah alat yang benar-benar sampai.
+                Ini rujukan/deklarasi dari sisi Anda saja. Hitung fisik yang resmi tetap dilakukan
+                <strong>petugas CSSD</strong> saat barang diterima — supaya selisih antara catatan
+                unit dan jumlah alat yang benar-benar sampai bisa langsung ketahuan.
             </p>
             <p class="mt-3 text-sm text-sky-800">
                 Setelah CSSD menekan “Simpan Pendataan”, Anda akan menerima notifikasi dan
                 rincian alat langsung terbuka di halaman order ini.
             </p>
         </div>
+    </div>
+
+    {{--
+        Alat yang sudah ditandai dipakai (lewat menu "Pendataan Alat di Unit") — ini
+        alat kotor yang akan ikut dikirim balik lewat order ini. TAMPILAN SAJA, tidak
+        bisa diubah dari sini — untuk menandai alat mana yang dipakai, buka menu
+        "Pendataan Alat di Unit".
+    --}}
+    <div class="card mt-5">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 px-5 py-4">
+            <div>
+                <h2 class="text-sm font-semibold text-slate-900">Alat Kotor (Sudah Dipakai)</h2>
+                <p class="mt-0.5 text-xs text-slate-500">
+                    Alat yang sudah ditandai dipakai — bisa dicentang di form "Rincian Alat yang Dikirim" di atas.
+                </p>
+            </div>
+            <a href="{{ route('unit.inventory') }}" wire:navigate class="btn-secondary !px-3 !py-1.5 shrink-0">
+                Kelola di Pendataan Alat
+            </a>
+        </div>
+
+        @if ($heldBatches->isEmpty())
+            <div class="px-5 py-8 text-center text-sm text-slate-400">
+                Belum ada alat yang ditandai dipakai. Buka menu
+                <a href="{{ route('unit.inventory') }}" wire:navigate class="text-teal-700 hover:underline">Pendataan Alat di Unit</a>
+                untuk menandainya.
+            </div>
+        @else
+            <div class="divide-y divide-slate-100">
+                @foreach ($heldBatches as $batch)
+                    <div wire:key="held-{{ $batch->id }}" class="px-5 py-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div>
+                                <span class="font-mono text-xs text-slate-500">{{ $batch->public_code }}</span>
+                                <div class="font-medium text-slate-900">{{ $batch->displayName() }}</div>
+                            </div>
+                            <x-state-pill :state="$batch->status" />
+                        </div>
+
+                        @if ($batch->batch_type === \App\Enums\BatchType::Set && $batch->instrumentSet)
+                            <div class="mt-3 rounded-lg border border-slate-200 bg-slate-50/50 p-3">
+                                <p class="mb-2 text-xs font-semibold text-slate-500">Isi set yang ditandai dipakai</p>
+                                <div class="space-y-1">
+                                    @foreach ($batch->instrumentSet->items as $setItem)
+                                        @php
+                                            $mark = $batch->usageMarks->firstWhere('item_id', $setItem->id);
+                                            $isUsed = $mark?->is_used ?? false;
+                                        @endphp
+                                        <div class="flex items-center gap-2 text-sm text-slate-700">
+                                            <span @class([
+                                                'text-emerald-600' => $isUsed,
+                                                'text-slate-300' => ! $isUsed,
+                                            ])>{{ $isUsed ? '✓' : '—' }}</span>
+                                            {{ $setItem->name }}
+                                            <span class="text-xs text-slate-400">({{ $setItem->pivot->quantity }}x)</span>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                @endforeach
+            </div>
+        @endif
     </div>
 </div>

@@ -51,6 +51,8 @@ class OrderShow extends Component
                 ? $this->order->lines()->with(['instrumentSet', 'item', 'recordedBy', 'itemChecks.item'])->get()
                 : collect(),
             'batches' => $batches,
+            // Deklarasi unit saat membuat order — rujukan pembanding, bukan pendataan resmi.
+            'declaredBatches' => $this->order->declaredBatches()->with(['instrumentSet', 'item'])->get(),
             'zoneSummary' => collect(ZoneBucket::cases())
                 ->map(fn (ZoneBucket $zone) => [
                     'zone' => $zone,

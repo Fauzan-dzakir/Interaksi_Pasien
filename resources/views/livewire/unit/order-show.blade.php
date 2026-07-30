@@ -175,6 +175,24 @@
                 @endif
             </div>
 
+            @if ($declaredBatches->isNotEmpty())
+                <div class="card p-5">
+                    <h2 class="text-sm font-semibold text-slate-900">Deklarasi Anda Saat Kirim</h2>
+                    <p class="mt-1 text-xs text-slate-500">
+                        Alat yang Anda centang saat membuat order ini — rujukan pembanding,
+                        bukan pendataan resmi (itu tetap tugas CSSD).
+                    </p>
+                    <ul class="mt-3 space-y-1.5 text-sm">
+                        @foreach ($declaredBatches as $batch)
+                            <li class="flex items-center justify-between gap-2">
+                                <span class="text-slate-700">{{ $batch->displayName() }}</span>
+                                <span class="font-mono text-xs text-slate-400">{{ $batch->public_code }}</span>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             @if ($zoneSummary->isNotEmpty())
                 <div class="card p-5">
                     <h2 class="mb-3 text-sm font-semibold text-slate-900">Ringkasan Zona</h2>

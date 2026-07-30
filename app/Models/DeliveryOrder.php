@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Fillable([
@@ -55,6 +56,17 @@ class DeliveryOrder extends Model
     public function events(): HasMany
     {
         return $this->hasMany(DeliveryOrderEvent::class)->orderBy('occurred_at');
+    }
+
+    /**
+     * Alat yang DIDEKLARASIKAN unit saat membuat order ini (dipilih dari alat
+     * yang sudah ditandai dipakai) — rujukan pembanding saja, BUKAN pendataan
+     * resmi. Pendataan resmi tetap dilakukan CSSD secara independen lewat
+     * recordIntake(), yang membuat batch/barcode baru sendiri.
+     */
+    public function declaredBatches(): BelongsToMany
+    {
+        return $this->belongsToMany(ItemBatch::class, 'delivery_order_declared_batches');
     }
 
     /** Rincian alat baru terbuka untuk unit setelah CSSD menyimpan pendataan. */

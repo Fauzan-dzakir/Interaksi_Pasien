@@ -24,6 +24,24 @@
         </div>
     @endif
 
+    @if ($declaredBatches->isNotEmpty())
+        <div class="mb-5 card border-sky-200 bg-sky-50/60 p-5">
+            <h2 class="text-sm font-semibold text-sky-900">Deklarasi Unit Saat Kirim</h2>
+            <p class="mt-1 text-xs text-sky-800">
+                Alat yang dicentang unit saat membuat order ini — rujukan pembanding saja,
+                <strong>tetap hitung fisik sendiri</strong> di bawah, jangan disalin mentah-mentah.
+            </p>
+            <div class="mt-3 flex flex-wrap gap-2">
+                @foreach ($declaredBatches as $batch)
+                    <span class="rounded-lg bg-white px-3 py-1.5 text-xs ring-1 ring-sky-200">
+                        <span class="font-medium text-slate-800">{{ $batch->displayName() }}</span>
+                        <span class="ml-1 font-mono text-slate-400">{{ $batch->public_code }}</span>
+                    </span>
+                @endforeach
+            </div>
+        </div>
+    @endif
+
     <div class="grid gap-5 lg:grid-cols-3">
         <div class="space-y-5 lg:col-span-2">
             @if ($canRecord)

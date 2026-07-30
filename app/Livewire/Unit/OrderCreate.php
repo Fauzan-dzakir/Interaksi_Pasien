@@ -42,12 +42,35 @@ class OrderCreate extends Component
 
     public $photos = [];
 
+    /**
+     * Alat yang dideklarasikan unit sebagai isi kiriman ini — satu baris per alat,
+     * sama pola dengan pendataan CSSD (baris + dropdown), tapi dropdown-nya HANYA
+     * berisi alat yang SUDAH ditandai dipakai (lewat menu Pendataan Alat di Unit),
+     * bukan seluruh katalog. Ini rujukan pembanding saja; pendataan resmi tetap
+     * dilakukan CSSD secara independen saat menerima fisik barangnya.
+     *
+     * @var array<int, array{item_batch_id: string}>
+     */
+    public array $declaredLines = [];
+
     public function mount(): void
     {
         $this->authorize('create', DeliveryOrder::class);
 
         $this->courier_name = auth()->user()->name;
         $this->sent_at = now()->format('Y-m-d\TH:i');
+        $this->addDeclaredLine();
+    }
+
+    public function addDeclaredLine(): void
+    {
+        $this->declaredLines[] = ['item_batch_id' => ''];
+    }
+
+    public function removeDeclaredLine(int $index): void
+    {
+        unset($this->declaredLines[$index]);
+        $this->declaredLines = array_values($this->declaredLines);
     }
 
     /** Hapus satu foto dari daftar unggahan sebelum order dikirim (mis. foto ngeblur). */
@@ -84,6 +107,32 @@ class OrderCreate extends Component
             'photos' => 'foto kondisi alat',
             'photos.*' => 'foto',
         ]);
+
+        // Ambil ID yang benar-benar dipilih (baris kosong diabaikan), dedup baris ganda.
+        $submittedIds = array_unique(array_filter(
+            array_column($this->declaredLines, 'item_batch_id')
+        ));
+
+        if ($submittedIds === []) {
+            $this->addError('declaredLines', 'Pilih minimal satu alat yang akan dikirim.');
+
+            return;
+        }
+
+        // Jangan percaya ID kiriman klien mentah-mentah — pastikan hanya alat
+        // milik unit ini yang benar-benar berstatus "sedang dipakai" yang boleh
+        // dideklarasikan, supaya tidak bisa dipalsukan lewat DevTools/replay.
+        $declaredBatchIds = ItemBatch::where('origin_unit_id', $unit->id)
+            ->where('status', ItemBatchStatus::InUse)
+            ->whereIn('id', $submittedIds)
+            ->pluck('id')
+            ->all();
+
+        if ($declaredBatchIds === []) {
+            $this->addError('declaredLines', 'Pilih minimal satu alat yang akan dikirim.');
+
+            return;
+        }
 
         // needed_at diisi sebagai jam saja (24 jam) — sistem menentukan sendiri
         // tanggalnya: hari ini kalau jamnya belum lewat, besok kalau sudah lewat,
@@ -128,6 +177,8 @@ class OrderCreate extends Component
         }
 
         $order = $service->create(auth()->user(), $data);
+
+        $order->declaredBatches()->attach($declaredBatchIds);
 
         $message = $this->pickup_location_id === 'other'
             ? "Order {$order->order_number} terkirim. Lokasi baru yang Anda tulis juga sudah diajukan ke Admin untuk ditambahkan ke daftar."

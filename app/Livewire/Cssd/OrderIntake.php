@@ -177,6 +177,9 @@ class OrderIntake extends Component
             'itemOptions' => Item::active()->orderBy('code')->get(['id', 'code', 'name']),
             'recordedLines' => $this->order->lines()->with(['instrumentSet', 'item', 'recordedBy', 'itemChecks.item'])->get(),
             'batches' => $this->order->itemBatches()->with(['instrumentSet', 'item'])->orderBy('public_code')->get(),
+            // Deklarasi unit saat membuat order — rujukan pembanding SAJA untuk hitung
+            // fisik CSSD, bukan pengganti pendataan resmi (yang tetap dilakukan di bawah).
+            'declaredBatches' => $this->order->declaredBatches()->with(['instrumentSet', 'item'])->get(),
         ]);
     }
 }

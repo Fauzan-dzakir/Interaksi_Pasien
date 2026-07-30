@@ -6,11 +6,18 @@
         </x-slot:actions>
     </x-page-header>
 
-    {{-- Hal yang butuh tindakan unit ditaruh paling atas. --}}
-    @if ($awaitingConfirm > 0 || $readyCount > 0)
+    {{--
+        Hal yang butuh tindakan unit ditaruh paling atas. SENGAJA hanya berdasarkan
+        $awaitingConfirm (jumlah Pickup yang benar-benar menunggu konfirmasi) — itu
+        persis yang ditampilkan halaman "Lihat Penerimaan". Dulu ada fallback ke
+        $readyCount (hitungan status alat mentah) yang bisa berbeda dari isi
+        Penerimaan kalau datanya tidak sinkron, membuat banner ini menunjukkan
+        angka yang salah dan mengarah ke halaman yang ternyata kosong.
+    --}}
+    @if ($awaitingConfirm > 0)
         <div class="mb-5 flex flex-wrap items-center gap-3 rounded-lg border border-emerald-300 bg-emerald-50 px-4 py-3">
             <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-200 font-semibold text-emerald-900">
-                {{ $awaitingConfirm ?: $readyCount }}
+                {{ $awaitingConfirm }}
             </span>
             <span class="text-sm text-emerald-900">
                 Ada alat steril yang siap diterima unit Anda.
