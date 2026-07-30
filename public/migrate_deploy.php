@@ -74,9 +74,55 @@ if (isset($GLOBALS['laravelApp'])) {
         return '<pre style="white-space:pre-wrap">' . htmlspecialchars(\Illuminate\Support\Facades\Artisan::output()) . '</pre>';
     });
 
+    run('Siapkan Folder Storage (buat + set izin tulis)', function () {
+        $log = [];
+
+        // storage:link menolak mengganti public/storage kalau itu SUDAH berupa
+        // folder biasa (bukan symlink) — --force cuma berlaku untuk symlink lama.
+        // Kalau folder itu ternyata sudah berisi file asli, JANGAN dihapus otomatis.
+        $publicStorage = __DIR__.'/storage';
+        if (is_dir($publicStorage) && ! is_link($publicStorage)) {
+            $isEmpty = count(scandir($publicStorage)) <= 2; // hanya '.' dan '..'
+            if ($isEmpty) {
+                rmdir($publicStorage);
+                $log[] = "public/storage folder kosong lama dihapus, siap dibuat ulang sebagai symlink.";
+            } else {
+                $log[] = "⚠️ public/storage berisi file dan BUKAN symlink — tidak dihapus otomatis. Cek manual lewat File Manager.";
+            }
+        }
+
+        // Folder tujuan upload — dibuat lewat PHP (bukan FileZilla) supaya
+        // otomatis dimiliki user yang sama dengan proses PHP-FPM, sehingga
+        // pasti bisa ditulisi. Ini penyebab paling umum foto gagal tersimpan
+        // tanpa ada galat sama sekali di server hasil upload manual.
+        foreach (['app/public', 'app/public/orders', 'app/public/assembled-sets', 'app/public/sterilization'] as $rel) {
+            $path = __DIR__.'/../storage/'.$rel;
+            if (! is_dir($path)) {
+                mkdir($path, 0775, true);
+                $log[] = "Dibuat: storage/{$rel}";
+            }
+            @chmod($path, 0775);
+        }
+
+        return $log ? implode('<br>', $log) : 'Semua folder storage sudah siap.';
+    });
+
     run('Storage Symlink (agar foto bukti/hasil steril bisa dilihat)', function () {
         \Illuminate\Support\Facades\Artisan::call('storage:link', ['--force' => true]);
         return '<pre style="white-space:pre-wrap">' . htmlspecialchars(\Illuminate\Support\Facades\Artisan::output()) . '</pre>';
+    });
+
+    run('Tes Tulis File ke Disk Public (memverifikasi upload sungguhan akan berhasil)', function () {
+        $path = \Illuminate\Support\Facades\Storage::disk('public')->path('orders/_write_test.txt');
+        \Illuminate\Support\Facades\Storage::disk('public')->put('orders/_write_test.txt', 'ok');
+
+        if (! file_exists($path)) {
+            throw new \RuntimeException("File tidak ditemukan setelah ditulis di: {$path}");
+        }
+
+        \Illuminate\Support\Facades\Storage::disk('public')->delete('orders/_write_test.txt');
+
+        return "✅ Berhasil tulis & baca file di storage/app/public/orders — upload foto seharusnya sudah bisa jalan normal.";
     });
 
     run('Seed Lokasi Pengambilan (dummy awal, aman)', function () {

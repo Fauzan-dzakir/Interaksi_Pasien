@@ -43,8 +43,11 @@ return [
             'root' => storage_path('app/public'),
             'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/storage',
             'visibility' => 'public',
-            'throw' => false,
-            'report' => false,
+            // throw+report diaktifkan (beda dari default Laravel) — foto order/set/
+            // sterilisasi pernah gagal tersimpan tanpa jejak sama sekali karena disk
+            // ini sebelumnya diam-diam menelan galat penulisan file (mis. izin folder).
+            'throw' => true,
+            'report' => true,
         ],
 
         's3' => [
