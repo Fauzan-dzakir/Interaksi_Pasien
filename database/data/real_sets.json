@@ -1,0 +1,2114 @@
+[
+  {
+    "code": "SET-CHECKLIST-SET-BTKV",
+    "name": "CHECKLIST SET BTKV",
+    "description": "Kompilasi otomatis dari CHECKLIST SET BTKV.xlsx",
+    "items": [
+      {
+        "code": "BF432R",
+        "qty": 12
+      },
+      {
+        "code": "BB084R",
+        "qty": 2
+      },
+      {
+        "code": "BB073R",
+        "qty": 1
+      },
+      {
+        "code": "BB075R",
+        "qty": 1
+      },
+      {
+        "code": "BC271R",
+        "qty": 1
+      },
+      {
+        "code": "BC265R",
+        "qty": 1
+      },
+      {
+        "code": "BC267R",
+        "qty": 1
+      },
+      {
+        "code": "BC277R",
+        "qty": 1
+      },
+      {
+        "code": "BC295W",
+        "qty": 1
+      },
+      {
+        "code": "BC284R",
+        "qty": 1
+      },
+      {
+        "code": "BC774R",
+        "qty": 1
+      },
+      {
+        "code": "BC324R",
+        "qty": 1
+      },
+      {
+        "code": "BD027R",
+        "qty": 1
+      },
+      {
+        "code": "BD557R",
+        "qty": 2
+      },
+      {
+        "code": "FB400R",
+        "qty": 2
+      },
+      {
+        "code": "FB402R",
+        "qty": 2
+      },
+      {
+        "code": "FB404R",
+        "qty": 2
+      },
+      {
+        "code": "FB416R",
+        "qty": 2
+      },
+      {
+        "code": "BH614R",
+        "qty": 6
+      },
+      {
+        "code": "BH110R",
+        "qty": 4
+      },
+      {
+        "code": "BH111R",
+        "qty": 10
+      },
+      {
+        "code": "BH167R",
+        "qty": 6
+      },
+      {
+        "code": "BH206R",
+        "qty": 2
+      },
+      {
+        "code": "BH234R",
+        "qty": 1
+      },
+      {
+        "code": "BJ314R",
+        "qty": 4
+      },
+      {
+        "code": "BJ023R",
+        "qty": 2
+      },
+      {
+        "code": "BJ026R",
+        "qty": 2
+      },
+      {
+        "code": "BJ102R",
+        "qty": 1
+      },
+      {
+        "code": "BJ103R",
+        "qty": 1
+      },
+      {
+        "code": "BJ104R",
+        "qty": 1
+      },
+      {
+        "code": "BJ045R",
+        "qty": 1
+      },
+      {
+        "code": "BJ047R",
+        "qty": 1
+      },
+      {
+        "code": "EF002R",
+        "qty": 1
+      },
+      {
+        "code": "FB512R",
+        "qty": 1
+      },
+      {
+        "code": "FB500R",
+        "qty": 1
+      },
+      {
+        "code": "FB467R",
+        "qty": 1
+      },
+      {
+        "code": "FB458R",
+        "qty": 1
+      },
+      {
+        "code": "EA095R",
+        "qty": 2
+      },
+      {
+        "code": "EA061R",
+        "qty": 1
+      },
+      {
+        "code": "BM016R",
+        "qty": 1
+      },
+      {
+        "code": "BM035R",
+        "qty": 1
+      },
+      {
+        "code": "BM067R",
+        "qty": 2
+      },
+      {
+        "code": "BM113R",
+        "qty": 1
+      },
+      {
+        "code": "BT325R",
+        "qty": 2
+      },
+      {
+        "code": "BT763R",
+        "qty": 1
+      },
+      {
+        "code": "BT084R",
+        "qty": 1
+      },
+      {
+        "code": "FB653R",
+        "qty": 1
+      },
+      {
+        "code": "FB654R",
+        "qty": 1
+      },
+      {
+        "code": "AN913R",
+        "qty": 6
+      },
+      {
+        "code": "GF946R",
+        "qty": 1
+      },
+      {
+        "code": "AA805R",
+        "qty": 1
+      },
+      {
+        "code": "JG224R",
+        "qty": 1
+      },
+      {
+        "code": "JK442",
+        "qty": 1
+      },
+      {
+        "code": "JK486",
+        "qty": 1
+      },
+      {
+        "code": "JK095",
+        "qty": 1
+      },
+      {
+        "code": "BF459R",
+        "qty": 8
+      },
+      {
+        "code": "BF433R",
+        "qty": 2
+      },
+      {
+        "code": "BC989R",
+        "qty": 2
+      },
+      {
+        "code": "BH187R",
+        "qty": 1
+      },
+      {
+        "code": "BT254R",
+        "qty": 2
+      }
+    ]
+  },
+  {
+    "code": "SET-CHECKLIST-SIRKUM-BAY",
+    "name": "Checklist Sirkum Bayi Set & CVC 2",
+    "description": "Kompilasi otomatis dari Checklist Sirkum Bayi Set & CVC 2.xlsx",
+    "items": [
+      {
+        "code": "MAD 010/03",
+        "qty": 1
+      },
+      {
+        "code": "MAF 216/25",
+        "qty": 1
+      },
+      {
+        "code": "MAB 100/12",
+        "qty": 1
+      },
+      {
+        "code": "MAB 110/12",
+        "qty": 1
+      },
+      {
+        "code": "MAC 111/18",
+        "qty": 1
+      },
+      {
+        "code": "MaC 020/11",
+        "qty": 1
+      },
+      {
+        "code": "MAE 050/12",
+        "qty": 1
+      },
+      {
+        "code": "MAA 151/12",
+        "qty": 2
+      },
+      {
+        "code": "030-0310-23",
+        "qty": 1
+      },
+      {
+        "code": "CODE",
+        "qty": 1
+      },
+      {
+        "code": "MAD 010/03",
+        "qty": 1
+      },
+      {
+        "code": "MAF 216/25",
+        "qty": 1
+      },
+      {
+        "code": "MAB 100/12",
+        "qty": 1
+      },
+      {
+        "code": "MAB 110/12",
+        "qty": 1
+      },
+      {
+        "code": "MAC 111/18",
+        "qty": 1
+      },
+      {
+        "code": "MaC 020/11",
+        "qty": 1
+      },
+      {
+        "code": "MAE 050/12",
+        "qty": 1
+      },
+      {
+        "code": "MAA 151/12",
+        "qty": 2
+      },
+      {
+        "code": "030-0310-23",
+        "qty": 1
+      },
+      {
+        "code": "CODE",
+        "qty": 1
+      },
+      {
+        "code": "MAD 010/03",
+        "qty": 1
+      },
+      {
+        "code": "MAF 216/25",
+        "qty": 1
+      },
+      {
+        "code": "MAB 100/12",
+        "qty": 1
+      },
+      {
+        "code": "MAB 110/12",
+        "qty": 1
+      },
+      {
+        "code": "MAC 111/18",
+        "qty": 1
+      },
+      {
+        "code": "MaC 020/11",
+        "qty": 1
+      },
+      {
+        "code": "MAE 050/12",
+        "qty": 1
+      },
+      {
+        "code": "MAA 151/12",
+        "qty": 2
+      },
+      {
+        "code": "030-0310-23",
+        "qty": 1
+      }
+    ]
+  },
+  {
+    "code": "SET-CHECKLIST-THORACOTOM",
+    "name": "CHECKLIST THORACOTOMY",
+    "description": "Kompilasi otomatis dari CHECKLIST THORACOTOMY.xlsx",
+    "items": [
+      {
+        "code": "BF059R",
+        "qty": 2
+      },
+      {
+        "code": "BF432R",
+        "qty": 14
+      },
+      {
+        "code": "BB084R",
+        "qty": 2
+      },
+      {
+        "code": "BB075R",
+        "qty": 1
+      },
+      {
+        "code": "BC271R",
+        "qty": 1
+      },
+      {
+        "code": "BC265R",
+        "qty": 1
+      },
+      {
+        "code": "BC267R",
+        "qty": 1
+      },
+      {
+        "code": "BC281R",
+        "qty": 1
+      },
+      {
+        "code": "BC295W",
+        "qty": 1
+      },
+      {
+        "code": "BC296W",
+        "qty": 1
+      },
+      {
+        "code": "BC284R",
+        "qty": 1
+      },
+      {
+        "code": "BC324R",
+        "qty": 1
+      },
+      {
+        "code": "BD027R",
+        "qty": 1
+      },
+      {
+        "code": "BD537R",
+        "qty": 2
+      },
+      {
+        "code": "BD541R",
+        "qty": 2
+      },
+      {
+        "code": "BD542R",
+        "qty": 2
+      },
+      {
+        "code": "BD543R",
+        "qty": 2
+      },
+      {
+        "code": "FB400R",
+        "qty": 2
+      },
+      {
+        "code": "FB402R",
+        "qty": 2
+      },
+      {
+        "code": "FB404R",
+        "qty": 2
+      },
+      {
+        "code": "FB416R",
+        "qty": 2
+      },
+      {
+        "code": "FB417R",
+        "qty": 2
+      },
+      {
+        "code": "BH111R",
+        "qty": 6
+      },
+      {
+        "code": "BH614R",
+        "qty": 6
+      },
+      {
+        "code": "BH646R",
+        "qty": 2
+      },
+      {
+        "code": "BH650R",
+        "qty": 2
+      },
+      {
+        "code": "BF058R",
+        "qty": 4
+      },
+      {
+        "code": "BJ314R",
+        "qty": 4
+      },
+      {
+        "code": "BJ021R",
+        "qty": 1
+      },
+      {
+        "code": "BJ022R",
+        "qty": 1
+      },
+      {
+        "code": "BJ023R",
+        "qty": 1
+      },
+      {
+        "code": "BJ026R",
+        "qty": 1
+      },
+      {
+        "code": "BJ031R",
+        "qty": 1
+      },
+      {
+        "code": "BJ033R",
+        "qty": 1
+      },
+      {
+        "code": "BJ044R",
+        "qty": 1
+      },
+      {
+        "code": "BJ045R",
+        "qty": 1
+      },
+      {
+        "code": "BJ047R",
+        "qty": 1
+      },
+      {
+        "code": "EO338R",
+        "qty": 6
+      },
+      {
+        "code": "FB500R",
+        "qty": 1
+      },
+      {
+        "code": "FB501R",
+        "qty": 1
+      },
+      {
+        "code": "FB502R",
+        "qty": 1
+      },
+      {
+        "code": "FB457R",
+        "qty": 1
+      },
+      {
+        "code": "FB512R",
+        "qty": 1
+      },
+      {
+        "code": "FB517R",
+        "qty": 1
+      },
+      {
+        "code": "EA096R",
+        "qty": 2
+      },
+      {
+        "code": "EA061R",
+        "qty": 2
+      },
+      {
+        "code": "BM016R",
+        "qty": 1
+      },
+      {
+        "code": "BM035R",
+        "qty": 1
+      },
+      {
+        "code": "BM038R",
+        "qty": 1
+      },
+      {
+        "code": "BM067R",
+        "qty": 2
+      },
+      {
+        "code": "BM113R",
+        "qty": 1
+      },
+      {
+        "code": "LX159NR",
+        "qty": 1
+      },
+      {
+        "code": "BT264R",
+        "qty": 2
+      },
+      {
+        "code": "BT030R",
+        "qty": 1
+      },
+      {
+        "code": "BT325R",
+        "qty": 2
+      },
+      {
+        "code": "BT352R",
+        "qty": 2
+      },
+      {
+        "code": "BT353R",
+        "qty": 2
+      },
+      {
+        "code": "BT523R",
+        "qty": 2
+      },
+      {
+        "code": "BT202R",
+        "qty": 1
+      },
+      {
+        "code": "FB814R",
+        "qty": 1
+      },
+      {
+        "code": "BT560R",
+        "qty": 1
+      },
+      {
+        "code": "BT561R",
+        "qty": 1
+      },
+      {
+        "code": "BT551R",
+        "qty": 1
+      },
+      {
+        "code": "FB892R",
+        "qty": 1
+      },
+      {
+        "code": "FK402R",
+        "qty": 1
+      },
+      {
+        "code": "FK403R",
+        "qty": 1
+      },
+      {
+        "code": "FK341R",
+        "qty": 1
+      },
+      {
+        "code": "FK382R",
+        "qty": 1
+      },
+      {
+        "code": "FK383R",
+        "qty": 1
+      },
+      {
+        "code": "FO135R",
+        "qty": 1
+      },
+      {
+        "code": "FO645NR",
+        "qty": 1
+      },
+      {
+        "code": "FO551NR",
+        "qty": 1
+      },
+      {
+        "code": "FB842R",
+        "qty": 1
+      },
+      {
+        "code": "FB918R",
+        "qty": 1
+      },
+      {
+        "code": "FL046NR",
+        "qty": 1
+      },
+      {
+        "code": "JG523R",
+        "qty": 2
+      },
+      {
+        "code": "JG506R",
+        "qty": 1
+      },
+      {
+        "code": "BN914R",
+        "qty": 1
+      },
+      {
+        "code": "BN915R",
+        "qty": 1
+      },
+      {
+        "code": "BN916R",
+        "qty": 1
+      },
+      {
+        "code": "GF944R",
+        "qty": 1
+      },
+      {
+        "code": "JK489",
+        "qty": 1
+      },
+      {
+        "code": "JK442",
+        "qty": 1
+      },
+      {
+        "code": "JG223R",
+        "qty": 1
+      },
+      {
+        "code": "JK095",
+        "qty": 1
+      }
+    ]
+  },
+  {
+    "code": "SET-CHECLIST-CORONER-CAB",
+    "name": "Checlist Coroner, CABG",
+    "description": "Kompilasi otomatis dari Checlist Coroner, CABG.xlsx",
+    "items": [
+      {
+        "code": "BB052R",
+        "qty": 1
+      },
+      {
+        "code": "OL160R",
+        "qty": 1
+      },
+      {
+        "code": "FM482R",
+        "qty": 1
+      },
+      {
+        "code": "FM483R",
+        "qty": 1
+      },
+      {
+        "code": "FM485R",
+        "qty": 1
+      },
+      {
+        "code": "FM486R",
+        "qty": 1
+      },
+      {
+        "code": "BC658R",
+        "qty": 1
+      },
+      {
+        "code": "FM600R",
+        "qty": 2
+      },
+      {
+        "code": "FM599R",
+        "qty": 2
+      },
+      {
+        "code": "FM574R",
+        "qty": 2
+      },
+      {
+        "code": "FB363R",
+        "qty": 2
+      },
+      {
+        "code": "FB365R",
+        "qty": 2
+      },
+      {
+        "code": "FB367R",
+        "qty": 2
+      },
+      {
+        "code": "BM301R",
+        "qty": 1
+      },
+      {
+        "code": "FM565R",
+        "qty": 1
+      },
+      {
+        "code": "FM566R",
+        "qty": 1
+      },
+      {
+        "code": "BV023R",
+        "qty": 1
+      },
+      {
+        "code": "FB160R",
+        "qty": 1
+      },
+      {
+        "code": "FB161R",
+        "qty": 1
+      },
+      {
+        "code": "FB162R",
+        "qty": 1
+      },
+      {
+        "code": "FB163R",
+        "qty": 1
+      },
+      {
+        "code": "FB164R",
+        "qty": 1
+      },
+      {
+        "code": "FB165R",
+        "qty": 1
+      },
+      {
+        "code": "FB166R",
+        "qty": 1
+      },
+      {
+        "code": "FB167R",
+        "qty": 1
+      },
+      {
+        "code": "FB180R",
+        "qty": 1
+      },
+      {
+        "code": "FB184R",
+        "qty": 1
+      },
+      {
+        "code": "FB185R",
+        "qty": 1
+      },
+      {
+        "code": "FB186R",
+        "qty": 1
+      },
+      {
+        "code": "JJ164R",
+        "qty": 1
+      },
+      {
+        "code": "JF939",
+        "qty": 1
+      },
+      {
+        "code": "JG318",
+        "qty": 4
+      },
+      {
+        "code": "JF110R",
+        "qty": 2
+      },
+      {
+        "code": "JF945",
+        "qty": 1
+      },
+      {
+        "code": "JG341",
+        "qty": 1
+      },
+      {
+        "code": "JG342",
+        "qty": 1
+      },
+      {
+        "code": "JG343",
+        "qty": 1
+      },
+      {
+        "code": "JF148R",
+        "qty": 1
+      },
+      {
+        "code": "JK442",
+        "qty": 1
+      },
+      {
+        "code": "JP101",
+        "qty": 1
+      },
+      {
+        "code": "JG785B",
+        "qty": 2
+      }
+    ]
+  },
+  {
+    "code": "SET-CHECLIST-SURGICAL-IN",
+    "name": "Checlist Surgical Instrument Set Bedah Umum",
+    "description": "Kompilasi otomatis dari Checlist Surgical Instrument Set Bedah Umum.xlsx",
+    "items": [
+      {
+        "code": "ASK10003",
+        "qty": 1
+      },
+      {
+        "code": "ASK10807",
+        "qty": 1
+      },
+      {
+        "code": "ASK10504",
+        "qty": 1
+      },
+      {
+        "code": "ASC42314",
+        "qty": 1
+      },
+      {
+        "code": "ASC42414",
+        "qty": 1
+      },
+      {
+        "code": "ASC44120",
+        "qty": 1
+      },
+      {
+        "code": "AAN00323",
+        "qty": 1
+      },
+      {
+        "code": "AFC00120",
+        "qty": 1
+      },
+      {
+        "code": "AFC00214",
+        "qty": 2
+      },
+      {
+        "code": "AFC03814",
+        "qty": 2
+      },
+      {
+        "code": "ASP76114",
+        "qty": 1
+      },
+      {
+        "code": "ATO27927",
+        "qty": 1
+      },
+      {
+        "code": "ASF51120",
+        "qty": 3
+      },
+      {
+        "code": "AAF22314",
+        "qty": 6
+      },
+      {
+        "code": "AAF22414",
+        "qty": 10
+      },
+      {
+        "code": "AAF25714",
+        "qty": 4
+      },
+      {
+        "code": "AAF26314",
+        "qty": 4
+      },
+      {
+        "code": "AFF26320",
+        "qty": 2
+      },
+      {
+        "code": "AAF28218",
+        "qty": 2
+      },
+      {
+        "code": "AAF28518",
+        "qty": 2
+      },
+      {
+        "code": "AAF39118",
+        "qty": 4
+      },
+      {
+        "code": "ASR31923",
+        "qty": 1
+      },
+      {
+        "code": "AAF40611",
+        "qty": 6
+      },
+      {
+        "code": "ACF47325",
+        "qty": 2
+      },
+      {
+        "code": "ASC69418",
+        "qty": 1
+      },
+      {
+        "code": "ARC97302",
+        "qty": 1
+      },
+      {
+        "code": "ARC97600",
+        "qty": 1
+      },
+      {
+        "code": "ARC98021",
+        "qty": 1
+      },
+      {
+        "code": "ARC87206",
+        "qty": 2
+      },
+      {
+        "code": "ARC93702",
+        "qty": 2
+      },
+      {
+        "code": "ARC94702",
+        "qty": 2
+      },
+      {
+        "code": "ARC12800",
+        "qty": 2
+      },
+      {
+        "code": "AHW53001",
+        "qty": 1
+      },
+      {
+        "code": "AHW32105",
+        "qty": 1
+      },
+      {
+        "code": "AHW31704",
+        "qty": 1
+      },
+      {
+        "code": "AHW31706",
+        "qty": 1
+      },
+      {
+        "code": "ASR30420",
+        "qty": 2
+      },
+      {
+        "code": "ASR33425",
+        "qty": 2
+      },
+      {
+        "code": "ASR33525",
+        "qty": 2
+      },
+      {
+        "code": "AHW46363",
+        "qty": 1
+      },
+      {
+        "code": "AHW72666",
+        "qty": 1
+      }
+    ]
+  },
+  {
+    "code": "SET-CHECLIST-SURGICAL-IN",
+    "name": "Checlist Surgical Instrument Set BTKV_OK",
+    "description": "Kompilasi otomatis dari Checlist Surgical Instrument Set BTKV_OK.xlsx",
+    "items": [
+      {
+        "code": "BF432R",
+        "qty": 12
+      },
+      {
+        "code": "BB084R",
+        "qty": 2
+      },
+      {
+        "code": "BB073R",
+        "qty": 1
+      },
+      {
+        "code": "BB075R",
+        "qty": 1
+      },
+      {
+        "code": "BC271R",
+        "qty": 1
+      },
+      {
+        "code": "BC265R",
+        "qty": 1
+      },
+      {
+        "code": "BC267R",
+        "qty": 1
+      },
+      {
+        "code": "BC277R",
+        "qty": 1
+      },
+      {
+        "code": "BC295W",
+        "qty": 1
+      },
+      {
+        "code": "BC284R",
+        "qty": 1
+      },
+      {
+        "code": "BC774R",
+        "qty": 1
+      },
+      {
+        "code": "BC324R",
+        "qty": 1
+      },
+      {
+        "code": "BD027R",
+        "qty": 1
+      },
+      {
+        "code": "BD557R",
+        "qty": 2
+      },
+      {
+        "code": "FB400R",
+        "qty": 2
+      },
+      {
+        "code": "FB402R",
+        "qty": 2
+      },
+      {
+        "code": "FB404R",
+        "qty": 2
+      },
+      {
+        "code": "FB416R",
+        "qty": 2
+      },
+      {
+        "code": "BH614R",
+        "qty": 6
+      },
+      {
+        "code": "BH110R",
+        "qty": 4
+      },
+      {
+        "code": "BH111R",
+        "qty": 10
+      },
+      {
+        "code": "BH167R",
+        "qty": 6
+      },
+      {
+        "code": "BH206R",
+        "qty": 2
+      },
+      {
+        "code": "BH234R",
+        "qty": 1
+      },
+      {
+        "code": "BJ314R",
+        "qty": 4
+      },
+      {
+        "code": "BJ023R",
+        "qty": 2
+      },
+      {
+        "code": "BJ026R",
+        "qty": 2
+      },
+      {
+        "code": "BJ102R",
+        "qty": 1
+      },
+      {
+        "code": "BJ103R",
+        "qty": 1
+      },
+      {
+        "code": "BJ104R",
+        "qty": 1
+      },
+      {
+        "code": "BJ045R",
+        "qty": 1
+      },
+      {
+        "code": "BJ047R",
+        "qty": 1
+      },
+      {
+        "code": "EF002R",
+        "qty": 1
+      },
+      {
+        "code": "FB512R",
+        "qty": 1
+      },
+      {
+        "code": "FB500R",
+        "qty": 1
+      },
+      {
+        "code": "FB467R",
+        "qty": 1
+      },
+      {
+        "code": "FB458R",
+        "qty": 1
+      },
+      {
+        "code": "EA095R",
+        "qty": 2
+      },
+      {
+        "code": "EA061R",
+        "qty": 1
+      },
+      {
+        "code": "BM016R",
+        "qty": 1
+      },
+      {
+        "code": "BM035R",
+        "qty": 1
+      },
+      {
+        "code": "BM067R",
+        "qty": 2
+      },
+      {
+        "code": "BM113R",
+        "qty": 1
+      },
+      {
+        "code": "BT325R",
+        "qty": 2
+      },
+      {
+        "code": "BT763R",
+        "qty": 1
+      },
+      {
+        "code": "BT084R",
+        "qty": 1
+      },
+      {
+        "code": "FB653R",
+        "qty": 1
+      },
+      {
+        "code": "FB654R",
+        "qty": 1
+      },
+      {
+        "code": "AN913R",
+        "qty": 6
+      },
+      {
+        "code": "GF946R",
+        "qty": 1
+      },
+      {
+        "code": "AA805R",
+        "qty": 1
+      },
+      {
+        "code": "JG224R",
+        "qty": 1
+      },
+      {
+        "code": "JK442",
+        "qty": 1
+      },
+      {
+        "code": "JK486",
+        "qty": 1
+      },
+      {
+        "code": "JK095",
+        "qty": 1
+      },
+      {
+        "code": "BF459R",
+        "qty": 8
+      },
+      {
+        "code": "BF433R",
+        "qty": 2
+      },
+      {
+        "code": "BC989R",
+        "qty": 2
+      },
+      {
+        "code": "BH187R",
+        "qty": 1
+      },
+      {
+        "code": "BT254R",
+        "qty": 2
+      }
+    ]
+  },
+  {
+    "code": "SET-CHECLIST-SURGICAL-SE",
+    "name": "Checlist Surgical Set Cusa",
+    "description": "Kompilasi otomatis dari Checlist Surgical Set Cusa.xlsx",
+    "items": [
+      {
+        "code": "C7136",
+        "qty": 1
+      },
+      {
+        "code": "C7636",
+        "qty": 1
+      },
+      {
+        "code": "C7036",
+        "qty": 1
+      },
+      {
+        "code": "C7602",
+        "qty": 5
+      }
+    ]
+  },
+  {
+    "code": "SET-CHECLIST-SURGICAL-TH",
+    "name": "Checlist SurgicaL THORACOTOMY",
+    "description": "Kompilasi otomatis dari Checlist SurgicaL THORACOTOMY.xlsx",
+    "items": [
+      {
+        "code": "BF059R",
+        "qty": 2
+      },
+      {
+        "code": "BF432R",
+        "qty": 14
+      },
+      {
+        "code": "BB084R",
+        "qty": 2
+      },
+      {
+        "code": "BB075R",
+        "qty": 1
+      },
+      {
+        "code": "BC271R",
+        "qty": 1
+      },
+      {
+        "code": "BC265R",
+        "qty": 1
+      },
+      {
+        "code": "BC267R",
+        "qty": 1
+      },
+      {
+        "code": "BC281R",
+        "qty": 1
+      },
+      {
+        "code": "BC295W",
+        "qty": 1
+      },
+      {
+        "code": "BC296W",
+        "qty": 1
+      },
+      {
+        "code": "BC284R",
+        "qty": 1
+      },
+      {
+        "code": "BC324R",
+        "qty": 1
+      },
+      {
+        "code": "BD027R",
+        "qty": 1
+      },
+      {
+        "code": "BD537R",
+        "qty": 2
+      },
+      {
+        "code": "BD541R",
+        "qty": 2
+      },
+      {
+        "code": "BD542R",
+        "qty": 2
+      },
+      {
+        "code": "BD543R",
+        "qty": 2
+      },
+      {
+        "code": "FB400R",
+        "qty": 2
+      },
+      {
+        "code": "FB402R",
+        "qty": 2
+      },
+      {
+        "code": "FB404R",
+        "qty": 2
+      },
+      {
+        "code": "FB416R",
+        "qty": 2
+      },
+      {
+        "code": "FB417R",
+        "qty": 2
+      },
+      {
+        "code": "BH111R",
+        "qty": 6
+      },
+      {
+        "code": "BH614R",
+        "qty": 6
+      },
+      {
+        "code": "BH646R",
+        "qty": 2
+      },
+      {
+        "code": "BH650R",
+        "qty": 2
+      },
+      {
+        "code": "BF058R",
+        "qty": 4
+      },
+      {
+        "code": "BJ314R",
+        "qty": 4
+      },
+      {
+        "code": "BJ021R",
+        "qty": 1
+      },
+      {
+        "code": "BJ022R",
+        "qty": 1
+      },
+      {
+        "code": "BJ023R",
+        "qty": 1
+      },
+      {
+        "code": "BJ026R",
+        "qty": 1
+      },
+      {
+        "code": "BJ031R",
+        "qty": 1
+      },
+      {
+        "code": "BJ033R",
+        "qty": 1
+      },
+      {
+        "code": "BJ044R",
+        "qty": 1
+      },
+      {
+        "code": "BJ045R",
+        "qty": 1
+      },
+      {
+        "code": "BJ047R",
+        "qty": 1
+      },
+      {
+        "code": "EO338R",
+        "qty": 6
+      },
+      {
+        "code": "FB500R",
+        "qty": 1
+      },
+      {
+        "code": "FB501R",
+        "qty": 1
+      },
+      {
+        "code": "FB502R",
+        "qty": 1
+      },
+      {
+        "code": "FB457R",
+        "qty": 1
+      },
+      {
+        "code": "FB512R",
+        "qty": 1
+      },
+      {
+        "code": "FB517R",
+        "qty": 1
+      },
+      {
+        "code": "EA096R",
+        "qty": 2
+      },
+      {
+        "code": "EA061R",
+        "qty": 2
+      },
+      {
+        "code": "BM016R",
+        "qty": 1
+      },
+      {
+        "code": "BM035R",
+        "qty": 1
+      },
+      {
+        "code": "BM038R",
+        "qty": 1
+      },
+      {
+        "code": "BM067R",
+        "qty": 2
+      },
+      {
+        "code": "BM113R",
+        "qty": 1
+      },
+      {
+        "code": "LX159NR",
+        "qty": 1
+      },
+      {
+        "code": "BT264R",
+        "qty": 2
+      },
+      {
+        "code": "BT030R",
+        "qty": 1
+      },
+      {
+        "code": "BT325R",
+        "qty": 2
+      },
+      {
+        "code": "BT352R",
+        "qty": 2
+      },
+      {
+        "code": "BT353R",
+        "qty": 2
+      },
+      {
+        "code": "BT523R",
+        "qty": 2
+      },
+      {
+        "code": "BT202R",
+        "qty": 1
+      },
+      {
+        "code": "FB814R",
+        "qty": 1
+      },
+      {
+        "code": "BT560R",
+        "qty": 1
+      },
+      {
+        "code": "BT561R",
+        "qty": 1
+      },
+      {
+        "code": "BT551R",
+        "qty": 1
+      },
+      {
+        "code": "FB892R",
+        "qty": 1
+      },
+      {
+        "code": "FK402R",
+        "qty": 1
+      },
+      {
+        "code": "FK403R",
+        "qty": 1
+      },
+      {
+        "code": "FK341R",
+        "qty": 1
+      },
+      {
+        "code": "FK382R",
+        "qty": 1
+      },
+      {
+        "code": "FK383R",
+        "qty": 1
+      },
+      {
+        "code": "FO135R",
+        "qty": 1
+      },
+      {
+        "code": "FO645NR",
+        "qty": 1
+      },
+      {
+        "code": "FO551NR",
+        "qty": 1
+      },
+      {
+        "code": "FB842R",
+        "qty": 1
+      },
+      {
+        "code": "FB918R",
+        "qty": 1
+      },
+      {
+        "code": "FL046NR",
+        "qty": 1
+      },
+      {
+        "code": "JG523R",
+        "qty": 2
+      },
+      {
+        "code": "JG506R",
+        "qty": 1
+      },
+      {
+        "code": "BN914R",
+        "qty": 1
+      },
+      {
+        "code": "BN915R",
+        "qty": 1
+      },
+      {
+        "code": "BN916R",
+        "qty": 1
+      },
+      {
+        "code": "GF944R",
+        "qty": 1
+      },
+      {
+        "code": "JK489",
+        "qty": 1
+      },
+      {
+        "code": "JK442",
+        "qty": 1
+      },
+      {
+        "code": "JG223R",
+        "qty": 1
+      },
+      {
+        "code": "JK095",
+        "qty": 1
+      }
+    ]
+  },
+  {
+    "code": "SET-DRAFT-LIST-SET-OK",
+    "name": "DRAFT LIST SET OK",
+    "description": "Kompilasi otomatis dari DRAFT LIST SET OK.xls",
+    "items": [
+      {
+        "code": "CODE",
+        "qty": 1
+      },
+      {
+        "code": "CODE",
+        "qty": 1
+      }
+    ]
+  },
+  {
+    "code": "SET-HEACTING-SET-MARWA",
+    "name": "Heacting Set Marwa",
+    "description": "Kompilasi otomatis dari Heacting Set Marwa.xlsx",
+    "items": [
+      {
+        "code": "CODE",
+        "qty": 1
+      }
+    ]
+  },
+  {
+    "code": "SET-SALINAN-SALINAN-CHEC",
+    "name": "Salinan Salinan Checlist SurgicaL BORR Unium Orthopedic",
+    "description": "Kompilasi otomatis dari Salinan Salinan Checlist SurgicaL BORR Unium Orthopedic.xlsx",
+    "items": [
+      {
+        "code": "05.001.601",
+        "qty": 1
+      },
+      {
+        "code": "05.001.602",
+        "qty": 2
+      },
+      {
+        "code": "05.001.603",
+        "qty": 2
+      },
+      {
+        "code": "05.001.604",
+        "qty": 2
+      },
+      {
+        "code": "05.001.204",
+        "qty": 1
+      },
+      {
+        "code": "532.015",
+        "qty": 1
+      },
+      {
+        "code": "05.001.257",
+        "qty": 1
+      },
+      {
+        "code": "05.001.188",
+        "qty": 1
+      },
+      {
+        "code": "05.001.250",
+        "qty": 1
+      },
+      {
+        "code": "05.001.253",
+        "qty": 1
+      },
+      {
+        "code": "532.021",
+        "qty": 1
+      },
+      {
+        "code": "532.041",
+        "qty": 1
+      },
+      {
+        "code": "532.042",
+        "qty": 1
+      },
+      {
+        "code": "532.043",
+        "qty": 1
+      },
+      {
+        "code": "532.044",
+        "qty": 1
+      },
+      {
+        "code": "532.045",
+        "qty": 1
+      },
+      {
+        "code": "532.047",
+        "qty": 1
+      },
+      {
+        "code": "532.048",
+        "qty": 1
+      },
+      {
+        "code": "532.061",
+        "qty": 1
+      },
+      {
+        "code": "532.062",
+        "qty": 1
+      },
+      {
+        "code": "532.063",
+        "qty": 1
+      },
+      {
+        "code": "532.064",
+        "qty": 1
+      },
+      {
+        "code": "532.065",
+        "qty": 1
+      },
+      {
+        "code": "532.066",
+        "qty": 1
+      },
+      {
+        "code": "532.067",
+        "qty": 1
+      },
+      {
+        "code": "519.4",
+        "qty": 1
+      },
+      {
+        "code": "519.97",
+        "qty": 3
+      },
+      {
+        "code": "68.001.650",
+        "qty": 1
+      },
+      {
+        "code": "68.001.654",
+        "qty": 1
+      },
+      {
+        "code": "68.001.653",
+        "qty": 1
+      }
+    ]
+  },
+  {
+    "code": "SET-SET-BEDAH-SARAF",
+    "name": "Set Bedah Saraf",
+    "description": "Kompilasi otomatis dari Set Bedah Saraf.xlsx",
+    "items": [
+      {
+        "code": "BB073R",
+        "qty": 1
+      },
+      {
+        "code": "BB084R",
+        "qty": 1
+      },
+      {
+        "code": "BC547R",
+        "qty": 1
+      },
+      {
+        "code": "BC557R",
+        "qty": 1
+      },
+      {
+        "code": "BC606R",
+        "qty": 1
+      },
+      {
+        "code": "BC660R",
+        "qty": 1
+      },
+      {
+        "code": "BD222R",
+        "qty": 2
+      },
+      {
+        "code": "BD238R",
+        "qty": 1
+      },
+      {
+        "code": "BD511R",
+        "qty": 2
+      },
+      {
+        "code": "BD537R",
+        "qty": 1
+      },
+      {
+        "code": "BD670R",
+        "qty": 1
+      },
+      {
+        "code": "BD870R",
+        "qty": 1
+      },
+      {
+        "code": "BF122R",
+        "qty": 1
+      },
+      {
+        "code": "BF432R",
+        "qty": 8
+      },
+      {
+        "code": "BH104R",
+        "qty": 8
+      },
+      {
+        "code": "BH105R",
+        "qty": 8
+      },
+      {
+        "code": "BH139R",
+        "qty": 12
+      },
+      {
+        "code": "BM033R",
+        "qty": 1
+      },
+      {
+        "code": "BM066R",
+        "qty": 1
+      },
+      {
+        "code": "FD395R",
+        "qty": 1
+      },
+      {
+        "code": "FD394R",
+        "qty": 1
+      },
+      {
+        "code": "BT244R",
+        "qty": 2
+      },
+      {
+        "code": "BT751R",
+        "qty": 1
+      },
+      {
+        "code": "BV075R",
+        "qty": 2
+      },
+      {
+        "code": "BV088R",
+        "qty": 1
+      },
+      {
+        "code": "FF007P",
+        "qty": 1
+      },
+      {
+        "code": "FF013P",
+        "qty": 5
+      },
+      {
+        "code": "FF014R",
+        "qty": 1
+      },
+      {
+        "code": "FH414",
+        "qty": 3
+      },
+      {
+        "code": "FF005R",
+        "qty": 2
+      },
+      {
+        "code": "FF022R",
+        "qty": 3
+      },
+      {
+        "code": "FF130R",
+        "qty": 2
+      },
+      {
+        "code": "FH480R",
+        "qty": 2
+      },
+      {
+        "code": "FF211R",
+        "qty": 2
+      },
+      {
+        "code": "FF212R",
+        "qty": 2
+      },
+      {
+        "code": "FF213R",
+        "qty": 2
+      },
+      {
+        "code": "FF291R",
+        "qty": 1
+      },
+      {
+        "code": "FF292R",
+        "qty": 1
+      },
+      {
+        "code": "FF293R",
+        "qty": 1
+      },
+      {
+        "code": "FF294R",
+        "qty": 1
+      },
+      {
+        "code": "FF295R",
+        "qty": 1
+      },
+      {
+        "code": "FF321R",
+        "qty": 2
+      },
+      {
+        "code": "FF327R",
+        "qty": 1
+      },
+      {
+        "code": "FF126R",
+        "qty": 1
+      },
+      {
+        "code": "FF300R",
+        "qty": 1
+      },
+      {
+        "code": "FF774R",
+        "qty": 1
+      },
+      {
+        "code": "FF800R",
+        "qty": 1
+      },
+      {
+        "code": "FK133R",
+        "qty": 2
+      },
+      {
+        "code": "FK299R",
+        "qty": 1
+      },
+      {
+        "code": "FK355R",
+        "qty": 1
+      },
+      {
+        "code": "FK356R",
+        "qty": 1
+      },
+      {
+        "code": "FK357R",
+        "qty": 1
+      },
+      {
+        "code": "FK631R",
+        "qty": 1
+      },
+      {
+        "code": "FK901B",
+        "qty": 1
+      },
+      {
+        "code": "FK902B",
+        "qty": 1
+      },
+      {
+        "code": "FK903B",
+        "qty": 1
+      },
+      {
+        "code": "FO430R",
+        "qty": 1
+      },
+      {
+        "code": "FO462R",
+        "qty": 1
+      },
+      {
+        "code": "FO525R",
+        "qty": 1
+      },
+      {
+        "code": "FO532R",
+        "qty": 1
+      },
+      {
+        "code": "GF414R",
+        "qty": 1
+      },
+      {
+        "code": "GF416R",
+        "qty": 1
+      },
+      {
+        "code": "GF419R",
+        "qty": 1
+      },
+      {
+        "code": "OL165R",
+        "qty": 1
+      },
+      {
+        "code": "JG506R",
+        "qty": 1
+      },
+      {
+        "code": "JF932",
+        "qty": 2
+      },
+      {
+        "code": "JF223R",
+        "qty": 2
+      },
+      {
+        "code": "JK444",
+        "qty": 1
+      },
+      {
+        "code": "JP101",
+        "qty": 1
+      }
+    ]
+  }
+]
