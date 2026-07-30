@@ -82,7 +82,7 @@
 
     {{-- Sidebar: overlay geser di mobile (toggle), kolom tetap (fixed) di layar desktop/laptop --}}
     <aside :class="open ? 'translate-x-0' : '-translate-x-full'"
-           class="fixed inset-y-0 left-0 z-40 flex w-72 shrink-0 transform flex-col overflow-hidden border-r border-slate-200 bg-white shadow-xl transition-transform duration-200 ease-in-out md:sticky md:top-0 md:h-screen md:z-auto md:w-64 md:translate-x-0 md:shadow-none">
+           class="fixed left-0 top-0 z-40 flex h-dvh w-72 shrink-0 transform flex-col overflow-hidden border-r border-slate-200 bg-white shadow-xl transition-transform duration-200 ease-in-out md:sticky md:top-0 md:h-screen md:z-auto md:w-64 md:translate-x-0 md:shadow-none">
 
         <div class="flex items-center justify-between border-b border-slate-200 p-4">
             <a href="{{ route($user->role->homeRoute()) }}" class="flex min-w-0 shrink items-center gap-2.5">

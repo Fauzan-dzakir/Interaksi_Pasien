@@ -8,10 +8,11 @@
             Arahkan kursor ke dalam kotak di bawah ini dan pindai QR code alat menggunakan barcode scanner.
         </p>
 
-        <form wire:submit="scan" class="mt-6">
-            <input wire:model="code" type="text" autocomplete="off" autocapitalize="characters" autofocus
-                   class="field-input font-mono tracking-wider text-center text-lg h-14" placeholder="Scan QR Code di sini...">
-        </form>
+        <div class="mt-6">
+            <x-scan-input submit="scan" label="Scan atau ketik kode QR"
+                          placeholder="Scan QR Code di sini..."
+                          input-class="field-input font-mono tracking-wider text-center text-lg h-14" />
+        </div>
 
         @if ($feedback)
             <div @class([

@@ -1,10 +1,11 @@
 <?php
 /**
  * ============================================================
- * SCRIPT MIGRATE + SEED LOKASI (AMAN) + CLEAR CACHE — TANPA SSH
+ * SCRIPT MIGRATE + STORAGE LINK + SEED LOKASI (AMAN) + CLEAR CACHE — TANPA SSH
  * ============================================================
  *
- * Untuk update: sidebar, lokasi pengambilan (dropdown per unit), dsb.
+ * Untuk update: sidebar, lokasi pengambilan (dropdown per unit), foto
+ * order/set (butuh storage:link agar bisa diakses lewat browser), dsb.
  *
  * TIDAK menjalankan db:seed umum (yang bisa menimpa ulang password akun
  * asli) — hanya menjalankan PickupLocationSeeder yang cuma menyentuh
@@ -70,6 +71,11 @@ if (isset($GLOBALS['laravelApp'])) {
 
     run('Database Migration', function () {
         \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        return '<pre style="white-space:pre-wrap">' . htmlspecialchars(\Illuminate\Support\Facades\Artisan::output()) . '</pre>';
+    });
+
+    run('Storage Symlink (agar foto bukti/hasil steril bisa dilihat)', function () {
+        \Illuminate\Support\Facades\Artisan::call('storage:link', ['--force' => true]);
         return '<pre style="white-space:pre-wrap">' . htmlspecialchars(\Illuminate\Support\Facades\Artisan::output()) . '</pre>';
     });
 

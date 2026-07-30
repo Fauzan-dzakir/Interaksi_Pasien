@@ -22,40 +22,21 @@
                 Satu handler untuk dua jalur input:
                 - scanner barcode fisik (HID) "mengetik" kode lalu menekan Enter di input ini,
                 - kamera memanggil $wire.handleScan(...) lewat Alpine.
-                Input di-fokus ulang terus-menerus supaya petugas bisa scan beruntun tanpa klik.
+                onCamera dikustom (bukan pakai default komponen) supaya metode input
+                tetap tercatat 'qr_camera' vs 'hid_scanner' di jejak audit.
             --}}
-            <div class="card p-5"
-                 x-data="scanStation()"
-                 x-on:scan-processed.window="refocus()">
-
-                <div class="flex items-center justify-between gap-3">
-                    <label class="field-label !mb-0" for="scan-input">Scan atau ketik kode label</label>
-                    <button type="button" x-on:click="toggleCamera()"
-                            class="btn-secondary !px-3 !py-1.5"
-                            x-text="cameraOn ? 'Tutup Kamera' : 'Buka Kamera'"></button>
-                </div>
-
-                <form wire:submit="handleScan(null, 'hid_scanner')" class="mt-2">
-                    <input wire:model="code" id="scan-input" x-ref="input" type="text"
-                           autocomplete="off" autocapitalize="characters" spellcheck="false"
-                           class="field-input font-mono text-lg tracking-wider"
-                           placeholder="CSSD-XXXXXXXX"
-                           x-on:blur="scheduleRefocus()">
-                </form>
+            <div class="card p-5">
+                <x-scan-input
+                    submit="handleScan(null, 'hid_scanner')"
+                    on-camera="$wire.handleScan(code, 'qr_camera')"
+                    label="Scan atau ketik kode label"
+                    input-class="field-input font-mono text-lg tracking-wider"
+                />
 
                 <p class="mt-2 text-xs text-slate-400">
                     Scanner fisik cukup diarahkan ke label — kode terisi dan terkirim otomatis.
                     Kolom ini juga bisa diketik manual bila label rusak.
                 </p>
-
-                <div x-show="cameraOn" x-cloak class="mt-4">
-                    <video x-ref="video" class="w-full rounded-lg bg-slate-900" style="max-height: 320px"></video>
-                    <p x-show="cameraError" x-cloak class="field-error" x-text="cameraError"></p>
-                    <p class="mt-1.5 text-xs text-slate-400">
-                        Kamera butuh koneksi HTTPS. Bila kamera tidak muncul saat diakses lewat jaringan RS,
-                        pastikan alamatnya memakai https.
-                    </p>
-                </div>
             </div>
 
             <div class="card">
@@ -125,100 +106,3 @@
         </div>
     </div>
 </div>
-
-@script
-<script>
-    Alpine.data('scanStation', () => ({
-        cameraOn: false,
-        cameraError: '',
-        scanner: null,
-        refocusTimer: null,
-
-        init() {
-            this.refocus();
-        },
-
-        refocus() {
-            this.$nextTick(() => this.$refs.input?.focus());
-        },
-
-        // Scanner HID kadang memicu blur sesaat; fokus dikembalikan supaya
-        // petugas bisa scan beruntun tanpa harus klik kolom input lagi.
-        // TAPI: jangan rebut fokus balik kalau blur itu terjadi karena petugas
-        // sengaja klik kontrol lain (dropdown tahap, tombol kamera, dst) —
-        // dulu bug-nya persis itu: dropdown "Tahap/Stasiun" langsung menutup
-        // sendiri sebelum sempat memilih opsi, karena fokus direbut paksa.
-        scheduleRefocus() {
-            clearTimeout(this.refocusTimer);
-            this.refocusTimer = setTimeout(() => {
-                if (this.cameraOn) return;
-
-                const active = document.activeElement;
-                const userIsUsingAnotherControl = active
-                    && active !== document.body
-                    && active !== this.$refs.input
-                    && ['INPUT', 'SELECT', 'TEXTAREA', 'BUTTON', 'A'].includes(active.tagName);
-
-                if (! userIsUsingAnotherControl) {
-                    this.$refs.input?.focus();
-                }
-            }, 150);
-        },
-
-        async toggleCamera() {
-            this.cameraOn ? this.stopCamera() : await this.startCamera();
-        },
-
-        async startCamera() {
-            this.cameraError = '';
-            this.cameraOn = true;
-
-            try {
-                const QrScanner = window.QrScanner;
-
-                if (!QrScanner) {
-                    throw new Error('modul scanner belum termuat, coba muat ulang halaman');
-                }
-
-                this.scanner = new QrScanner(
-                    this.$refs.video,
-                    (result) => this.onDecode(result.data),
-                    { highlightScanRegion: true, highlightCodeOutline: true, maxScansPerSecond: 4 },
-                );
-
-                await this.scanner.start();
-            } catch (e) {
-                this.cameraOn = false;
-                this.cameraError = 'Kamera tidak bisa dibuka: ' + e.message;
-            }
-        },
-
-        stopCamera() {
-            this.scanner?.stop();
-            this.scanner?.destroy();
-            this.scanner = null;
-            this.cameraOn = false;
-            this.refocus();
-        },
-
-        lastCode: '',
-        lastAt: 0,
-
-        onDecode(code) {
-            // Kamera membaca terus-menerus; kode yang sama dalam 2 detik diabaikan
-            // supaya satu label tidak terkirim berkali-kali.
-            const now = Date.now();
-            if (code === this.lastCode && now - this.lastAt < 2000) return;
-
-            this.lastCode = code;
-            this.lastAt = now;
-
-            $wire.handleScan(code, 'qr_camera');
-        },
-
-        destroy() {
-            this.stopCamera();
-        },
-    }));
-</script>
-@endscript

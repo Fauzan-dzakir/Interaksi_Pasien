@@ -90,10 +90,9 @@
                     Scan label alat saat mulai digunakan, agar posisinya tercatat.
                 </p>
 
-                <form wire:submit="markInUse" class="mt-3">
-                    <input wire:model="code" type="text" autocomplete="off" autocapitalize="characters"
-                           class="field-input font-mono tracking-wider" placeholder="CSSD-XXXXXXXX">
-                </form>
+                <div class="mt-3">
+                    <x-scan-input submit="markInUse" label="Scan atau ketik kode label" />
+                </div>
 
                 @if ($feedback)
                     <p @class([

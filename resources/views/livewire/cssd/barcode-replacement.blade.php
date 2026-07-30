@@ -10,10 +10,9 @@
                     Tambahkan semua barcode lama yang akan digantikan oleh satu barcode baru.
                 </p>
 
-                <form wire:submit="addCode" class="mt-3">
-                    <input wire:model="code" type="text" autocomplete="off" autocapitalize="characters"
-                           class="field-input font-mono tracking-wider" placeholder="CSSD-XXXXXXXX" autofocus>
-                </form>
+                <div class="mt-3">
+                    <x-scan-input submit="addCode" label="Scan atau ketik barcode lama" />
+                </div>
 
                 @if ($feedback)
                     <p @class([
