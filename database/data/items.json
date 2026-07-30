@@ -1,0 +1,4514 @@
+[
+  {
+    "code": "BB073R",
+    "name": "Scalpel Handle, 125 mm (5\"), No. 3",
+    "category": "Scalpel",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BB084R",
+    "name": "Scalpel Handle, 135 mm (5 1/4\")",
+    "category": "Scalpel",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BC547R",
+    "name": "MAYO Dissecting Scissors, straight, 170 mm (6 3/4\")",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BC557R",
+    "name": "MAYO Dissecting Scissors, curved, 170 mm (6 3/4\"),",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BC606R",
+    "name": "METZENBAUM Dissecting Scissors, curved, 180 mm (7\"),",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BC660R",
+    "name": "SCHMIEDEN-TAYLOR Dura Scissors, angled to side, 155 mm (6 1/8\")",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BD222R",
+    "name": "ADSON Dressing Forceps (Tweezers), straight, 120 mm (4 3/4\")",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BD238R",
+    "name": "CUSHING Dressing Forceps (Tweezers), straight, 180 mm (7\")",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BD511R",
+    "name": "ADSON Tissue Forceps, straight, 120 mm (4 3/4\")",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BD537R",
+    "name": "Tissue Forceps, straight, 145 mm (5 3/4\"), medium, toothed (1x2)",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BD670R",
+    "name": "WAUGH Tissue Forceps, straight, 180 mm (7\"), delicate, toothed (1x2)",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BD870R",
+    "name": "ADSON Micro Grasping Forceps, straight, 175 mm (6 7/8\"),",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BF122R",
+    "name": "FOERSTER-BALLENGER Sponge Forceps, straight, 245 mm (9 5/8\")",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BF432R",
+    "name": "BACKHAUS Towel Clamp, curved, 110 mm (4 1/4\")",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH104R",
+    "name": "MOSQUITO (HARTMANN) Hemostatic Forceps, straight, 100 mm (4\")",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH105R",
+    "name": "MOSQUITO (HARTMANN) Hemostatic Forceps, curved, 100 mm (4\")",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH139R",
+    "name": "DANDY Hemostatic Forceps, curved to side, 140 mm (5 1/2\")",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BM033R",
+    "name": "DE BAKEY DUROGRIP TC Needleholder, straight, 165 mm (6 1/2\")",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BM066R",
+    "name": "HEGAR-MAYO DUROGRIP TC Needleholder, straight, 185 mm (7 1/4\")",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD395R",
+    "name": "ADSON Nerve Retractor, 90 °, angled, 190 mm (7 1/2\")",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD394R",
+    "name": "ADSON Nerve Retractor, 90 °, angled, 190 mm (7 1/2\")",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT244R",
+    "name": "VOLKMANN Wound Retractor (With Prong), 220 mm (8 3/4\")",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT751R",
+    "name": "Abdominal/Intestinal Spatula, 200 mm (7 7/8\")",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BV075R",
+    "name": "WEITLANER Retractor (Self Retaining), 165 mm (6 1/2\")",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BV088R",
+    "name": "MOLLISON Wound Retractor, angled, 155 mm (6 1/8\")",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FF007P",
+    "name": "SCALPFIX Clip Applier Forceps",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FF013P",
+    "name": "SCALPFIX",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FF014R",
+    "name": "SCALPFIX Clip Applying/Removing Forceps (6\")",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FH414",
+    "name": "GIGLI Wire saw, fine, 1,4 mm diam., 400 mm, 16\"",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FF005R",
+    "name": "SCALP CLIP, PZ=10PIECES",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FF022R",
+    "name": "YASARGIL Galea Hook, 2 prongs",
+    "category": "Probe/Hook",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FF130R",
+    "name": "DE MARTEL Conductor, 350 mm, 14\"",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FH480R",
+    "name": "GIGLI Hook handle for saw",
+    "category": "Probe/Hook",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FF211R",
+    "name": "Brain Spatula, 180 mm (7\"), double ended, malleable, flat, 7/9 mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FF212R",
+    "name": "Brain Spatula, 180 mm (7\"), double ended, malleable, flat, 11/13 mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FF213R",
+    "name": "Brain Spatula, 180 mm (7\"), double ended, malleable, flat, 15/18 mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FF291R",
+    "name": "PENFIELD Dissector, slightly curved, 175 mm (6 7/8\")",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FF292R",
+    "name": "PENFIELD Dissector, slightly curved, 195 mm (7 3/4\")",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FF293R",
+    "name": "PENFIELD Dissector, curved, 195 mm (7 3/4\")",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FF294R",
+    "name": "PENFIELD Dissector, slightly curved, 205 mm (8\")",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FF295R",
+    "name": "PENFIELD Dissector, slightly curved, 290 mm (11 1/2\")",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FF321R",
+    "name": "FRAZIER Dura Retractor, 130 mm (5 1/8\")",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FF327R",
+    "name": "YASARGIL Micro Dissector, 195 mm (7 3/4\")",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FF126R",
+    "name": "CUSHING-CAIRNS Suction Adapter, straight, 110 mm (4 3/8\")",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FF300R",
+    "name": "DAVIS Dissector, slightly curved, 245 mm (9 5/8\")",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FF774R",
+    "name": "CUSHING Rongeur, 150 °, upwards cutting, 140 mm (5 1/2\"), 3 x 14 mm",
+    "category": "Rongeur",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FF800R",
+    "name": "LOVE-GRUENWALD Rongeur, straight, 135 mm (5 1/4\")",
+    "category": "Rongeur",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FK133R",
+    "name": "QUERVAIN Elevator, slightly curved, 195 mm (7 3/4\")",
+    "category": "Elevator/Raspatori",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FK299R",
+    "name": "ADSON Raspatory, curved, 165 mm (6 1/2\")",
+    "category": "Elevator/Raspatori",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FK355R",
+    "name": "LAMBOTTE Raspatory, curved, 215 mm (8 1/2\"), 5mm",
+    "category": "Elevator/Raspatori",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FK356R",
+    "name": "LAMBOTTE Raspatory, curved, 215 mm (8 1/2\"), 10mm",
+    "category": "Elevator/Raspatori",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FK357R",
+    "name": "LAMBOTTE Raspatory, curved, 215 mm (8 1/2\"), 15 mm",
+    "category": "Elevator/Raspatori",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FK631R",
+    "name": "Bone Curette 3,6mm (1/1)",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FK901B",
+    "name": "KERRISON NOIR Bone Punch conventional, 130 °, 180 mm (7\"), 2mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FK902B",
+    "name": "KERRISON NOIR Bone Punch conventional, 130 °, 180 mm (7\"), 3mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FK903B",
+    "name": "KERRISON NOIR Bone Punch conventional, 130 °, 180 mm (7\"), 4mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FO430R",
+    "name": "JANSEN Bone Rongeur, straight, 175 mm (7\")",
+    "category": "Rongeur",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FO462R",
+    "name": "LUER Bone Rongeur, straight, 180 mm (7\")",
+    "category": "Rongeur",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FO525R",
+    "name": "FRYKHOLM Bone Rongeur, angled to side, 240 mm (9 1/2\")",
+    "category": "Rongeur",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FO532R",
+    "name": "EKSELL-STILLE Bone Rongeur, straight, 240 mm (9 1/2\")",
+    "category": "Rongeur",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GF414R",
+    "name": "Suction Cannula, 205 mm (8\"), working length: 140 mm (5 1/2\"),2 mm",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GF416R",
+    "name": "Suction Cannula, 205 mm (8\"), working length: 140 mm (5 1/2\"), diam. 2,70 mm",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GF419R",
+    "name": "Suction Cannula, 205 mm (8\"), working length: 140 mm (5 1/2\"), diam. 4 mm",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "OL165R",
+    "name": "FREER Elevator, curved, 185 mm (7 1/4\")",
+    "category": "Elevator/Raspatori",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JG506R",
+    "name": "Kidney Tray, 250 mm (10\")",
+    "category": "Wadah",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JF932",
+    "name": "Positioning mat, Standard DIN, 470 x 230 x 32 mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JF223R",
+    "name": "Perforated basket, Standard 1/1, 540 x 253 x 76 mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JK444",
+    "name": "Bottom, without base perforation, Standard 1/1",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JP101",
+    "name": "PRIMELINE PRO Lid (Outer), Standard 1/1",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JK486",
+    "name": "PRIMELINE PRO Lid (Outer), Standard 1/1",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW125P",
+    "name": "CASPAR CCR TRAY",
+    "category": "Wadah",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW047R",
+    "name": "LONGITUDINAL RETRACTOR",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW048R",
+    "name": "CCR LONGITUDINAL RETRACTOR V-STYLE",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW049R",
+    "name": "CCR TRANSVERSE RETRACTOR",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW010R",
+    "name": "CASPAR SIDE LOAD BLADE HANDLE",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW011P",
+    "name": "CCR DEPTH MEASUREMENT INSTRUMENT",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW141T",
+    "name": "BLADE FENESTRTD TI LATERAL 30X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW142T",
+    "name": "BLADE FENESTRTD TI LATERAL 35X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW143T",
+    "name": "BLADE FENESTRTD TI LATERAL 40X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW144T",
+    "name": "BLADE FENESTRTD TI LATERAL 45X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW145T",
+    "name": "BLADE FENESTRTD TI LATERAL 50X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW146T",
+    "name": "BLADE FENESTRTD TI LATERAL 55X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW147T",
+    "name": "BLADE FENESTRTD TI LATERAL 60X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW148T",
+    "name": "BLADE FENESTRTD TI LATERAL 65X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW151T",
+    "name": "BLADE FENESTRTD TI MEDIAL 30X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW152T",
+    "name": "BLADE FENESTRTD TI MEDIAL 35X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW153T",
+    "name": "BLADE FENESTRTD TI MEDIAL 40X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW154T",
+    "name": "BLADE FENESTRTD TI MEDIAL 45X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW155T",
+    "name": "BLADE FENESTRTD TI MEDIAL 50X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW156T",
+    "name": "BLADE FENESTRTD TI MEDIAL 55X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW157T",
+    "name": "BLADE FENESTRTD TI MEDIAL 60X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW158T",
+    "name": "BLADE FENESTRTD TI MEDIAL 65X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW162T",
+    "name": "CCR BLADEFENESTRATED TI BLUNT 35X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW163T",
+    "name": "CCR BLADEFENESTRATED TI BLUNT 40X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW164T",
+    "name": "CCR BLADEFENESTRATED TI BLUNT 45X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW165T",
+    "name": "CCR BLADEFENESTRATED TI BLUNT 50X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW166T",
+    "name": "CCR BLADEFENESTRATED TI BLUNT 55X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW167T",
+    "name": "CCR BLADEFENESTRATED TI BLUNT 60X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BW168T",
+    "name": "CCR BLADEFENESTRATED TI BLUNT 65X24MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD044R",
+    "name": "ASARGIL MICROFORM Micro Scissors, straight, bayonet-shaped, blunt/blunt, 225 mm (8 7/8\")",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD043R",
+    "name": "YASARGIL MICROFORM Micro Scissors, curved upwards, bayonet-shaped, blunt/blunt, 225 mm (8    7/8\")",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD038R",
+    "name": "YASARGIL MICROFORM Micro Scissors, straight, delicate, bayonet-shaped, sharp/sharp, 225 mm (8 7/8)",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD039R",
+    "name": "YASARGIL MICROFORM Micro Scissors, curved upwards, bayonet-shaped, sharp/sharp, 225 mm ( 8 7/8)",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD075R",
+    "name": "YASARGIL MICROFORM Micro Scissors, straight, bayonet-shaped, blunt/blunt, 185 mm (7 1/4\")",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD210R",
+    "name": "YASARGIL MICROFORM Micro Tumor Forceps, straight, bayonet-shaped, ring tip, smooth, blunt,  220 mm (8 3/4\")",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD212R",
+    "name": "YASARGIL MICROFORM Micro Tumor Forceps, straight, bayonet-shaped, ring tip, blunt, smooth,  220 mm (8 3/4\")",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD214R",
+    "name": "YASARGIL MICROFORM Micro Tumor Forceps, straight, bayonet-shaped, ring tip, serrated, 220 mm (8 3/4\")",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD216R",
+    "name": "YASARGIL MICROFORM Micro Tumor Forceps, straight, bayonet-shaped, ring tip, serrated, 220  mm (8 3/4\")",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD218R",
+    "name": "YASARGIL MICROFORM Micro Dressing Forceps, angled, 45 °, bayonet-shaped, ring tip, toothed,serrated, 220 mm (8 3/4\")",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BD835R",
+    "name": "YASARGIL MICROFORM Micro Dressing Forceps, straight, bayonet-shaped, smooth, 180 mm (7\")",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BD837R",
+    "name": "YASARGIL MICROFORM Micro Dressing Forceps, straight, bayonet-shaped, toothed (1x2), 180 mm (7\")",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BD841R",
+    "name": "YASARGIL MICROFORM Micro Dressing Forceps, straight, bayonet-shaped, smooth, 200 mm (7 7/8\")",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD092R",
+    "name": "YASARGIL MICROFORM Micro Needle Holder, straight, bayonet-shaped, 200 mm (7 7/8\"), working length: 80 mm (3 1/8\")",
+    "category": "Needle Holder",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD093R",
+    "name": "YASARGIL MICROFORM Micro Needle Holder, curved upwards, bayonet-shaped, 200 mm (7 7/8\"),working length: 80 mm (3 1/8\")",
+    "category": "Needle Holder",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FM665R",
+    "name": "XS STORAGE TRAY",
+    "category": "Wadah",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JK741",
+    "name": "Bottom, without base perforation, Standard 3/4",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JK789",
+    "name": "Inner Lid, basis, Standard 3/4, silver",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "OG950R",
+    "name": "BELLUCCI Suction Cannula",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GF391R",
+    "name": "Suction Cannula, 180 mm (7\"), working length: 115 mm (4 1/2\"), diam. 1 mm, tapered, teardrop",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GF392R",
+    "name": "Suction Cannula, 180 mm (7\"), working length: 115 mm (4 1/2\"), diam. 1,30 mm, tapered, teardrop,medium, 4FR",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GF394R",
+    "name": "Suction Cannula, 180 mm (7\"), working length: 115 mm (4 1/2\"), diam. 2 mm, tapered, teardrop,medium, 6FR",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GF404R",
+    "name": "Suction Cannula, 165 mm (6 1/2\"), working length: 100 mm (4\"), diam. 2 mm, tapered, teardrop,small, 6FR",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GF413R",
+    "name": "Suction Cannula, 205 mm (8\"), working length: 140 mm (5 1/2\"), diam. 1,70 mm, tapered, teardrop,large, 5FR",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GF426R",
+    "name": "Suction Cannula, 230 mm (9\"), working length: 165 mm (6 1/2\"), diam. 2,70 mm, tapered, teardrop,extra wide, 8FR",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GF427R",
+    "name": "Suction Cannula, 230 mm (9\"), working length: 165 mm (6 1/2\"), diam. 3 mm, tapered, teardrop extra wide, 9FR",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JF252R",
+    "name": "Perforated basket, Standard 3/4, 406 x 253 x 56 mm, with feet",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JF947",
+    "name": "SILICONE CUSHIONING PAD 3/4 SIZE",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_sensitive_water_resistant"
+  },
+  {
+    "code": "JK740",
+    "name": "Bottom, without base perforation, Standard 3/4,",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD242R",
+    "name": "Micro Needle Holder, straight, 150 mm (6\")",
+    "category": "Needle Holder",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD243R",
+    "name": "Micro Needle Holder, curved, 150 mm (6\")",
+    "category": "Needle Holder",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FM006R",
+    "name": "MUELLER Micro Dressing Forceps, straight, triangular tip, serrated, 110 mm (4 1/4\")",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD016R",
+    "name": "Micro Scissors, straight, sharp/sharp, 160 mm (6 1/4\")",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD284R",
+    "name": "Micro Plateau Forceps, straight, platform tip, smooth, 150 mm (6\")",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD396R",
+    "name": "KRAYENBUEHL Nerve Retractor, 90 °, angled, 185 mm (7 1/4\"), bulb-headed tip, round handle,",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD397R",
+    "name": "KRAYENBUEHL Nerve Retractor, 90 °, angled, 185 mm (7 1/4\"), bulb-headed tip, round handle,",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD398R",
+    "name": "KRAYENBUEHL Nerve Retractor, 90 °, angled, 185 mm (7 1/4\"), blunt, round handle",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD343R",
+    "name": "Micro Dissector, curved upwards, 230 mm (9\"), bayonet-shaped, blunt, round handle, width: 1,700 MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD338R",
+    "name": "Micro Dissector, angled, 230 mm (9\"), sharp, round handle, width: 3,200 mm,",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD330R",
+    "name": "Micro Hook, 230 mm (9\"), straight, semi-sharp, round handle",
+    "category": "Probe/Hook",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD331R",
+    "name": "Micro Hook, 230 mm (9\"), blunt, round handle",
+    "category": "Probe/Hook",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD332R",
+    "name": "Micro Dissector, slightly curved, 230 mm (9\"), blunt, round handle, width: 1,200 mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD333R",
+    "name": "Vascular Spatula, slightly curved, 230 mm (9\"), blunt, round handle, width: 1,700 mm,",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD334R",
+    "name": "Micro Dissector, slightly curved, 230 mm (9\"), blunt, round handle, width: 2,200 mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD335R",
+    "name": "Micro Scoop, straight, 230 mm (9\"), sharp, round handle, width: 2,300 mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD336R",
+    "name": "Micro Scoop, angled, 230 mm (9\"), sharp, round handle, width: 2,300 mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FD337R",
+    "name": "Micro Raspatory, angled, 230 mm (9\"), plate-shaped, sharp, round handle, width: 2,200 mm",
+    "category": "Elevator/Raspatori",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JF113R",
+    "name": "Perforated basket, Standard 1/2, 243 x 253 x 76 mm, with feet",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JF117R",
+    "name": "Basket lid, Standard 1/2, 247 x 257 x 18 mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JF945",
+    "name": "SILICONE CUSHIONING PAD 248X237MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_sensitive_water_resistant"
+  },
+  {
+    "code": "GA800",
+    "name": "ELAN 4 ELECTRO CONTROL UNIT",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GA808",
+    "name": "ELAN 4 ELECTRO FOOT CONTROL",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "TE730",
+    "name": "MAINS CORD 5M LONG",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GA806",
+    "name": "ELAN 4 ELECTRO MOTOR CABLE F/FOOT CTRL.",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "GA822",
+    "name": "ELAN 4 ELECTRO PERFORATOR DRIVER",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GA849",
+    "name": "ELAN 4 ELECTRO CRANIOTOME 2-RING",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GA861",
+    "name": "ELAN 4 ELECTRO 1-RING HANDPIECE L4",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GA862",
+    "name": "ELAN 4 ELECTRO 1-RING HANDPIECE L7",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GA863",
+    "name": "ELAN 4 ELECTRO 1-RING HANDPIECE L10",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GA864",
+    "name": "ELAN 4 ELECTRO 1-RING HANDPIECE L13",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GB941R",
+    "name": "ELAN 4 FIXED DURAGUARD PAEDIATRIC",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GB942R",
+    "name": "ELAN 4 FIXED DURAGUARD STANDARD",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GB943R",
+    "name": "ELAN 4 FIXED DURAGUARD LONG",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GB945R",
+    "name": "ELAN 4 HOLDING SLEEVE F/CRANIOTOME",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GA395SU",
+    "name": "ELAN 4 ELECTRO DISPOSABLE TUBE SET",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GA261SU",
+    "name": "ELAN 4 SPRAY NOZZLE F/1-RG.HANDPIECE L4",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GA262SU",
+    "name": "ELAN 4 SPRAY NOZZLE F/1-RG.HANDPIECE L7",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GA263SU",
+    "name": "ELAN 4 SPRAY NOZZLE F/1-RG.HANDPIECE L10",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GA264SU",
+    "name": "ELAN 4 SPRAY NOZZLE F/1-RG.HANDPIECE L13",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GB693",
+    "name": "CERAMIC FILTER F/CLEANING DEVICES",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GB692R",
+    "name": "ELAN 4 ELECTRO CLEANING DEVICE",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GB073R",
+    "name": "ELAN 4 ELECTRO ECCOS MOTOR CABLE",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "GB076R",
+    "name": "ELAN 4 ELECTRO ECCOS PERFOR.DRIVER GA822",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GB082R",
+    "name": "ELAN 4 ELECTRO ECCOS 1 HANDPIECE",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GB083R",
+    "name": "ELAN 4 ELECTRO ECCOS 3 HANDPIECES",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GB085R",
+    "name": "ELAN 4 ELECTRO ECCOS CRANIOTOME GA849",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GB718R",
+    "name": "ELAN 4 ECCOS 12 BURRS",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GB719R",
+    "name": "ELAN 4 ECCOS 3 CRANIOTOME ATTACHMENTS",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GB072R",
+    "name": "ECCOS POSITIONING GUIDE F/CABLES+HOSES",
+    "category": "Selang",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "GB698R",
+    "name": "ELAN 4 ELECTRO RINSING ADAPTOR",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GB600",
+    "name": "STERILIT POWER SYSTEMS OIL SPRAY",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GP124R",
+    "name": "ELAN 4 1-RING ROSEN BURR D3.0",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GP126R",
+    "name": "ELAN 4 1-RING ROSEN BURR D4.0",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GP128R",
+    "name": "ELAN 4 1-RING ROSEN BURR D5.0",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GP153R",
+    "name": "ELAN 4 1-RING DIAMOND BURR D3.0",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GP155R",
+    "name": "ELAN 4 1-RING DIAMOND BURR D4.0",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GP157R",
+    "name": "ELAN 4 1-RING DIAMOND BURR D5.0",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GP158R",
+    "name": "ELAN 4 1-RING DIAMOND BURR D6.0",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GP341R",
+    "name": "ELAN 4 2-RING CRANIOTOME CUTTER PAED",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GP342R",
+    "name": "ELAN 4 2-RING CRANIOTOME CUTTER STANDARD",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GP343R",
+    "name": "ELAN 4 2-RING CRANIOTOME CUTTER LONG",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GB302R",
+    "name": "CRANIAL PERFORATOR 9/12MM HUDSON SHANK",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GB304R",
+    "name": "CRANIAL PERFORATOR 12/15MM HUDSON SHANK",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JF212R",
+    "name": "1/1 SIZE PERF BASKET 485X253X56MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JF217R",
+    "name": "1/1 SIZE PERF BASKET LID 489X257MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JK442",
+    "name": "BOTTOM FOR 1/1 CONTAINER HEIGHT:135MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JK489",
+    "name": "FULL-SIZE LID W/RETENTION PLATE SILVER",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JK095",
+    "name": "SINGLE USE PAPER FILTER WITH INDICATOR",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "OG970R/ OG950R",
+    "name": "MICRO SUCTION SETW/SPECIAL CUT-OFF ADAP (OG951R/ GR774R/ GR773R/ 772R)",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BF059R",
+    "name": "MAIER FORCEPS W/RCHT CVD260MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BB075R",
+    "name": "SCALPEL HANDEL #3L",
+    "category": "Scalpel",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BC271R",
+    "name": "TC METZENBAUM SCISSORS DEL CVD 180MM",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BC265R",
+    "name": "TC METZENBAUM SCISSORS CVD 200MM",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BC267R",
+    "name": "TC NELSON-METZ SCISSORS CVD 230MM",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BC281R",
+    "name": "TC NELSON-METZ SCISSORS DEL CVD 285MM",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BC295W",
+    "name": "TC SUTURE WAVECUT SCISSORS CVD 180MM",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BC296W",
+    "name": "TC SUTURE SCISS W/1 SERR CVD 230MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BC284R",
+    "name": "TC MAYO-LEXER SCISSORS CVD 165MM",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BC324R",
+    "name": "SURGICAL SCISSORS STR S/B145MM",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BD027R",
+    "name": "TISSUE FORCEPS SERR 145MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BD541R",
+    "name": "DISSECT.FORCEPS MED.WIDE 1X2T.200MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BD542R",
+    "name": "TISSUE FORCEPS 1X2 TEETH 250MM MED.",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BD543R",
+    "name": "DISSECT.FORCEPS MED.WIDE 1X2T.300MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB400R",
+    "name": "DE'BAKEY ATR.FCPS 2.0MM STR150MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB402R",
+    "name": "DE'BAKEY ATR.FCPS 2.0MM STR 200MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB404R",
+    "name": "DE'BAKEY ATR.FCPS 2.0MM STR240MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB416R",
+    "name": "DE'BAKEY ATR.FCPS 2.8MM STR240MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB417R",
+    "name": "DE'BAKEY ATR.FCPS 2.8MM STR 300MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH111R",
+    "name": "HALSTED-MOSQUITO FORCEPS DEL CVD125MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH614R",
+    "name": "KOCHER FORCEPS STR 1X2 140MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH646R",
+    "name": "KOCHER-OCHSNER FORCEPS STR 1X2 200MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH650R",
+    "name": "KOCHER-OCHSNER FORCEPS STR 1X2240MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BF058R",
+    "name": "MAIER FORCEPS W/RCHT STR 260MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BJ314R",
+    "name": "MIKULICZ PERITONEUM FORCEPS CVD.200MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BJ021R",
+    "name": "OVERHOLT-GEISS SUTURE FCPS #1CVD205MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BJ022R",
+    "name": "OVERHOLT-GEISS SUTURE FCPS #2CVD220MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BJ023R",
+    "name": "OVERHOLT-GEISS SUTURE FCPS #3 CVD225MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BJ026R",
+    "name": "OVERHOLT-GEISS SUTURE FCPS #6 CVD225MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BJ031R",
+    "name": "OVERHOLT-GEISS SUTURE FCPS#1CVD260MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BJ033R",
+    "name": "OVERHOLT-GEISS SUTURE FCPS#3CVD275MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BJ044R",
+    "name": "RUMEL SUTURE FORCEPS HVY-CV 240MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BJ045R",
+    "name": "RUMEL SUTURE FORCEPS RT-ANG# 5 240MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BJ047R",
+    "name": "ZENKER SUTURE FORCEPS SLT-CVD 300MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "EO338R",
+    "name": "ATR.OVUM FORCEPS STR SM250MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB500R",
+    "name": "DE'BAKEY TANGENTIAL CLMP1.38MM-WD220MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB501R",
+    "name": "DBAKY TNGENTAL CLMP 2.48MM-WIDE 265MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB502R",
+    "name": "DE'BAKEY TANGENTAL CLMP 54/99/270MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB457R",
+    "name": "DE'BAKEY ATR.COARCT.CLANG15DG80/240MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB512R",
+    "name": "DE'BAKEY CLAMP 60DG 65/100MM 275MM",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB517R",
+    "name": "DE'BAKEY CLAMP 90DG 72/92MM 230MM",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "EA096R",
+    "name": "ALLIS ATR.FORCEPS 8.4MM 220MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "EA061R",
+    "name": "COLLIN ATR.FORCEPS 195MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BM016R",
+    "name": "TC CRILE-WOOD NDL HLDRSTRSERR 145MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BM035R",
+    "name": "TC DE'BAKEY NDL HOLDER DEL SERR 180MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BM038R",
+    "name": "TC DE'BAKEY NDL HOLDER DEL SERR 305MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BM067R",
+    "name": "TC MAYO-HEGAR NDL HOLDERHVYSERR205MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BM113R",
+    "name": "DUROGRIP NEEDLEH.F/STERNUM-SUTURE 175MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "LX159NR",
+    "name": "WIRE CUTTER 180MM",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT264R",
+    "name": "KOCHER RETR 4-PRGSEMI-S16X20220MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT030R",
+    "name": "ROUX RETRACTORS DOUBLE ENDED SET/3 165MM",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT325R",
+    "name": "LANGENBECK RETRACTOR 40X10MM",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT352R",
+    "name": "SAUERBRUCH RETRACTORSOLID55X22MM",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT353R",
+    "name": "SAUERBRUCH RETRACTORSOLID72X19MM",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT523R",
+    "name": "CORYLLOS RETRACTOR OPEN 115X65MM255MM",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT202R",
+    "name": "CUSHING SADDLE HOOK 22X15MM 250MM",
+    "category": "Probe/Hook",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB814R",
+    "name": "DE'BAKEY RIB SPREADER COMPLETE200X225MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT560R",
+    "name": "ALLISON LUNG SPATULA 54MM 320MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT561R",
+    "name": "ALLISON LUNG SPATULA 137MM300MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT551R",
+    "name": "HARNGTN LNG SPATULAFLX123X45MM295MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB892R",
+    "name": "BRUNNER RIB SHEARS 340MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FK402R",
+    "name": "DOYEN ELEVATOR F/ADULT LFT-CVD 175MM",
+    "category": "Elevator/Raspatori",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FK403R",
+    "name": "DOYEN ELEVATOR F/ADULT RT-CVD 175MM",
+    "category": "Elevator/Raspatori",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FK341R",
+    "name": "FARABEUF RASPATORY CVD.12.5MM BR.145MM",
+    "category": "Elevator/Raspatori",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FK382R",
+    "name": "SEMB ELEVATOR 12MM 230MM",
+    "category": "Elevator/Raspatori",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FK383R",
+    "name": "SEMB ELEVATOR LONG 13MM 230MM",
+    "category": "Elevator/Raspatori",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FO135R",
+    "name": "SEMB BONE-HOLDING FORCEPS190MM8MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FO645NR",
+    "name": "BONE CUTTING FORCEPS ANG 240MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FO551NR",
+    "name": "BONE RONGEUR EXTRA STRONG CVD 240MM",
+    "category": "Rongeur",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB842R",
+    "name": "BAILEY RIB SPRDR/CONTRACTORADULT200MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB918R",
+    "name": "LEBSCHE STERNUM CHISEL250MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FL046NR",
+    "name": "MALLET 330GR.HEAD W/EXCHANGEABLE DISKS",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JG523R",
+    "name": "LABORATORY DISH 0.3 L",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BN914R",
+    "name": "REDON SPIKE CH.12 STRONG CVD.KNIFE TIP",
+    "category": "Scalpel",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BN915R",
+    "name": "REDON SPIKE CH.14 STRONG CVD.KNIFE TIP",
+    "category": "Scalpel",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BN916R",
+    "name": "REDON SPIKE CH.16 STRONG CVD.KNIFE TIP",
+    "category": "Scalpel",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GF944R",
+    "name": "YANKAUER SUCTION CANNULA 2.0MM 285MM",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JG223R",
+    "name": "1/1 BASKET W/O STACK.FEET 540X253X64MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BC277R",
+    "name": "TC METZENBAUM SCISSORS DEL CVD 230MM",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BC774R",
+    "name": "ABDOMINAL SCISSORS STR B/B180MM",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BD557R",
+    "name": "STANDARD TISSUE FORCEPS 1X2 145MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH110R",
+    "name": "HALSTED-MOSQUITO FORCEPS DELSTR125MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH167R",
+    "name": "CRILE FORCEPS CVD 160MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH206R",
+    "name": "HEISS DELICATE FORCEPS STR 200MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH234R",
+    "name": "SAROT DELICATE FORCEPS STR 1X2240MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH652R",
+    "name": "KOCHER-OCHSNER FORCEPS STR1X2260MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BJ102R",
+    "name": "GEMINI CLAMP RT-ANG 180MM",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BJ103R",
+    "name": "GEMINI CLAMP RT-ANG200MM",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BJ104R",
+    "name": "GEMINI CLAMP RT-ANG 230MM",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "EF002R",
+    "name": "GUYON ATR.KIDNEY CLAMP230MM",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB471R",
+    "name": "DBAKEY AORTA ANEURYSM CLMPCVD95/250MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB472R",
+    "name": "DBAKEY AORTA ANEURYSM CLMPCVD110/300MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB476R",
+    "name": "DBAKEY AORTA ANRYSM CLMPHVY-CVD255MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB477R",
+    "name": "DE'BAKEY AORTA ANEURYSM CLMPCVD75/265MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB467R",
+    "name": "LELAND-JONES PERIPHERAL CLMP 30DG 190MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB458R",
+    "name": "GLOVER ATR.CLAMP CVD 215MM",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "EA095R",
+    "name": "ALLIS ATR.FORCEPS 7.0MM 200MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT031R",
+    "name": "ROUX RETRACTOR 23X22/29X28MM 130MM",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT459R",
+    "name": "KOCHER RETRACTOR 36X20MM",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT595R",
+    "name": "ZENKER RETRACTOR 60X12MM 255MM",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT596R",
+    "name": "ZENKER RETRACTOR 75X12MM270MM",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT763R",
+    "name": "RIBBON RETRACTOR MALL 330X50MM",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FC060R",
+    "name": "AMI STERNUM RETRACTOR COMPLET",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT084R",
+    "name": "CUSHING VESS.HOOK BL.90DEG 6/280MM",
+    "category": "Probe/Hook",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB653R",
+    "name": "GUIDE F/FB651R",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB654R",
+    "name": "GUIDE ONLY 6.4MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "AN913R",
+    "name": "TUBE CLAMP FLUTED MOUTH 200MM",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GF946R",
+    "name": "DE'BAKEY SUCTION CANNULA D:3.0MM 275MM",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JG522R",
+    "name": "LABORATORY DISH 0.16 L",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "AA805R",
+    "name": "STEEL RULER 300MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JG224R",
+    "name": "1/1 BASKET W/O STACK.FEET 540X253X94MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JG112R",
+    "name": "1/2 BASKET W/O STACK.FEET 243X253X44MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JK342",
+    "name": "BOTTOM FOR 1/2 CONTAINER HEIGHT:135MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "MAD 010/03",
+    "name": "Scapel No.3",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "MAF 216/25",
+    "name": "Rampley Sponge Holding Forceps 25 cm Straight",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "MAB 100/12",
+    "name": "Adson Dresing Forceps Straight 25 cm",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "MAB 110/12",
+    "name": "Adson Tisssue Forceps Straight 25 cm",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "MAC 111/18",
+    "name": "Metzenbaum-Nelson Scissors",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "MAC 020/11",
+    "name": "Surgical Scissors, straight",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "MAE 050/12",
+    "name": "Deff Needle Holder Straight 12 cm",
+    "category": "Needle Holder",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "MAA 151/12",
+    "name": "Halsted-Mosquito Artery Forceps 12,5 cm Curved",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "030-0310-23",
+    "name": "ABN Bak Intrument",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "220-0019",
+    "name": "Taperlock Screwdriver body",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "220-0028",
+    "name": "Plate Cutter",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "nan",
+    "name": "Blue Tray Fast Lap + Tutup",
+    "category": "Wadah",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "220-0086",
+    "name": "SCWOVR JH FTLNGMNL",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PG 003",
+    "name": "VERESS INSUFFLATION NEEDLE, DIAM 2.1MM, 100MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "EK014R",
+    "name": "TROCAR SLEEVE 5/110MM SMOOTH WITH TAP",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "EK024R",
+    "name": "TROCAR SLEEVE 10/110MM SMOOTH WITH TAP",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "EK034R",
+    "name": "TROCAR SLEEVE 12/110MM SMOOTH WITH TAP",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "EK052R",
+    "name": "TROCAR PIN TRIANGULAR 5/110MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "EK062R",
+    "name": "TROCAR PIN TRIANGULAR 10/110MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "EK072R",
+    "name": "TROCAR PIN TRIANGULAR 12/110MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "EK090R",
+    "name": "REDUCING SLEEVE 10MM TO 5MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PO001R",
+    "name": "ADTEC MONOPOLAR HOOK SCISSORS 5MM 310MM",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PO004R",
+    "name": "METZENBAUM ADTEC MONOPOLAR TC DISSECTING SCISSORS 5MM 310MM",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PO102R",
+    "name": "MARYLAND DISSECTOR ADTEC MONOPOLAR GRASPING FORCEPS CURVED 5MM 310MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PO128R",
+    "name": "CLINCHING GRASPER FENEST 5MM 310MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PO101R",
+    "name": "ATR. DISSECTING FCPS 5MM 310MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PO132R",
+    "name": "GRASPING FORCEPS 2X4T. D:5/310MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PO117R",
+    "name": "CLAW GRASPER 10MM 310MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PO112R",
+    "name": "DORSEY GRASPER FORCEPS 5MM 310MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PO800SU",
+    "name": "DISP.COMBINATION INSTR.BIPOLAR D:5/310MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PL407R",
+    "name": "DUROGRIP NEEDLE HOLDER STR. D:5/310MM",
+    "category": "Needle Holder",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PL408R",
+    "name": "NEEDLE HOLDER LEFT CURVED 5MM 310MM",
+    "category": "Needle Holder",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PL650R",
+    "name": "LOOP APPLIER 4.4MM IN-5MM OUT",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PL162R",
+    "name": "FASCIAL PORT-CLOSURE INSTRUMENT, DIAM. 2.5MM, 170 MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PL809R",
+    "name": "DS-SINGLE FIRE LAP.APPLIER,  DIAM. 12MM/310MM, SIZE XL, GREY",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PL802R",
+    "name": "DS-SINGLE FIRE LAP.APPLIER,  DIAM. 5MM/310MM, SIZE SM, VIOLET",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PL807R",
+    "name": "DS-SINGLE FIRE LAP.APPLIER,  DIAM. 10MM/310MM, SIZE ML, GREEN",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PL430R",
+    "name": "ENDOSCOPIC MYOMA FIXATION INSTRUMENT, STRAIGHT, DIAM. 5MM, 310MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "SR550R",
+    "name": "PUNCTURE NEEDLE W/LUER-LOCK, DIAM. 5MM, 330MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GK372R",
+    "name": "HANDLE F/MONOPOLAR ELECTRODES, DIAM 5MM, 330MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GK383R",
+    "name": "CERAMIC ELECTRODE TIP J-HK F/GK372R, DIAM. 5MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GK386R",
+    "name": "MONOPOLAR SPATULA ELECTRODE TIP DIAM. 5MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PM400R",
+    "name": "BIPOLAR METZ SCISSORS 5MM 310MM",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PM403R",
+    "name": "BIPOLAR MACRO FORCEPS D:5/310MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PM408R",
+    "name": "MARYLAND ADTEC BIPOLAR GRASPING FORCEPS FEN. 5/310MM HF CON",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ER876",
+    "name": "UTERINE IRRIGATION CANNULA  WITH TWO INTERCHANGEABLE CONES LENGTH 330MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PG027R",
+    "name": "SUCTION IRRIGATION TUBE, DIAM. 5MM, 330MM",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "EO110R",
+    "name": "SCHROEDER TENACULUM FORCEPS STD 1X1T.250MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JF522R",
+    "name": "PERFORATED BASKET",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JF227R",
+    "name": "1/1 SIZE PERFORATED BASKET LID 544X257MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JF938",
+    "name": "SILICONE MAT (MESH), MEDIUM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_sensitive_water_resistant"
+  },
+  {
+    "code": "JF941",
+    "name": "SILICONE BASKET LINER LARGER SIZE 1/1, 536 x 250MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_sensitive_water_resistant"
+  },
+  {
+    "code": "JP102",
+    "name": "PRIMELINE PRO LID (OUTER), STANDARD 1/1, ALUMINIUM ANODIZED, BLUE",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JP105",
+    "name": "PRIMELINE PRO LID (OUTER), STANDARD 1/1, ALUMINIUM ANODIZED, SILVER",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PL960R",
+    "name": "MIS STORAGE RACK SET (STANDARD) FOR LAPAROSCOPIC INSTRUMENTS",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PG131",
+    "name": "IRRIGATION SET LUER LOCK AND SPIKES",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PG097",
+    "name": "REUSABLE HEATING TUBE SET F / INSUFFLATION",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PL432R",
+    "name": "KNOT PUSHER 5MM 310MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PV650",
+    "name": "EV3.0 FI CAMERA CONTROL UNIT",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "PV651",
+    "name": "EV3.0 FI CAMERA HEAD 0°",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "PV652",
+    "name": "EV3.0 FI CAMERA HEAD 30°",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "PV641SU",
+    "name": "SINGLE USE COVER FOR CAMERA HEAD 0°",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "PV642SU",
+    "name": "SINGLE USE COVER FOR CAMERA HEAD 30°",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "PV621",
+    "name": "3D POLARISATION GLASSES",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PV624",
+    "name": "3D EYE SHIELD GLASSES KIT",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "OP951",
+    "name": "WL/FI LIGHT SOURCE",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "OP941",
+    "name": "LIGHT CABLE ADAPTER",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "OP942",
+    "name": "COMMUNICATION CABLE",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "OP923",
+    "name": "FULL HD LIGHT CABLE D:4.8MM 2.5M LONG",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "PV648",
+    "name": "32\" FULL HD 3D MONITOR",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PV904",
+    "name": "21.5\" FULL HD MONITOR",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PV640",
+    "name": "EDDY 3D DOCUMENTATION SYSTEM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PV643",
+    "name": "DICOM 3.0 USB SET FOR EDDY 3D",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PG150",
+    "name": "FLOW50 INSUFFLATOR W/SMOKE EVACUATION",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PG019",
+    "name": "CO2 HYDROPHOBIC BACTERIAL FILTER, 22MM ISO CONNECTOR PACKAGE OF 25 PIECES",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PG106",
+    "name": "SMOKE EVACUATION FILTER CASSETTE",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PG107SU",
+    "name": "DISPOSABLE TUBE SET F/SMOKE EVACUATION",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PG056",
+    "name": "HOSE F/CO2 GAS BOTTLE SUPPLY DIN/US 1.5M",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PG 131",
+    "name": "IRRIGATION SET LUER LOCK AND SPIKES",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PG130",
+    "name": "UNIVERSAL IRRIGATION UNIT",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PG140",
+    "name": "TRANSPONDER F/LAPAROSCOPY",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PV810",
+    "name": "ENDOSCOPY EQUIPMENT CART WIDE",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PV813",
+    "name": "CROSSBAR WIDE F/EQUIPMENT CART PV810",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PV832",
+    "name": "HEIGHT-ADJ.CENTR.MONITOR ARM F/CROSSBAR",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PV822",
+    "name": "CO2 CYLINDER HOLDER",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PV833",
+    "name": "LATERAL HEIGHT-ADJUSTABLE MONTIOR ARM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PV823",
+    "name": "INFUSION BOTTLE HOLDER",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PV636",
+    "name": "EV3.0 CAMERA HEAD HOLDER",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "PV827",
+    "name": "FOOT SWITCH HOLDER F/EQUIPMENT CART",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PV825",
+    "name": "ACCESSORY BASKET 430X170X50MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PV829",
+    "name": "POWER DISTRIBUTOR W/COUNTERWEIGHT PLATE",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PV790",
+    "name": "MAINS CORD ORANGE TYPE E/F (EURO PLUG)",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "TE676",
+    "name": "POWER PLUG, 1 M, ACC. to IEC 320",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GK535",
+    "name": "EQUIPOTENTIAL CABLE, 4M, TO BE USED WITH ANY AESCULAP ELECTICAL UNIT",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "GN202",
+    "name": "MONOPOLAR CONNECTING CABLE, 4MM SOCKET, 3.5M, AESCULAP, ACMI, BERCHTOLD, MARTIN",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "GN131",
+    "name": "BIPOLAR CABLE 8/4MM",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "GN132",
+    "name": "BIPOLAR CABLE 22MM",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "GN133",
+    "name": "BIPOLAR CABLE 28.6MM",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "GN134",
+    "name": "BIPOLAR CABLE 38MM",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "GN204",
+    "name": "MONOPOLAR CABLE 3.5M 5MM JACK",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "GK239",
+    "name": "MONOPOLAR CONNECTING CABLE, 4MM SOCKET, 3.5 M, ERBE ACC/ICC, PLUG Ø 5 MM",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "GK245",
+    "name": "MONOPOLAR CONNECTING CABLE, 4MM SOCKET, 3.5 M, ERBE T, PLUG Ø 4 MM",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "GK246",
+    "name": "MONOPOLAR CONNECTING CABLE, 4MM SOCKET, 3.5M, ACMI, CONMED, ERBE ICC INTERNATIONAL, ESCHMANN, VALLEYLAB, US-NORM, PLUG Ø 8MM",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "EK001SU",
+    "name": "DISP.SEALING UNIT FOR 5MM TROCARS",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "EK002SU",
+    "name": "DISP.UNIV-SEALING UNIT F/10/12MM TROCARS",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PL475SU",
+    "name": "DS-SINGLE FIRE LIG.CLIP XL W/LATCH",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PL453SU",
+    "name": "DS-SINGLE FIRE LIG.CLIP SM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PL462SU",
+    "name": "DS-SINGLE FIRE LIG.CLIP ML",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JG600",
+    "name": "STERILIT I OIL SPRAY",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JG598",
+    "name": "STERILIT I DRIP FEED OILER",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "PM995R",
+    "name": "CLEANING BRUSH 10MM DIA",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GK469R",
+    "name": "CLEANING BRUSH 5MM DIA 6/PKG",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "QF-2A6",
+    "name": "CYLINDER CO2",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GN088",
+    "name": "HAND SWITCH FOR ADTEC BIPOLAR",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "M100",
+    "name": "MOUSE",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "26120 JL",
+    "name": "VERESS PNEUMOPERITONEUM NEEDLE",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "30160 H2",
+    "name": "TROCAR SIZE 6MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "30103 H2",
+    "name": "TROCAR SIZE 11MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "30140 DB",
+    "name": "REDUCTION SLEEVE 11/5MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "30140 KA",
+    "name": "REDUCTION SLEEVE",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "33310 ON",
+    "name": "CLICKLINE GRASPING FORCEPS (PANJANG)",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "33410 CK",
+    "name": "CLICKLINE GRASPING FORCEPS (PENDEK)",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "33310 ML",
+    "name": "CLICKLINE KELLY GRASPING FORCEPS (PANJANG)",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "33310 MD",
+    "name": "CLICKLINE KELLY GRASPING FORCEPS (PENDEK)",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "33510 PR",
+    "name": "CLICKLINE DISSECTING & GRASPING FORCEPS (PANJANG)",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "33310 UL",
+    "name": "CLICKLINE REDDICK-OLSEN GRASPING FORCEPS",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "33310 DF",
+    "name": "CLICKLINE GRASPING FORCEPS  (GELOMBANG)",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "33310 R",
+    "name": "CLICKLINE DISSECTING & GRASPING FORCEPS (PENDEK)",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "34310 MS",
+    "name": "CLICKLINE METZENBAUM SCISSORS",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "34310EH",
+    "name": "CLICKLINE HOOK SCISSORS",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "33310 MG",
+    "name": "CLICKLINE GRASPING FORCEPS (KOCHER)",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "33310 CC",
+    "name": "CLICKLINE FORCEPS INSERT (CURVED)",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "38610 MD",
+    "name": "ROBI KELLY GRASPING FORCEPS",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "33310C",
+    "name": "CLICKLINE BOWEL FORCEPS",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "33310 AF",
+    "name": "CLICKLINE FORCEPS INSERT (WAVY)",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "33151",
+    "name": "CLICKLINE PLASTIC HANDLE",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_sensitive_water_resistant"
+  },
+  {
+    "code": "30173 A",
+    "name": "DISMANTLING KOH NEEDLE HOLDER",
+    "category": "Needle Holder",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "26173 QR",
+    "name": "ASSISTANT NEEDLE HOLDER FLAMINGO JAW",
+    "category": "Needle Holder",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "26775 UE",
+    "name": "COAGULATING AND DISSECTING ELECTRODE (SPATULA-SHAPED)",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "26775 UF",
+    "name": "COAGULATING AND DISSECTING ELECTRODE (L-SHAPED)",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "26596 SK",
+    "name": "KNOT TIER, 5 MM, 36 CM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "37360 LH",
+    "name": "SUCTION IRRIGATION CANNULA L.36 CM",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "30805",
+    "name": "HANDLE WITH TWO WAY STOPCOCK",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "26173 AM",
+    "name": "FASCIAL CLOSURE INSTRUMENT, 2.8 MM, 17 CM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "26005 M",
+    "name": "UNIPOLAR HIGH FREQUENCY CORD 300 CM (CABLE)",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "26176 LE",
+    "name": "BIPOLAR HIGH FREQUENCY CORD 300 CM (CABLE)",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "33300",
+    "name": "METAL OUTER SET SHEATH",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "TM343",
+    "name": "Image 1 Connect II 4K (monitor)",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "9832SFH",
+    "name": "Monitor stand",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "TC201EN",
+    "name": "Image 1 S Connect II",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "TC304",
+    "name": "Image 1 S 4U-LINK",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "TL400",
+    "name": "Cold Light Fountain Power",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "39301Z3TS",
+    "name": "Image 1 H3-Z SPIES",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "UG220",
+    "name": "Equipment Chart",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "TH121",
+    "name": "Image 1 S 4U RUBINA, OPAL",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "26331101-1",
+    "name": "Hamou Endomat SCB",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "26331142",
+    "name": "Sillicone Tubing Set Suction",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "031124-10",
+    "name": "Filter Suction",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "20300034",
+    "name": "Bottle Cap",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "20300050",
+    "name": "Suction Bottle",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "20300032",
+    "name": "Bottle Stand",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "20300033",
+    "name": "Bottle Stand Holder",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "031524-10",
+    "name": "Tubing Set Irrigation, FC",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "031523-10",
+    "name": "Tubing Set Irrigation, PC",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "UI500S1",
+    "name": "Endoflator 50 SCB set",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "031210-10",
+    "name": "Insufflation Tubing Set",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "20400027",
+    "name": "CO2 High Pressure Tube",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "UH400",
+    "name": "Autocon III 400",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "UF901",
+    "name": "One Pedal Footswitch",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "UF902",
+    "name": "Two-pedal Foot Switch",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "27802",
+    "name": "Neutral Electrode Package",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "27806US",
+    "name": "Neutral Electrode Connecting Cable",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "26003ARA",
+    "name": "Hopkins Rubina 0' Telescope",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "26003BRA",
+    "name": "Hopkins Rubina 30' Telescope",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "495NCSC",
+    "name": "Fiber optic Light cable",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_sensitive_water_sensitive"
+  },
+  {
+    "code": "30141DB",
+    "name": "Reducer 11/5mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "27657",
+    "name": "Special Lubricant",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "27661",
+    "name": "Cleaning agent",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "27656B",
+    "name": "Instrument oil",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "27717D",
+    "name": "Plastic container",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_sensitive_water_resistant"
+  },
+  {
+    "code": "39501B2",
+    "name": "Wire tray f, Cleaning",
+    "category": "Wadah",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "27646",
+    "name": "Disinfection system",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ASK10003",
+    "name": "Scalpel Handle  3",
+    "category": "Scalpel",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ASK10807",
+    "name": "Scalpel Handle  7",
+    "category": "Scalpel",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ASK10504",
+    "name": "Scalpel Handle 4",
+    "category": "Scalpel",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ASC42314",
+    "name": "Mayo Operating Scissors Straight ( 14,5 cm - 5 3/4 )",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ASC42414",
+    "name": "Mayo Operating Scissors Curved ( 14,5 cm - 5 3/4 )",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ASC44120",
+    "name": "Metzenbaun Dissecting Scissors Straight 20 cm-8 BI/BI",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "AAN00323",
+    "name": "Metzenbaun Nelson Scissors Curved BI/BI 23cm",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "AFC00120",
+    "name": "Standard Dressing Forceps Serrated 20cm",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "AFC00214",
+    "name": "Dressing Forceps  Narrow Tip 16 cm",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "AFC03814",
+    "name": "Tissue Forceps 1 X2T Narrow 14,5 cm",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ASP76114",
+    "name": "Probe D/End 14,5cm - 5 3/4",
+    "category": "Probe/Hook",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ATO27927",
+    "name": "Yankauer Suction Tubes 27cm - 10 1/2",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ASF51120",
+    "name": "Mayo Hegar Needle Holder 20cm",
+    "category": "Needle Holder",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "AAF22314",
+    "name": "Crile Hemostatic Forceps Straight 14cm - 5 1/2",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "AAF22414",
+    "name": "Crile Hemostatic Forceps Curved 14cm - 5 1/2",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "AAF25714",
+    "name": "Rochester-Pean Hemostatic Forceps Straight 1:2 14cm",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "AAF26314",
+    "name": "Ochsner-Kocher Hemostatic Forceps Straight 1:2 14cm",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "AFF26320",
+    "name": "Ochsner-Kocher Hemostatic Forceps Straight 1:2 20cm-8",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "AAF28218",
+    "name": "Adson Hemostatic Forceps Straight 18: 5cm- 7 1/4",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "AAF28518",
+    "name": "Adson Hemostatic Forceps Curved 1:2 8,5cm- 7 1/4",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "AAF39118",
+    "name": "Mikulicz Peritoneal Clamp Forceps 18cm- 7",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ASR31923",
+    "name": "Duval Organ Grasing Forceps 23cm - 9",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "AAF40611",
+    "name": "Backhaus Towel Forceps 11cm - 3 1/2",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ACF47325",
+    "name": "Gross-Maier Polypus Forceps Curvad 25cm-10, without Ratchet",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ASC69418",
+    "name": "Metzenbaun- Fine Scissors Curved 18cm-7 Super Cut",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ARC97302",
+    "name": "Haberer Intestinal Spatulas Malleable 300x37/45mm 21cm-8 1/4",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ARC97600",
+    "name": "Roux Retractors Set Of 3",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ARC98021",
+    "name": "Parker-Langenbeck Retractors (Us Army) 21cm-8 1/4 Set Of 2",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ARC87206",
+    "name": "Volkmann Retractors Semi-Sharp 6 Prongs 9x29mm 23cm-9",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ARC93702",
+    "name": "Kelly Retractors 50x65mm 26cm- 10 1/4",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ARC94702",
+    "name": "Mikulicz Liver Retractors  120x50mm 26cm- 10 1/4",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ARC12800",
+    "name": "Balfour Abdominal Retractors 180mm Opening Complete",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "AHW53001",
+    "name": "Needle Case Round With Cover 65x 15mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "AHW32105",
+    "name": "Kidney Tray 25cm",
+    "category": "Wadah",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "AHW31704",
+    "name": "Lotion Bowl Without Spout 80x40mm",
+    "category": "Wadah",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "AHW31706",
+    "name": "Lotion Bowl Without Spout 120x60mm",
+    "category": "Wadah",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ASR30420",
+    "name": "Allis-Atrauma Tissue Forceps 20cm -8",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ASR33425",
+    "name": "Mayo-Robson Atrauma Intestinal Clamps Forceps Straight 25cm-10",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ASR33525",
+    "name": "Mayo-Robson Atrauma Intestinal Clamps Forceps Curved 25cm-10",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "AHW46363",
+    "name": "Wire Basket Classic Model 540x250 x100 mm",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "AHW72666",
+    "name": "Container 3/4 Barrier Model 465x280 x150 mm Grey",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BC590R",
+    "name": "Lexer Scissors Narr STR 165mm",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BD047R",
+    "name": "Standard Forceps Serr 145mm",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BD765R",
+    "name": "Hunt Tumor/vessel fcps Ang-Tip 5x200mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BF118R",
+    "name": "Rampley Sponge Forceps Str Serr 250mm",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH442R",
+    "name": "Rochester - Pean Forceps Str 160mm",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH443R",
+    "name": "Rochester - Pean Forceps CVD 160mm",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH470R",
+    "name": "Pean Forceps Str 240mm",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH471R",
+    "name": "Pean Forceps cvd 240mm",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH642R",
+    "name": "Kocher-Ochsner Forceps Str 1x2 160mm",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH643R",
+    "name": "Kocher-Ochsner Forceps CVD 1x2 160mm",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH648R",
+    "name": "Kocher-Ochsner Forceps Str 1x2 225mm",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH649R",
+    "name": "Kocher-Ochsner Forceps CVD 1x2 225mm",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BJ308R",
+    "name": "Mikulicz Peritoneum Forceps Cvd 205mm",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BM236R",
+    "name": "Mayo-Hegar Nedlle Holder 185mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BM748R",
+    "name": "Deschamps Ndlf/Rght-Handsharp 215mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BM749R",
+    "name": "Deschamps Ndlf/LFT-Handsharp 215mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT234R",
+    "name": "Kocher Retractor 1-Prong Sharp 205mm",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT320R",
+    "name": "Langenbeck Retractoropen 28x10mm 210mm",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT326R",
+    "name": "Langenbeck Retractor 40x13mm 210mm",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT621R",
+    "name": "Mikulicz Abdominal Rectractor 91x35mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT758R",
+    "name": "Haberer Ribbon Retractor 50/40mm 305mm",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "EF012R",
+    "name": "Guyon Kidney Clamp 280mm",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "EO080R",
+    "name": "Bozemann Forceps Str Serr 260mm",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "EO150R",
+    "name": "Schroeder Tenaculum Frcpsstr 2x2 250mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "EO220R",
+    "name": "Museux Forceps Sm Str 2x2 240mm",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "EO315R",
+    "name": "Noto Polyp Forceps Str 280mm",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "EO332R",
+    "name": "Doyen Ovum Forceps Str 185mm",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "EO433R",
+    "name": "Doyen Myoma Screw 150mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ET306R",
+    "name": "Winter Placenta/Ovum Fcps # 1CVD 290mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JG521R",
+    "name": "Laboratory Dish 0.063 L",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BF433R",
+    "name": "Towel Clamp",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BC252R",
+    "name": "Dissecting Scissors, straight",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BC253R",
+    "name": "Dissecting Scissors, curved",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BC261R",
+    "name": "Dissecting Scissors",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BD051R",
+    "name": "Dressing Forceps (Tweezers), standard",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BD561R",
+    "name": "Tissue Forceps, standard, straight",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "EA016R",
+    "name": "Intestinal Grasping Forceps, straight,",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH145R",
+    "name": "Hemostatic Forceps, curved",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT042R",
+    "name": "Wound Retractor (Double Ended)",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT481R",
+    "name": "Retractor (10 1/4\") depth: 50 mm, width: 40 mm",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT482R",
+    "name": "Retractor (10 1/4\") depth: 64 mm, width: 54 mm",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT041R",
+    "name": "Wound Retractor",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GF862R",
+    "name": "Suction Cannula, straight",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BM235R",
+    "name": "Needleholder, straight",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JG222R",
+    "name": "Perforated basket, Standard 1/1, 540 x 253 x 44 mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JK485",
+    "name": "Inner Lid, basis, Standard 1/1, red, outer length:582 mm, outer width: 291 mm, outer heigth: 36 mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BC290R",
+    "name": "SIMS DUROTIP® Dissecting Scissors (Uterine Scissors)",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH618R",
+    "name": "ROCHESTER-OCHSNER Hemostatic Forceps",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH424R",
+    "name": "PEAN Hemostatic Forceps, straight,",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH446R",
+    "name": "ROCHESTER-PEAN Hemostatic Forceps",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BJ326R",
+    "name": "FAURE Peritoneum Forceps",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "AN711R",
+    "name": "HEYWOOD-SMITH (MODIF.) Haemorrhoidal Forceps, straight",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "ER611R",
+    "name": "RECAMIER Placenta And Ovum Curette",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BM077R",
+    "name": "HEGAR DUROGRIP® Needle Holder",
+    "category": "Needle Holder",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BM078R",
+    "name": "HEGAR DUROGRIP® Needle Holder",
+    "category": "Needle Holder",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT031R, BT032R, BT033R",
+    "name": "ROUX Wound Retractor",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT261R",
+    "name": "VOLKMANN Wound Retractor (With Prong)",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT659R",
+    "name": "FRITSCH Abdominal Wall Retractor",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT608R",
+    "name": "DEAVER Retractor",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BN150R",
+    "name": "Double Ended Probe",
+    "category": "Probe/Hook",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BL931R",
+    "name": "Inner Box",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BL941R",
+    "name": "Needle Case, perforated",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BN944R",
+    "name": "Redon Spike, slightly curved, diam. Charr. 12",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BN945R",
+    "name": "Redon Spike, slightly curved, diam. Charr. 14",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "11-965-17-07",
+    "name": "TC-DISS. SCISS., TOENNIS, CVD.",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "12-392-18-07",
+    "name": "FORCEPS, POTTS-SMITH, 1X2 T",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "13-321-12-07",
+    "name": "FORCEPS MICRO-MOSQUITO, CVD",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "13-915-13-07",
+    "name": "TOWEL FORCEPS, BACKHAUS, SHARP",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BF459R",
+    "name": "TOWEL FORCEPS NON PERFORATING 140MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BC989R",
+    "name": "UNIVERSAL SCISSORS PURPLE 180MM",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH187R",
+    "name": "JACOBSON HEMOST.FCPSX-DELSERRSLT 190MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BT254R",
+    "name": "VOLKMANN RETR4-PRGBLUNT8X19MM 220MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BM111R",
+    "name": "TC WIRE TWISTER SQ-TIP 155.MM",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "MD456R",
+    "name": "TC BERRY STERNAL NEEDLE HOLDER 185MM",
+    "category": "Needle Holder",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BC178R",
+    "name": "POTTS TENOTOMY SCISSORS CVD 175MM",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BH951R",
+    "name": "NEGUS TONSIL FORCEPS HVY-CVD 190MM",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB365R",
+    "name": "MICRO ATR.BULLDOGCLAMP ANG.14/50MM",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB362R",
+    "name": "MICRO ATR.BULLDOGCLAMP STR.10/50MM",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JK386",
+    "name": "1/2-SIZE LID W/RETENTION PLATE BLUE",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "10-100-04-07",
+    "name": "SCALPEL HANDLE, NO. 4",
+    "category": "Scalpel",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "11-102-14-07",
+    "name": "OPERATING SCISSORS, SH/BL, STR.",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "11-953-16-07",
+    "name": "TC-SCISSORS, MAYO-LEXER, CVD.",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "11-961-18-07",
+    "name": "TC-DISS. SCISSORS, FINE, CVD.",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "11-961-20-07",
+    "name": "TC-DISS. SCISSORS, FINE, CVD.",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "13-414-16-07",
+    "name": "FORCEPS, KOCHER, 1X2 T.STR.",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "13-915-08-07",
+    "name": "TOWEL FORCEPS, BACKHAUS, SHARP,",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "13-942-16-07",
+    "name": "TUBE CLAMP, SMOOTH JAW",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "20-642-20-07",
+    "name": "TC-NEEDLEHOLDER, MAYO-HEGAR",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "20-646-18-07",
+    "name": "TC-NEEDLEHOLDER, DE BAKEY",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "20-646-23-07",
+    "name": "TC-NEEDLEHOLDER, DE BAKEY,",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "20-646-26-07",
+    "name": "TC-NEEDLEHOLDER, DE BAKEY,",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "20-662-20-07",
+    "name": "TC-NEEDLEHOLDER, HEGAR,",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "24-180-00-07",
+    "name": "RIB SPREADER, DE BAKEY, LARGE, COMPLETE",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "24-386-16-07",
+    "name": "ATR. FORCEPS, DE BAKEY, 1.5 MM,",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "24-425-20-07",
+    "name": "ATR. TANGENTIAL FORCEPS, SATINSKY,",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "24-550-30-07",
+    "name": "SUTURE HOOK, Ø 3.0 MM,",
+    "category": "Probe/Hook",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "55-442-20-04",
+    "name": "CONTAINER MS, 60X30X21 CM, HANDLE GREY",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "55-804-56-01",
+    "name": "MARTRAY, 1/1, 532X251X64 MM",
+    "category": "Wadah",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "55-804-57-01",
+    "name": "MARTRAY, 1/1, 532X251X94 MM",
+    "category": "Wadah",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "12-100-20-07",
+    "name": "DRESSING FORCEPS",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "12-392-25-07",
+    "name": "FORCEPS, POTTS-SMITH, 1X2 T",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "13-443-02-07",
+    "name": "DISS. FORCEPS, OVERHOLT, NO. 2",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "13-443-03-07",
+    "name": "DISS. FORCEPS, OVERHOLT, NO. 3",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "13-443-04-07",
+    "name": "DISS. FORCEPS, OVERHOLT, NO. 4,",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "13-447-02-07",
+    "name": "DISS. FORCEPS, OVERHOLT, NO. 2",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "13-447-04-07",
+    "name": "DISS. FORCEPS, OVERHOLT, NO. 4",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "13-725-18-07",
+    "name": "PERITONEAL FORCEPS, MIKULICZ,",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "14-100-27-07",
+    "name": "TAMPON FORCEPS, ULRICH, STR.",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "14-222-27-07",
+    "name": "FORCEPS, GROSS-MAIER, STR.",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "14-223-27-07",
+    "name": "FORCEPS, GROSS-MAIER, CVD",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "15-655-01-01",
+    "name": "RETRACTOR, DOUBLE, ROUX, NO. 1",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "15-655-02-01",
+    "name": "RETRACTOR, DOUBLE, ROUX, NO. 2",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "24-384-30-07",
+    "name": "ATR. FORCEPS, DE BAKEY, 2.7 MM,",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "24-386-20-07",
+    "name": "ATR. FORCEPS, DE BAKEY, 1.5 MM,",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "24-403-22-07",
+    "name": "ATR. FORCEPS, POTTS, ANG., 55 MM,",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "24-405-22-07",
+    "name": "ATR. FCPS., POTTS, CVD., 55 MM,",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "24-425-24-07",
+    "name": "ATR. TANGENTIAL FORCEPS, SATINSKY,",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "24-425-25-07",
+    "name": "ATR. TANGENT. FORCEPS, SATINSKY,",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "24-433-23-07",
+    "name": "ATR. AORTA FCPS., BAHNSON, CVD.,",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "24-433-24-07",
+    "name": "ATR. AORTA FCPS., BAHNSON, CVD.,",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "30-136-16-07",
+    "name": "ATR. TISSUE FORCEPS, ALLIS,",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "56-231-08-01",
+    "name": "BOWL, METAL, H = 40, Ø 80 MM,",
+    "category": "Wadah",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "56-231-11-01",
+    "name": "BOWL, METAL, H = 50, Ø 116 MM,",
+    "category": "Wadah",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "56-673-25-01",
+    "name": "KIDNEY DISH, 250X",
+    "category": "Wadah",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "10-133-31-07",
+    "name": "SCALPEL HANDLE, NO. 3L, LONG",
+    "category": "Scalpel",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "11-965-23-07",
+    "name": "TC-DISS. SCISSORS, FINE, CVD",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "15-171-14-07",
+    "name": "HOOKLET, CUSHING, 14 MM,",
+    "category": "Probe/Hook",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "15-172-18-07",
+    "name": "HOOKLET, CUSHING, 18 MM",
+    "category": "Probe/Hook",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "24-388-24-07",
+    "name": "ATR. FORCEPS, DE BAKEY, 2 MM,",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GA334",
+    "name": "Acculan 4 reciprocating saw",
+    "category": "Bor/Gergaji",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GA676",
+    "name": "Acculan nimh battery",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GA675",
+    "name": "Acculan lid",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GB436R",
+    "name": "Protect.guide f/sternum saw blade gc761R",
+    "category": "Bor/Gergaji",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GC761R",
+    "name": "Recip.sternum saw blade 34/7.5/0.7mm",
+    "category": "Bor/Gergaji",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GB495R",
+    "name": "Eccos fixation f/acculan machines",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GB487R",
+    "name": "Eccos fixation f/ga675",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GB488R",
+    "name": "Eccos fixation f/ga678",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GB686R",
+    "name": "Eccos fixation f/gb436R",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JK742",
+    "name": "Bottom for 3/4 container height: 135mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GA337",
+    "name": "Acculan 4 oscillating sternum saw",
+    "category": "Bor/Gergaji",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GC683R",
+    "name": "Stenum saw bl.rapid act.45/50/17/0,9mm",
+    "category": "Bor/Gergaji",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GC681R",
+    "name": "Stenum saw bl.rapid act.35/75/0,7/0,9mm",
+    "category": "Bor/Gergaji",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GC682R",
+    "name": "Stenum saw bl.rapid act.45/35/75/0,9mm",
+    "category": "Bor/Gergaji",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GB498R",
+    "name": "Eccos fixation f/acculan str machines",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GA320",
+    "name": "Acculan 4 charging unit",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "TE780",
+    "name": "Mains cord 1.5m long",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JF254R",
+    "name": "3/4 size perf basket 406x253x106mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JF257R",
+    "name": "3/4 size perf basket Lid 410x257mm",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "05.001.601",
+    "name": "UNIUM™ Modular Handpiece",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "05.001.602",
+    "name": "UNIUM™ Power Unit",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "05.001.603",
+    "name": "UNIUM™ Sterile Cover",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "05.001.604",
+    "name": "UNIUM™ Adapter for UBC II",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "05.001.204",
+    "name": "Universal Battery Charger II",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "532.015",
+    "name": "Quick Coupling for DHS/DCS® Triple Reamers, for Nos. 532.001, 532.010, 532.101, 532.110 and 05.001.175",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "05.001.257",
+    "name": "AO/ASIF Quick Coupling for Medullary Reaming, for Colibri II / Small Battery Drive II and UNIUM™",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "05.001.188",
+    "name": "Quick Coupling for Kirschner Wires Ø 0.6 to 3.2 mm, for UNIUM™",
+    "category": "Kabel/Elektromedik",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "05.001.250",
+    "name": "AO/ASIF Quick Coupling for Nos. 532.001, 532.010, 532.101, 532.110 and 05.001.175",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "05.001.253",
+    "name": "Chuck (Drilling Speed), with Key, clamping range up to Ø 7.3 mm",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "532.021",
+    "name": "Oscillating Saw Attachment, for Nos. 532.001, 532.010, 532.101, 532.110 and 05.001.175",
+    "category": "Bor/Gergaji",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "532.041",
+    "name": "Saw Blade 30/15 x 6.0 x 0.4/0.3 mm",
+    "category": "Bor/Gergaji",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "532.042",
+    "name": "Saw Blade 37/22 x 12 x 0.4/0.3 mm",
+    "category": "Bor/Gergaji",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "532.043",
+    "name": "Saw Blade 30/15 x 16 x 0.4/0.3 mm",
+    "category": "Bor/Gergaji",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "532.044",
+    "name": "Saw Blade 33/18 x 4.0 x 0.4/0.3 mm",
+    "category": "Bor/Gergaji",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "532.045",
+    "name": "Saw Blade 37/22 x 8.0 x 0.4/0.3 mm",
+    "category": "Bor/Gergaji",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "532.047",
+    "name": "Saw Blade 46/31 x 6.0 x 0.4/0.3 mm",
+    "category": "Bor/Gergaji",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "532.048",
+    "name": "Saw Blade 46/31 x 10 x 0.4/0.3 mm",
+    "category": "Bor/Gergaji",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "532.061",
+    "name": "Saw Blade 42/27 x 6.0 x 0.6/0.4 mm",
+    "category": "Bor/Gergaji",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "532.062",
+    "name": "Saw Blade 42/27 x 10 x 0.6/0.4 mm",
+    "category": "Bor/Gergaji",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "532.063",
+    "name": "Saw Blade 42/27 x 14 x 0.6/0.4 mm",
+    "category": "Bor/Gergaji",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "532.064",
+    "name": "Saw Blade 65/50 x 10 x 0.6/0.4 mm",
+    "category": "Bor/Gergaji",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "532.065",
+    "name": "Saw Blade 65/50 x 14 x 0.6/0.4 mm",
+    "category": "Bor/Gergaji",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "532.066",
+    "name": "Saw Blade 65/50 x 20 x 0.6/0.4 mm",
+    "category": "Bor/Gergaji",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "532.067",
+    "name": "Saw Blade 65/50 x 27 x 0.6/0.4 mm",
+    "category": "Bor/Gergaji",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "519.4",
+    "name": "Cleaning Brush for Compact™ Air Drive, Power Drive, Colibri (II) and Small Electric Drive",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "519.97",
+    "name": "Synthes® Special Oil, 40 ml",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "68.001.650",
+    "name": "Washing and Sterilization Basket, size 1/1, for UNIUM™ Modular Handpiece, without Lid, without Insert Tray",
+    "category": "Wadah",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "68.001.654",
+    "name": "Insert Tray for Washing and Sterilization Basket, size 1/1, for UNIUM™ Modular Handpiece",
+    "category": "Wadah",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "68.001.653",
+    "name": "Lid for Washing and Sterilization Basket, size 1/1, for UNIUM™ Modular Handpiece",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GR774R",
+    "name": "Suction Bedah Saraf",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GR773R",
+    "name": "Suction Bedah Saraf",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "GR772R",
+    "name": "Suction Bedah Saraf",
+    "category": "Selang",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BB052R",
+    "name": "CASPAR SCALPEL HANDLE RND",
+    "category": "Scalpel",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "OL160R",
+    "name": "HALLE ELEVATOR BLUNT 3.3MM",
+    "category": "Elevator/Raspatori",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FM482R",
+    "name": "MIC.SCISSORS RD HDL 25°S/S",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FM483R",
+    "name": "MIC.SCISSORS RD HDL 45°S/S",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FM485R",
+    "name": "MIC.SCISSORS RD HDL 90°S/S",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FM486R",
+    "name": "MIC.SCISSORS RD HDL 125°S/S",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BC658R",
+    "name": "FINE SCISSORS STRAIGHT  LONG",
+    "category": "Gunting",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FM600R",
+    "name": "MICRO FORCEPS DE'BAKEY 1MM STR.",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FM599R",
+    "name": "DIADUST MICRO FORCEPS PLATEAU STR.",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FM574R",
+    "name": "DIADUST MICRO RING FORCEPS 1MM STR.",
+    "category": "Pinset",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB363R",
+    "name": "MICRO ATR.BULLDOGCLAMP ANG.",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB367R",
+    "name": "MICRO ATR.BULLDOGCLAMP ANG.",
+    "category": "Klem",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BM301R",
+    "name": "DIADUST NEEDLEHOLDER STR",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FM565R",
+    "name": "DIADUST MICRO NEEDLE HOLDER RD HDL",
+    "category": "Needle Holder",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FM566R",
+    "name": "DIADUST MICRO NEEDLE HOLDER RD HDL",
+    "category": "Needle Holder",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "BV023R",
+    "name": "RETRACTOR MEDIUM 3X3T.SHARP",
+    "category": "Retraktor",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB160R",
+    "name": "DE'BAKEY DILATOR MALL 0.5MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB161R",
+    "name": "DE'BAKEY DILATOR MALL 1.0MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB162R",
+    "name": "DE'BAKEY DILATOR MALL 1.5MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB163R",
+    "name": "DE'BAKEY DILATOR MALL 2.0MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB164R",
+    "name": "DE'BAKEY DILATOR MALL 2.5MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB165R",
+    "name": "DE'BAKEY DILATOR MALL 3.0MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB166R",
+    "name": "DE'BAKEY DILATOR MALL 3.5MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB167R",
+    "name": "DE'BAKEY DILATOR MALL 4.0MM",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB180R",
+    "name": "VASCUCUT HDL.F.AORTA PUNCHES FB184R-186R",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB184R",
+    "name": "VASCUCUT HEAD OF PUNCH ALL.ROUND D:",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB185R",
+    "name": "VASCUCUT HEAD OF PUNCH ALL.ROUND D:",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "FB186R",
+    "name": "VASCUCUT HEAD OF PUNCH ALL.ROUND D:",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JJ164R",
+    "name": "1/1 AESCULAP AICON BASKET",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JF939",
+    "name": "SILICONE BASKET LINER DIN SIZE",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_sensitive_water_resistant"
+  },
+  {
+    "code": "JG318",
+    "name": "INSTRUMENT RACK TYPE 4",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JF110R",
+    "name": "TRAY INSERT 1/2 SIZE 196 x",
+    "category": "Wadah",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JG341",
+    "name": "SILICONE CLAMP D:",
+    "category": "Klem",
+    "material_sensitivity": "heat_sensitive_water_resistant"
+  },
+  {
+    "code": "JG342",
+    "name": "SILICONE CLAMP D:",
+    "category": "Klem",
+    "material_sensitivity": "heat_sensitive_water_resistant"
+  },
+  {
+    "code": "JG343",
+    "name": "SILICONE CLAMP D:",
+    "category": "Klem",
+    "material_sensitivity": "heat_sensitive_water_resistant"
+  },
+  {
+    "code": "JF148R",
+    "name": "MINITRAY WITH LID 145X",
+    "category": "Wadah",
+    "material_sensitivity": "heat_water_resistant"
+  },
+  {
+    "code": "JG785B",
+    "name": "IDENT.LABEL UP TO 13 LETTERS RED",
+    "category": "Lainnya",
+    "material_sensitivity": "heat_water_resistant"
+  }
+]
