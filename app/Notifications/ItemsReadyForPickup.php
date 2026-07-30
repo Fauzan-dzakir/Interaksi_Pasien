@@ -34,7 +34,7 @@ class ItemsReadyForPickup extends Notification
             'type' => 'items_ready',
             'title' => $isDirect ? 'Alat steril dikirim ke unit' : 'Alat steril siap diambil',
             'message' => sprintf(
-                '%d alat/set pada %s %s. Mohon konfirmasi penerimaan.',
+                '%d alat/set (nomor serah terima %s) %s. Mohon konfirmasi penerimaan di menu Penerimaan.',
                 $this->batchCount,
                 $this->pickup->pickup_number,
                 $isDirect ? 'sedang diantar CSSD' : 'sudah siap diambil di CSSD',

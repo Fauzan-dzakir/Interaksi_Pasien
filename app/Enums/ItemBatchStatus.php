@@ -119,7 +119,9 @@ enum ItemBatchStatus: string
             self::ReadyForPickup => [self::PickedUp],
             // Unit bisa langsung mengembalikan tanpa sempat memakai ("gausah discan").
             self::PickedUp => [self::InUse, self::ReturnedDirty],
-            self::InUse => [self::ReturnedDirty],
+            // InUse -> PickedUp: unit boleh membatalkan tanda "dipakai" (mis. salah tandai)
+            // selama alat belum benar-benar dikirim balik sebagai kotor.
+            self::InUse => [self::ReturnedDirty, self::PickedUp],
             self::Superseded, self::Lost, self::Retired => [],
         };
     }

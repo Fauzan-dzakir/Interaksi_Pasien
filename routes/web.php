@@ -34,6 +34,7 @@ Route::post('/logout', function (Request $request) {
 Route::middleware('auth')->group(function () {
     Route::get('/alat/{batch}', Shared\BatchShow::class)->name('batches.show');
     Route::get('/notifikasi', Shared\NotificationCenter::class)->name('notifications');
+    Route::get('/panduan', Shared\Guide::class)->name('guide');
 });
 
 /*

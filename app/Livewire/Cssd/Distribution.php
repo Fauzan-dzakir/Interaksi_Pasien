@@ -12,6 +12,7 @@ use App\Services\PickupService;
 use InvalidArgumentException;
 use Livewire\Attributes\Url;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 /**
  * Menyerahkan alat steril dari gudang kembali ke unit — mencakup dua jalur
@@ -19,6 +20,8 @@ use Livewire\Component;
  */
 class Distribution extends Component
 {
+    use WithPagination;
+
     #[Url(as: 'unit', keep: false)]
     public string $unitId = '';
 
@@ -30,6 +33,15 @@ class Distribution extends Component
     public string $receiverName = '';
 
     public string $notes = '';
+
+    /** Pencarian nomor serah terima (PU-...) di Riwayat Distribusi — dipakai saat menelusuri notifikasi. */
+    #[Url(as: 'q', keep: false)]
+    public string $historySearch = '';
+
+    public function updatedHistorySearch(): void
+    {
+        $this->resetPage();
+    }
 
     public function updatedUnitId(): void
     {
@@ -149,6 +161,15 @@ class Distribution extends Component
                 ->latest('dispatched_at')
                 ->limit(15)
                 ->get(),
+            // Riwayat lengkap (menunggu + sudah dikonfirmasi) — dipakai CSSD untuk
+            // menelusuri nomor PU-... yang disebut di notifikasi tapi sudah tidak
+            // tampil lagi di daftar "Menunggu Konfirmasi" karena sudah dikonfirmasi unit.
+            'history' => Pickup::query()
+                ->with(['originUnit', 'dispatchedBy', 'confirmedBy'])
+                ->withCount('itemBatches')
+                ->when($this->historySearch, fn ($q) => $q->where('pickup_number', 'like', '%'.$this->historySearch.'%'))
+                ->latest('dispatched_at')
+                ->paginate(10, pageName: 'history-page'),
             // Ringkasan alat siap serah per unit (yang masih berlaku sterilisasinya), supaya petugas tahu unit mana yang perlu dilayani.
             'readyPerUnit' => ItemBatch::query()
                 ->where('status', ItemBatchStatus::InStorage)

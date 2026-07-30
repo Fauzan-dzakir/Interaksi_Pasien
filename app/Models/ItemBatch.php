@@ -67,6 +67,12 @@ class ItemBatch extends Model
         return $this->hasMany(ItemBatchStageCheck::class)->orderBy('recorded_at')->orderBy('id');
     }
 
+    /** Tanda dipakai/belum per alat anggota set — dipakai unit di halaman Buat Order. */
+    public function usageMarks(): HasMany
+    {
+        return $this->hasMany(ItemBatchUsageMark::class);
+    }
+
     public function pickups()
     {
         return $this->belongsToMany(Pickup::class, 'pickup_items')->withTimestamps();

@@ -1,4 +1,4 @@
-@php
+<?php
     $user = auth()->user();
 
     $nav = match ($user->role) {
@@ -67,36 +67,36 @@
         'download' => 'M12 3v13.5m0 0l-4.5-4.5m4.5 4.5l4.5-4.5M4.5 19.5h15',
         'help' => 'M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z',
     ];
-@endphp
+?>
 
 <div x-data="{ open: false }" class="print:hidden md:contents">
-    {{-- Top bar mobile — selalu tampil di layar sempit, jadi pemicu buka/tutup sidebar --}}
+    
     <div class="flex items-center justify-between border-b border-slate-200 bg-white p-3 md:hidden">
         <button type="button" @click="open = ! open" class="rounded-md p-2 text-slate-500 hover:bg-slate-100" aria-label="Buka/tutup menu">
             <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
             </svg>
         </button>
-        <a href="{{ route($user->role->homeRoute()) }}" class="flex shrink-0 items-center gap-2">
-            <img src="{{ asset('images/kemenkes-logo.png') }}" alt="RS Kemenkes Surabaya" class="h-7 w-auto shrink-0">
+        <a href="<?php echo e(route($user->role->homeRoute())); ?>" class="flex shrink-0 items-center gap-2">
+            <img src="<?php echo e(asset('images/kemenkes-logo.png')); ?>" alt="RS Kemenkes Surabaya" class="h-7 w-auto shrink-0">
             <span class="text-sm font-semibold leading-tight text-slate-900">SIM Alat CSSD</span>
         </a>
         <span class="w-9"></span>
     </div>
 
-    {{-- Backdrop — hanya dipakai di mobile saat sidebar dibuka --}}
+    
     <div x-show="open" x-cloak x-on:click="open = false"
          x-transition:enter="transition-opacity ease-linear duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
          x-transition:leave="transition-opacity ease-linear duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
          class="fixed inset-0 z-30 bg-slate-900/50 md:hidden"></div>
 
-    {{-- Sidebar: overlay geser di mobile (toggle), kolom tetap (fixed) di layar desktop/laptop --}}
+    
     <aside :class="open ? 'translate-x-0' : '-translate-x-full'"
            class="fixed left-0 top-0 z-40 flex h-dvh w-72 shrink-0 transform flex-col overflow-hidden border-r border-slate-200 bg-white shadow-xl transition-transform duration-200 ease-in-out md:sticky md:top-0 md:h-screen md:z-auto md:w-64 md:translate-x-0 md:shadow-none">
 
         <div class="flex items-center justify-between border-b border-slate-200 p-4">
-            <a href="{{ route($user->role->homeRoute()) }}" class="flex min-w-0 shrink items-center gap-2.5">
-                <img src="{{ asset('images/kemenkes-logo.png') }}" alt="RS Kemenkes Surabaya" class="h-9 w-auto shrink-0">
+            <a href="<?php echo e(route($user->role->homeRoute())); ?>" class="flex min-w-0 shrink items-center gap-2.5">
+                <img src="<?php echo e(asset('images/kemenkes-logo.png')); ?>" alt="RS Kemenkes Surabaya" class="h-9 w-auto shrink-0">
                 <span class="min-w-0 text-left text-sm font-semibold leading-tight text-slate-900">
                     SIM Alat CSSD
                 </span>
@@ -109,57 +109,58 @@
         </div>
 
         <nav class="flex-1 space-y-6 overflow-y-auto p-4">
-            @foreach ($nav as $groupName => $links)
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $nav; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $groupName => $links): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
                 <div>
-                    <h3 class="px-2 mb-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">{{ $groupName }}</h3>
+                    <h3 class="px-2 mb-2 text-xs font-semibold text-slate-400 uppercase tracking-wider"><?php echo e($groupName); ?></h3>
                     <div class="space-y-1">
-                        @foreach ($links as $link)
-                            <a href="{{ route($link['route']) }}" wire:navigate @click="open = false"
-                               @class([
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $links; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $link): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                            <a href="<?php echo e(route($link['route'])); ?>" wire:navigate @click="open = false"
+                               class="<?php echo \Illuminate\Support\Arr::toCssClasses([
                                    'flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium transition',
                                    'bg-teal-50 text-teal-700' => request()->routeIs($link['route']),
                                    'text-slate-600 hover:bg-slate-100 hover:text-slate-900' => ! request()->routeIs($link['route']),
-                               ])>
+                               ]); ?>">
                                 <svg class="h-4.5 w-4.5 shrink-0" style="width:1.125rem;height:1.125rem" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="{{ $icons[$link['icon']] ?? $icons['box'] }}"/>
-                                    @if ($link['icon'] === 'pin')
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="{{ $icons['pin2'] }}"/>
-                                    @endif
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="<?php echo e($icons[$link['icon']] ?? $icons['box']); ?>"/>
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($link['icon'] === 'pin'): ?>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="<?php echo e($icons['pin2']); ?>"/>
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                 </svg>
-                                <span class="truncate">{{ $link['label'] }}</span>
+                                <span class="truncate"><?php echo e($link['label']); ?></span>
                             </a>
-                        @endforeach
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                     </div>
                 </div>
-            @endforeach
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
         </nav>
 
         <div class="border-t border-slate-200 p-4">
             <div class="flex items-center justify-between mb-4">
                 <div class="min-w-0">
-                    <div class="truncate text-sm font-medium text-slate-900">{{ $user->name }}</div>
+                    <div class="truncate text-sm font-medium text-slate-900"><?php echo e($user->name); ?></div>
                     <div class="truncate text-xs text-slate-500">
-                        {{ $user->role->label() }}@if ($user->unit) &middot; {{ $user->unit->name }} @endif
+                        <?php echo e($user->role->label()); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($user->unit): ?> &middot; <?php echo e($user->unit->name); ?> <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                     </div>
                 </div>
 
-                <a href="{{ route('notifications') }}" wire:navigate @click="open = false"
+                <a href="<?php echo e(route('notifications')); ?>" wire:navigate @click="open = false"
                    class="relative shrink-0 rounded-md p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-700"
                    title="Notifikasi">
                     <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2a2 2 0 01-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
                     </svg>
-                    @if ($unreadCount > 0)
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($unreadCount > 0): ?>
                         <span class="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-semibold text-white">
-                            {{ $unreadCount > 9 ? '9+' : $unreadCount }}
+                            <?php echo e($unreadCount > 9 ? '9+' : $unreadCount); ?>
+
                         </span>
-                    @endif
+                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                 </a>
             </div>
 
-            <form method="POST" action="{{ route('logout') }}" x-data>
-                @csrf
+            <form method="POST" action="<?php echo e(route('logout')); ?>" x-data>
+                <?php echo csrf_field(); ?>
                 <button type="submit" @click="if(!confirm('Apakah Anda yakin ingin keluar?')) { $event.preventDefault(); }"
                         class="w-full text-center rounded-md border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-red-600 hover:border-red-300">
                     Keluar Akun
@@ -168,3 +169,4 @@
         </div>
     </aside>
 </div>
+<?php /**PATH C:\Users\Ridlo\Kuliah\Semester 5\Magang interaksi Pasien\Inovasi Baru(2)\resources\views/partials/navbar.blade.php ENDPATH**/ ?>

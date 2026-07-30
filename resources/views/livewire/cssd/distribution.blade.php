@@ -147,6 +147,76 @@
                 <x-empty-state title="Pilih unit tujuan"
                                description="Daftar alat siap serah akan muncul setelah unit dipilih." />
             @endif
+
+            {{--
+                Riwayat lengkap (menunggu + sudah dikonfirmasi) + pencarian nomor.
+                Ini tempatnya kalau ada notifikasi/laporan menyebut kode "PU-..." dan
+                perlu ditelusuri — kode itu adalah nomor serah terima (Pickup), bukan
+                nomor order (DO-...) dari unit.
+            --}}
+            <div class="card">
+                <div class="border-b border-slate-200 px-5 py-4">
+                    <h2 class="text-sm font-semibold text-slate-900">Riwayat Distribusi</h2>
+                    <p class="mt-0.5 text-xs text-slate-500">
+                        Semua serah terima alat steril (nomor "PU-...") — termasuk yang sudah dikonfirmasi unit.
+                    </p>
+                </div>
+
+                <div class="border-b border-slate-200 p-4">
+                    <input wire:model.live.debounce.300ms="historySearch" type="search"
+                           placeholder="Cari nomor PU-..." class="field-input sm:max-w-xs">
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="table-base">
+                        <thead>
+                            <tr>
+                                <th>Nomor</th>
+                                <th>Unit Tujuan</th>
+                                <th>Jumlah Alat</th>
+                                <th>Cara Serah</th>
+                                <th>Dikirim</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($history as $pickup)
+                                <tr wire:key="hist-{{ $pickup->id }}">
+                                    <td class="font-mono text-xs font-medium text-slate-900">{{ $pickup->pickup_number }}</td>
+                                    <td class="font-medium text-slate-800">{{ $pickup->originUnit->name }}</td>
+                                    <td>{{ $pickup->item_batches_count }} alat</td>
+                                    <td class="text-slate-600">{{ $pickup->delivery_method->label() }}</td>
+                                    <td>
+                                        {{ $pickup->dispatched_at->format('d/m/Y H:i') }}
+                                        <div class="text-xs text-slate-400">oleh {{ $pickup->dispatchedBy->name }}</div>
+                                    </td>
+                                    <td>
+                                        @if ($pickup->isConfirmed())
+                                            <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-800">
+                                                Dikonfirmasi
+                                            </span>
+                                            <div class="mt-1 text-xs text-slate-400">
+                                                {{ $pickup->confirmed_at->format('d/m/Y H:i') }} · {{ $pickup->confirmedBy?->name ?? '—' }}
+                                            </div>
+                                        @else
+                                            <span class="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-800">
+                                                Menunggu Konfirmasi
+                                            </span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @empty
+                                <x-empty-state colspan="6" title="Belum ada riwayat distribusi"
+                                               description="Serah terima yang dibuat lewat form di atas akan muncul di sini." />
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+
+                @if ($history->hasPages())
+                    <div class="border-t border-slate-200 p-4">{{ $history->links() }}</div>
+                @endif
+            </div>
         </div>
 
         <div class="space-y-5">
