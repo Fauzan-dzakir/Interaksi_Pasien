@@ -59,20 +59,37 @@ class OrderCreate extends Component
             'sent_at' => ['required', 'date'],
             'box_count' => ['required', 'integer', 'min:1', 'max:99'],
             'is_cito' => ['boolean'],
-            'needed_at' => ['nullable', 'required_if:is_cito,true', 'date'],
+            'needed_at' => ['nullable', 'required_if:is_cito,true', 'date_format:H:i'],
             'pickup_location_id' => ['nullable', 'string'],
             'new_location_name' => ['nullable', 'required_if:pickup_location_id,other', 'string', 'max:255'],
             'notes' => ['nullable', 'string', 'max:1000'],
+            'photos' => ['required', 'array', 'min:1'],
             'photos.*' => ['image', 'max:5120'], // 5MB max per image
         ], [], [
             'courier_name' => 'nama petugas pengantar',
             'sent_at' => 'tanggal/jam kirim',
             'box_count' => 'jumlah box',
-            'needed_at' => 'waktu dibutuhkan',
+            'needed_at' => 'jam dibutuhkan',
             'pickup_location_id' => 'lokasi pengambilan',
             'new_location_name' => 'nama lokasi baru',
+            'photos' => 'foto kondisi alat',
             'photos.*' => 'foto',
         ]);
+
+        // needed_at diisi sebagai jam saja (24 jam) — sistem menentukan sendiri
+        // tanggalnya: hari ini kalau jamnya belum lewat, besok kalau sudah lewat,
+        // supaya "dibutuhkan pada" selalu berada dalam 24 jam ke depan.
+        if ($this->is_cito && $this->needed_at !== '') {
+            $neededAt = now()->setTimeFromTimeString($this->needed_at);
+
+            if ($neededAt->lessThanOrEqualTo(now())) {
+                $neededAt->addDay();
+            }
+
+            $data['needed_at'] = $neededAt;
+        } else {
+            $data['needed_at'] = null;
+        }
 
         if ($this->pickup_location_id === 'other') {
             $data['pickup_location'] = trim($this->new_location_name);

@@ -2,12 +2,15 @@
 
 namespace App\Livewire\Shared;
 
+use App\Enums\BatchQcStage;
 use App\Enums\ItemBatchStatus;
 use App\Exceptions\InvalidTransitionException;
 use App\Models\ItemBatch;
+use App\Models\ItemBatchStageCheck;
 use App\Services\DeliveryOrderService;
 use App\Services\ItemBatchTransitionService;
 use App\Services\QrCodeService;
+use InvalidArgumentException;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -30,10 +33,133 @@ class BatchShow extends Component
 
     public $sterilizationPhotos = [];
 
+    /** @var array<int, array{key: string, label: string, is_present: bool, note: string}> */
+    public array $checklist = [];
+
+    public string $checklistFailTarget = '';
+
     public function mount(ItemBatch $batch): void
     {
         $this->authorize('view', $batch);
         $this->batch = $batch;
+
+        $this->resetChecklist();
+    }
+
+    private function resetChecklist(): void
+    {
+        $stage = BatchQcStage::forStatus($this->batch->status);
+
+        $this->checklist = $stage
+            ? collect($stage->items())->map(fn (array $item) => [
+                'key' => $item['key'],
+                'label' => $item['label'],
+                'is_present' => true,
+                'note' => '',
+            ])->all()
+            : [];
+
+        $this->checklistFailTarget = $stage && count($stage->failTargets()) > 0
+            ? $stage->failTargets()[0]->value
+            : '';
+    }
+
+    /**
+     * Checklist QC opsional di halaman detail alat — dokumentasi tambahan,
+     * BUKAN pengganti Stasiun Scan. Kalau semua item "sesuai", alat otomatis
+     * dipindah ke tahap berikutnya. Kalau ada yang "tidak sesuai" (wajib diberi
+     * catatan), alat dikembalikan ke tahap sebelumnya yang relevan — atau kalau
+     * tidak ada tahap mundur yang relevan di sistem ini, alat tetap di tahap
+     * sekarang dan checklist ini jadi catatan untuk ditindaklanjuti manual.
+     */
+    public function submitChecklist(ItemBatchTransitionService $transitions, DeliveryOrderService $orders): void
+    {
+        $this->authorize('advanceStage', ItemBatch::class);
+
+        $stage = BatchQcStage::forStatus($this->batch->status);
+
+        if (! $stage) {
+            return;
+        }
+
+        $this->validate([
+            'checklist.*.note' => ['nullable', 'string', 'max:255'],
+        ]);
+
+        $failedItems = collect($this->checklist)->reject(fn (array $row) => $row['is_present']);
+
+        if ($failedItems->isNotEmpty() && $failedItems->contains(fn (array $row) => trim($row['note']) === '')) {
+            $this->addError('checklist', 'Item yang ditandai "tidak sesuai" wajib diberi catatan.');
+
+            return;
+        }
+
+        $failTargets = $stage->failTargets();
+
+        if ($failedItems->isNotEmpty() && count($failTargets) > 1) {
+            $this->validate([
+                'checklistFailTarget' => ['required', 'in:'.collect($failTargets)->map(fn (ItemBatchStatus $s) => $s->value)->implode(',')],
+            ], [], ['checklistFailTarget' => 'tahap tujuan']);
+        }
+
+        $now = now();
+        $user = auth()->user();
+
+        foreach ($this->checklist as $row) {
+            ItemBatchStageCheck::create([
+                'item_batch_id' => $this->batch->id,
+                'stage' => $stage->value,
+                'item_key' => $row['key'],
+                'item_label' => $row['label'],
+                'is_present' => $row['is_present'],
+                'note' => $row['note'] !== '' ? $row['note'] : null,
+                'recorded_by_user_id' => $user->id,
+                'recorded_at' => $now,
+            ]);
+        }
+
+        if ($failedItems->isEmpty()) {
+            $summary = "Checklist QC {$stage->label()}: semua item sesuai.";
+            $target = $stage->passTarget();
+        } elseif (count($failTargets) > 0) {
+            $names = $failedItems->pluck('label')->implode(', ');
+            $summary = "Checklist QC {$stage->label()}: tidak sesuai pada {$names}.";
+            $target = count($failTargets) > 1
+                ? ItemBatchStatus::from($this->checklistFailTarget)
+                : $failTargets[0];
+        } else {
+            // Tidak ada tahap mundur yang relevan — status tidak berubah, hanya dicatat.
+            session()->flash('status', 'Checklist tersimpan. Ada item tidak sesuai — tahap tidak berubah, tindak lanjuti secara manual.');
+            $this->resetChecklist();
+
+            return;
+        }
+
+        try {
+            $transitions->transition(
+                $this->batch,
+                $target,
+                $user,
+                \App\Enums\ScanInputMethod::Manual,
+                'Checklist QC — '.$stage->label(),
+                $summary,
+            );
+        } catch (InvalidTransitionException $e) {
+            $this->addError('checklist', $e->getMessage());
+
+            return;
+        }
+
+        if ($this->batch->currentDeliveryOrder) {
+            $orders->syncStatus($this->batch->currentDeliveryOrder, $user);
+        }
+
+        $this->batch->refresh();
+        $this->resetChecklist();
+
+        session()->flash('status', $failedItems->isEmpty()
+            ? "Checklist sesuai — alat dipindah ke \"{$target->label()}\"."
+            : "Checklist dicatat — alat dikembalikan ke \"{$target->label()}\" karena ada item tidak sesuai.");
     }
 
     /** Jalur kegagalan QC yang butuh penilaian petugas CSSD. */
@@ -62,6 +188,7 @@ class BatchShow extends Component
         }
 
         $this->batch->refresh();
+        $this->resetChecklist();
 
         session()->flash('status', "Alat dipindah ke \"{$target->label()}\".");
     }
@@ -116,6 +243,7 @@ class BatchShow extends Component
         $this->showOverride = false;
         $this->reset(['overrideStatus', 'overrideReason']);
         $this->batch->refresh();
+        $this->resetChecklist();
 
         session()->flash('status', 'Koreksi tersimpan dan tercatat pada jejak audit.');
     }
@@ -125,6 +253,7 @@ class BatchShow extends Component
         $this->batch->load([
             'instrumentSet', 'item', 'originUnit', 'currentDeliveryOrder',
             'events.actor', 'supersededBy.newBatch', 'supersedes.oldBatch',
+            'stageChecks.recordedBy',
         ]);
 
         $user = auth()->user();
@@ -136,6 +265,8 @@ class BatchShow extends Component
             'canOverride' => $user->can('override', ItemBatch::class),
             'nextOptions' => $this->batch->status->allowedNext(),
             'overrideOptions' => ItemBatchStatus::cases(),
+            'qcStage' => BatchQcStage::forStatus($this->batch->status),
+            'checkedHistoryGroups' => $this->batch->stageChecks->groupBy('recorded_at'),
         ]);
     }
 }

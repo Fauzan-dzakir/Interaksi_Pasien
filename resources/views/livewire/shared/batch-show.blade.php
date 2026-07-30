@@ -16,6 +16,85 @@
 
     <div class="grid gap-5 lg:grid-cols-3">
         <div class="space-y-5 lg:col-span-2">
+            @if ($canAdvance && $qcStage)
+                {{--
+                    Checklist QC opsional — dokumentasi/pembuktian tambahan per tahap.
+                    BUKAN pengganti Stasiun Scan: alat tetap bisa berpindah tahap lewat
+                    scan biasa tanpa checklist ini sama sekali.
+                --}}
+                <div class="card p-5">
+                    <h2 class="text-sm font-semibold text-slate-900">Checklist QC — {{ $qcStage->label() }}</h2>
+                    <p class="mt-0.5 text-xs text-slate-500">
+                        Dokumentasi tambahan, opsional. Untuk proses cepat sehari-hari gunakan Stasiun Scan —
+                        checklist ini tidak wajib diisi agar alat bisa berpindah tahap.
+                    </p>
+
+                    @error('checklist') <p class="field-error mt-2">{{ $message }}</p> @enderror
+
+                    <form wire:submit="submitChecklist" class="mt-3 space-y-2.5">
+                        @foreach ($checklist as $ci => $row)
+                            <div wire:key="chk-{{ $batch->id }}-{{ $row['key'] }}"
+                                 class="rounded-lg border border-slate-200 bg-slate-50/50 p-2.5">
+                                <label class="flex items-center gap-2 text-sm text-slate-800">
+                                    <input type="checkbox" wire:model.live="checklist.{{ $ci }}.is_present"
+                                           class="rounded border-slate-300 text-teal-600 focus:ring-teal-500">
+                                    {{ $row['label'] }}
+                                </label>
+
+                                @if (! $row['is_present'])
+                                    <input type="text" wire:model="checklist.{{ $ci }}.note"
+                                           class="field-input mt-2 !bg-white text-xs"
+                                           placeholder="Catatan kenapa tidak sesuai (wajib)">
+                                @endif
+                            </div>
+                        @endforeach
+
+                        @php $failCount = collect($checklist)->where('is_present', false)->count(); @endphp
+
+                        @if ($failCount > 0 && count($qcStage->failTargets()) > 1)
+                            <div>
+                                <label class="field-label" for="checklist-fail-target">Ada item tidak sesuai — kembalikan alat ke tahap:</label>
+                                <select wire:model="checklistFailTarget" id="checklist-fail-target" class="field-input">
+                                    @foreach ($qcStage->failTargets() as $opt)
+                                        <option value="{{ $opt->value }}">{{ $opt->label() }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        @endif
+
+                        <button type="submit"
+                                class="{{ $failCount > 0 ? 'btn-danger w-full !py-2' : 'btn-primary w-full' }}"
+                                wire:loading.attr="disabled" wire:target="submitChecklist">
+                            @if ($failCount > 0)
+                                Tandai Tidak Sesuai &amp; Kembalikan Tahap
+                            @else
+                                Semua Sesuai — Lanjutkan ke Tahap Berikutnya
+                            @endif
+                        </button>
+                    </form>
+                </div>
+            @endif
+
+            @if ($canAdvance && count($nextOptions) > 0 && ! $qcStage)
+                <div class="card p-5">
+                    <h2 class="text-sm font-semibold text-slate-900">Pindahkan Tahap</h2>
+                    <p class="mt-0.5 text-xs text-slate-500">
+                        Untuk proses normal gunakan Stasiun Scan. Tombol di sini dipakai untuk
+                        jalur kegagalan QC yang butuh penilaian petugas.
+                    </p>
+
+                    <div class="mt-3 flex flex-wrap gap-2">
+                        @foreach ($nextOptions as $next)
+                            <button wire:click="moveTo('{{ $next->value }}')" wire:key="nx-{{ $next->value }}"
+                                    wire:confirm="Pindahkan {{ $batch->public_code }} ke &quot;{{ $next->label() }}&quot;?"
+                                    class="btn-secondary">
+                                → {{ $next->label() }}
+                            </button>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
             {{-- Jejak audit: bukti "alat terakhir ada di mana, jam berapa, oleh siapa". --}}
             <div class="card">
                 <div class="border-b border-slate-200 px-5 py-4">
@@ -102,21 +181,51 @@
                 </div>
             @endif
 
-            @if ($canAdvance && count($nextOptions) > 0)
-                <div class="card p-5">
-                    <h2 class="text-sm font-semibold text-slate-900">Pindahkan Tahap</h2>
-                    <p class="mt-0.5 text-xs text-slate-500">
-                        Untuk proses normal gunakan Stasiun Scan. Tombol di sini dipakai untuk
-                        jalur kegagalan QC yang butuh penilaian petugas.
-                    </p>
+            @if ($batch->stageChecks->isNotEmpty())
+                <div class="card">
+                    <div class="border-b border-slate-200 px-5 py-4">
+                        <h2 class="text-sm font-semibold text-slate-900">Riwayat Checklist QC</h2>
+                        <p class="mt-0.5 text-xs text-slate-500">Dokumentasi tambahan per tahap, di luar jejak perpindahan di atas.</p>
+                    </div>
 
-                    <div class="mt-3 flex flex-wrap gap-2">
-                        @foreach ($nextOptions as $next)
-                            <button wire:click="moveTo('{{ $next->value }}')" wire:key="nx-{{ $next->value }}"
-                                    wire:confirm="Pindahkan {{ $batch->public_code }} ke &quot;{{ $next->label() }}&quot;?"
-                                    class="btn-secondary">
-                                → {{ $next->label() }}
-                            </button>
+                    <div class="divide-y divide-slate-100">
+                        @foreach ($checkedHistoryGroups as $group)
+                            @php $first = $group->first(); @endphp
+                            <div class="px-5 py-4">
+                                <div class="flex flex-wrap items-center justify-between gap-2">
+                                    <span class="text-sm font-medium text-slate-800">
+                                        {{ \App\Enums\BatchQcStage::from($first->stage)->label() }}
+                                    </span>
+                                    <span class="text-xs text-slate-400">
+                                        {{ $first->recorded_at->format('d/m/Y H:i') }} · {{ $first->recordedBy?->name ?? '—' }}
+                                    </span>
+                                </div>
+                                <ul class="mt-2 space-y-1">
+                                    @foreach ($group as $check)
+                                        <li class="flex items-start gap-2 text-xs">
+                                            @if ($check->is_present)
+                                                <span class="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                                                    <svg class="h-2.5 w-2.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                                    </svg>
+                                                </span>
+                                            @else
+                                                <span class="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-red-100 text-red-600">
+                                                    <svg class="h-2.5 w-2.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                                                    </svg>
+                                                </span>
+                                            @endif
+                                            <span class="{{ $check->is_present ? 'text-slate-700' : 'font-medium text-red-700' }}">
+                                                {{ $check->item_label }}
+                                            </span>
+                                            @if ($check->note)
+                                                <span class="text-slate-400">— {{ $check->note }}</span>
+                                            @endif
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         @endforeach
                     </div>
                 </div>

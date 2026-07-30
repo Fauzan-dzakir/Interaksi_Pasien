@@ -69,8 +69,12 @@
 
                     @if ($is_cito)
                         <div class="mt-4 pl-7">
-                            <label class="field-label !text-red-900" for="needed-at">Dibutuhkan Pada (Tanggal & Jam)</label>
-                            <input wire:model="needed_at" id="needed-at" type="datetime-local" class="field-input border-red-300 focus:border-red-500 focus:ring-red-500">
+                            <label class="field-label !text-red-900" for="needed-at">Dibutuhkan Pada Jam Berapa</label>
+                            <input wire:model="needed_at" id="needed-at" type="time" class="field-input border-red-300 focus:border-red-500 focus:ring-red-500">
+                            <p class="mt-1 text-xs text-red-700">
+                                Sistem otomatis memakai hari ini kalau jamnya belum lewat, atau besok kalau sudah lewat —
+                                jadi selalu dalam 24 jam ke depan dari sekarang.
+                            </p>
                             @error('needed_at') <p class="field-error">{{ $message }}</p> @enderror
                         </div>
                     @endif
@@ -84,9 +88,11 @@
                 </div>
 
                 <div>
-                    <label class="field-label" for="photos">Foto Kondisi Alat (Opsional)</label>
+                    <label class="field-label" for="photos">Foto Kondisi Alat</label>
                     <input wire:model="photos" id="photos" type="file" multiple accept="image/*" class="field-input">
+                    <p class="mt-1 text-xs text-slate-500">Wajib — minimal 1 foto sebagai bukti kondisi alat saat dikirim.</p>
                     <div wire:loading wire:target="photos" class="text-xs text-slate-500 mt-1">Mengunggah...</div>
+                    @error('photos') <p class="field-error">{{ $message }}</p> @enderror
                     @error('photos.*') <p class="field-error">{{ $message }}</p> @enderror
                     
                     @if ($photos)

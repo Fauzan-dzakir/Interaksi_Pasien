@@ -61,6 +61,12 @@ class ItemBatch extends Model
         return $this->hasMany(ItemBatchEvent::class)->orderBy('occurred_at')->orderBy('id');
     }
 
+    /** Riwayat checklist QC per tahap — dokumentasi tambahan, lihat BatchQcStage. */
+    public function stageChecks(): HasMany
+    {
+        return $this->hasMany(ItemBatchStageCheck::class)->orderBy('recorded_at')->orderBy('id');
+    }
+
     public function pickups()
     {
         return $this->belongsToMany(Pickup::class, 'pickup_items')->withTimestamps();

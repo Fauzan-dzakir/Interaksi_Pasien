@@ -58,7 +58,7 @@
                             <td>{{ $order->box_count }}</td>
                             <td>
                                 @if ($order->detailVisibleToUnit())
-                                    <span class="text-slate-700">{{ $order->lines_count }} baris · {{ $order->item_batches_count }} label</span>
+                                    <span class="text-slate-700">{{ $order->item_batches_count }} label</span>
                                 @else
                                     <span class="text-slate-400">Belum didata</span>
                                 @endif
