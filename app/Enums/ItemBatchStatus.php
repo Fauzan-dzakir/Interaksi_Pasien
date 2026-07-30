@@ -117,11 +117,14 @@ enum ItemBatchStatus: string
             self::SterileCheckPending => [self::InStorage, self::Packaging, self::DirtyZoneWashing],
             self::InStorage => [self::ReadyForPickup],
             self::ReadyForPickup => [self::PickedUp],
-            // Unit bisa langsung mengembalikan tanpa sempat memakai ("gausah discan").
-            self::PickedUp => [self::InUse, self::ReturnedDirty],
-            // InUse -> PickedUp: unit boleh membatalkan tanda "dipakai" (mis. salah tandai)
-            // selama alat belum benar-benar dikirim balik sebagai kotor.
-            self::InUse => [self::ReturnedDirty, self::PickedUp],
+            self::PickedUp => [self::InUse],
+            // InUse -> PickedUp: unit boleh membatalkan tanda "dipakai" (mis. salah tandai/scan).
+            // Barcode yang sama TIDAK pernah kembali jadi "returned_dirty" — begitu unit
+            // mengirim baliknya, CSSD mendata ulang lewat pendataan biasa dan barcode ini
+            // otomatis dapat QR baru (lihat DeliveryOrderService::recordIntake). Riwayat
+            // lengkap barcode lama tetap tersimpan permanen di jejak audit (ItemBatchEvent),
+            // bisa dilihat lewat Telusur Alat kapan pun.
+            self::InUse => [self::PickedUp],
             self::Superseded, self::Lost, self::Retired => [],
         };
     }

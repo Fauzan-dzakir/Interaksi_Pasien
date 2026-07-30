@@ -118,44 +118,30 @@ class FinalSimulationSeeder extends Seeder
 
     private function seedInstrumentSets(array $items): void
     {
-        // Ambil beberapa item acak untuk membuat set
-        $itemKeys = array_keys($items);
-        
-        $sets = [
-            [
-                'code' => 'SET-MAYOR-01',
-                'name' => 'Set Bedah Mayor',
-                'description' => 'Set standar untuk bedah mayor / laparotomi.',
-                'item_count' => 15
-            ],
-            [
-                'code' => 'SET-MINOR-01',
-                'name' => 'Set Bedah Minor',
-                'description' => 'Set standar untuk tindakan bedah minor di IGD/Poli.',
-                'item_count' => 8
-            ],
-            [
-                'code' => 'SET-HECTING',
-                'name' => 'Set Jahit Luka (Hecting)',
-                'description' => 'Set lengkap untuk jahit luka.',
-                'item_count' => 5
-            ]
-        ];
+        $jsonPath = database_path('data/real_sets.json');
+        if (!File::exists($jsonPath)) {
+            $this->command->warn("File $jsonPath tidak ditemukan. Melewati pembuatan Set otentik.");
+            return;
+        }
 
-        foreach ($sets as $setRow) {
+        $setsData = json_decode(File::get($jsonPath), true);
+        foreach ($setsData as $setRow) {
             $set = InstrumentSet::create([
                 'code' => $setRow['code'],
                 'name' => $setRow['name'],
-                'description' => $setRow['description'],
+                'description' => $setRow['description'] ?? '',
                 'is_active' => true,
             ]);
 
-            // Ambil item acak
-            $randomKeys = (array) array_rand(array_flip($itemKeys), $setRow['item_count']);
             $syncData = [];
-            foreach ($randomKeys as $key) {
-                $qty = rand(1, 4);
-                $syncData[$items[$key]->id] = ['quantity' => $qty];
+            foreach ($setRow['items'] as $itemData) {
+                $code = $itemData['code'];
+                $qty = $itemData['qty'];
+                
+                // Cek apakah item benar-benar ada di database (katalog)
+                if (isset($items[$code])) {
+                    $syncData[$items[$code]->id] = ['quantity' => $qty];
+                }
             }
             $set->items()->sync($syncData);
         }

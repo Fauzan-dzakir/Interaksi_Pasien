@@ -1,4 +1,4 @@
-<div>
+<div wire:poll.20s>
     <x-page-header title="Order Saya"
                    :subtitle="'Riwayat pengiriman alat dari ' . auth()->user()->unit->name . ' ke CSSD.'">
         <x-slot:actions>

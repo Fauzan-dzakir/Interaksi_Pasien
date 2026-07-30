@@ -105,6 +105,10 @@ class ScanStation extends Component
         ]);
 
         $this->log = array_slice($this->log, 0, 15);
+
+        // Riwayat scan di halaman tetap ada seperti biasa — pop-up ini tambahan
+        // supaya hasil scan kelihatan tanpa perlu scroll, terutama di HP.
+        $this->dispatch('toast', type: $status, message: $message);
     }
 
     public function render()

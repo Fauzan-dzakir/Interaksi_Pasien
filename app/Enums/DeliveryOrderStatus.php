@@ -13,8 +13,18 @@ enum DeliveryOrderStatus: string
     /** Alat sedang diproses di zona kotor/bersih. */
     case Processing = 'processing';
 
+    /** Seluruh alat pada order ini sudah selesai dicuci/disterilkan CSSD dan
+     *  tinggal menunggu diambil/didistribusikan — pekerjaan CSSD untuk order
+     *  ini sudah tuntas, tinggal menunggu unit mengambil. */
+    case ReadyForDistribution = 'ready_for_distribution';
+
     /** Seluruh alat pada order ini sudah diterima kembali oleh unit. */
     case Completed = 'completed';
+
+    /** Ada alat pada order ini yang dinyatakan hilang/rusak (tidak dipakai lagi)
+     *  lewat Koreksi Admin — order TIDAK boleh terlihat seolah baik-baik saja
+     *  ("Sedang Diproses"/"Selesai"), harus jelas menandakan perlu tindak lanjut. */
+    case HasIssue = 'has_issue';
 
     case Cancelled = 'cancelled';
 
@@ -24,7 +34,9 @@ enum DeliveryOrderStatus: string
             self::PendingCssdIntake => 'Menunggu Pendataan CSSD',
             self::IntakeRecorded => 'Sudah Didata',
             self::Processing => 'Sedang Diproses',
+            self::ReadyForDistribution => 'Selesai Diproses (Siap Distribusi)',
             self::Completed => 'Selesai',
+            self::HasIssue => 'Ada Kendala (Hilang/Rusak)',
             self::Cancelled => 'Dibatalkan',
         };
     }
@@ -36,7 +48,9 @@ enum DeliveryOrderStatus: string
             self::PendingCssdIntake => 'bg-amber-50 text-amber-700 ring-amber-200',
             self::IntakeRecorded => 'bg-sky-50 text-sky-700 ring-sky-200',
             self::Processing => 'bg-indigo-50 text-indigo-700 ring-indigo-200',
+            self::ReadyForDistribution => 'bg-teal-50 text-teal-700 ring-teal-200',
             self::Completed => 'bg-emerald-50 text-emerald-700 ring-emerald-200',
+            self::HasIssue => 'bg-red-50 text-red-700 ring-red-200',
             self::Cancelled => 'bg-slate-100 text-slate-500 ring-slate-200',
         };
     }

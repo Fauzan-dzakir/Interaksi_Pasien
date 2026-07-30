@@ -8,25 +8,27 @@
     <h2 class="mb-3 text-sm font-semibold text-slate-700">Operasional</h2>
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         @foreach ($operationalStats as $stat)
-            <div wire:key="op-{{ $stat['label'] }}" class="card p-5">
+            <a href="{{ route($stat['route'], $stat['params'] ?? []) }}" wire:navigate wire:key="op-{{ $stat['label'] }}"
+               class="card p-5 transition hover:border-teal-300 hover:shadow">
                 <div class="text-sm text-slate-500">{{ $stat['label'] }}</div>
                 <div @class([
                     'mt-1 text-3xl font-semibold',
                     'text-red-600' => ($stat['alert'] ?? false) && $stat['value'] > 0,
                     'text-slate-900' => ! (($stat['alert'] ?? false) && $stat['value'] > 0),
                 ])>{{ $stat['value'] }}</div>
-            </div>
+            </a>
         @endforeach
     </div>
 
     <h2 class="mb-3 mt-6 text-sm font-semibold text-slate-700">Posisi Alat per Zona</h2>
     <div class="grid gap-4 sm:grid-cols-3">
         @foreach ($zoneTotals as $row)
-            <div wire:key="az-{{ $row['zone']->value }}" class="card p-5">
+            <a href="{{ route($row['route'], $row['params'] ?? []) }}" wire:navigate wire:key="az-{{ $row['zone']->value }}"
+               class="card p-5 transition hover:border-teal-300 hover:shadow">
                 <div class="text-sm font-medium text-slate-700">{{ $row['zone']->label() }}</div>
                 <div class="mt-1 text-3xl font-semibold text-slate-900">{{ $row['count'] }}</div>
                 <div class="mt-1 text-xs text-slate-400">{{ $row['zone']->description() }}</div>
-            </div>
+            </a>
         @endforeach
     </div>
 

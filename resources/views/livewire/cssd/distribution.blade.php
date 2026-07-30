@@ -1,4 +1,4 @@
-<div>
+<div wire:poll.20s>
     <x-page-header title="Distribusi Alat Steril"
                    subtitle="Serahkan alat dari gudang steril kembali ke unit pemiliknya." />
 

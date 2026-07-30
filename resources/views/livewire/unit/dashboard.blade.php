@@ -47,7 +47,7 @@
                 <div>
                     <h2 class="text-sm font-semibold text-slate-900">
                         Alat Sedang Berjalan
-                        @if ($zoneFilter)
+                        @if ($zoneFilter || $statusFilter || $search)
                             <span class="font-normal text-slate-500">— difilter</span>
                         @endif
                     </h2>
@@ -55,11 +55,24 @@
                         {{ $totalActive }} alat aktif · diperbarui otomatis tiap 15 detik
                     </p>
                 </div>
-                @if ($zoneFilter)
-                    <button wire:click="$set('zoneFilter', '')" class="text-xs font-medium text-teal-700 hover:text-teal-800">
+                @if ($zoneFilter || $statusFilter || $search)
+                    <button wire:click="resetFilters" class="text-xs font-medium text-teal-700 hover:text-teal-800">
                         Tampilkan semua
                     </button>
                 @endif
+            </div>
+
+            <div class="flex flex-wrap gap-3 border-b border-slate-200 p-4">
+                <input wire:model.live.debounce.300ms="search" type="search"
+                       placeholder="Cari kode label / nama alat…" class="field-input sm:max-w-xs">
+
+                <div class="sm:max-w-[14rem]">
+                    <x-tom-select wire-model="statusFilter" placeholder="Semua status" search-placeholder="Cari status…">
+                        @foreach ($statusOptions as $value => $label)
+                            <option value="{{ $value }}" @selected($statusFilter === $value)>{{ $label }}</option>
+                        @endforeach
+                    </x-tom-select>
+                </div>
             </div>
 
             <div class="overflow-x-auto">

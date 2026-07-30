@@ -148,6 +148,7 @@ class BarcodeReplacement extends Component
     {
         $this->feedbackType = $type;
         $this->feedback = $message;
+        $this->dispatch('toast', type: $type, message: $message);
     }
 
     public function render()

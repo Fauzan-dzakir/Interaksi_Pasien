@@ -1,4 +1,4 @@
-<div>
+<div wire:poll.15s>
     <x-page-header title="Stasiun Scan" subtitle="Pindai label QR untuk memindahkan alat ke tahap berikutnya." />
 
     <div class="grid gap-5 lg:grid-cols-3">

@@ -31,15 +31,17 @@ class Dashboard extends Component
                 ['label' => 'Pengguna Aktif', 'value' => User::active()->count(), 'route' => 'admin.users'],
             ],
             'operationalStats' => [
-                ['label' => 'Alat Dilacak', 'value' => ItemBatch::active()->count()],
-                ['label' => 'Order Berjalan', 'value' => DeliveryOrder::open()->count()],
-                ['label' => 'Ditandai Hilang', 'value' => (int) ($statusCounts[ItemBatchStatus::Lost->value] ?? 0), 'alert' => true],
-                ['label' => 'Koreksi Admin', 'value' => ItemBatchEvent::where('is_admin_override', true)->count()],
+                ['label' => 'Alat Dilacak', 'value' => ItemBatch::active()->count(), 'route' => 'admin.audit'],
+                ['label' => 'Order Berjalan', 'value' => DeliveryOrder::open()->count(), 'route' => 'cssd.orders'],
+                ['label' => 'Ditandai Hilang', 'value' => (int) ($statusCounts[ItemBatchStatus::Lost->value] ?? 0), 'alert' => true, 'route' => 'admin.audit', 'params' => ['status' => ItemBatchStatus::Lost->value]],
+                ['label' => 'Koreksi Admin', 'value' => ItemBatchEvent::where('is_admin_override', true)->count(), 'route' => 'admin.audit'],
             ],
             'zoneTotals' => collect(ZoneBucket::trackedByUnit())->map(fn (ZoneBucket $zone) => [
                 'zone' => $zone,
                 'count' => collect($zone->statuses())
                     ->sum(fn (ItemBatchStatus $s) => (int) ($statusCounts[$s->value] ?? 0)),
+                'route' => 'admin.audit',
+                'params' => ['zona' => $zone->value],
             ]),
             'usersByRole' => collect(UserRole::cases())->map(fn (UserRole $role) => [
                 'label' => $role->label(),

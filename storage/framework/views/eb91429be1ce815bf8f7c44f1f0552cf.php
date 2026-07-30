@@ -67,7 +67,7 @@
                 <div>
                     <h2 class="text-sm font-semibold text-slate-900">
                         Alat Sedang Berjalan
-                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($zoneFilter): ?>
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($zoneFilter || $statusFilter || $search): ?>
                             <span class="font-normal text-slate-500">— difilter</span>
                         <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                     </h2>
@@ -75,11 +75,44 @@
                         <?php echo e($totalActive); ?> alat aktif · diperbarui otomatis tiap 15 detik
                     </p>
                 </div>
-                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($zoneFilter): ?>
-                    <button wire:click="$set('zoneFilter', '')" class="text-xs font-medium text-teal-700 hover:text-teal-800">
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($zoneFilter || $statusFilter || $search): ?>
+                    <button wire:click="resetFilters" class="text-xs font-medium text-teal-700 hover:text-teal-800">
                         Tampilkan semua
                     </button>
                 <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            </div>
+
+            <div class="flex flex-wrap gap-3 border-b border-slate-200 p-4">
+                <input wire:model.live.debounce.300ms="search" type="search"
+                       placeholder="Cari kode label / nama alat…" class="field-input sm:max-w-xs">
+
+                <div class="sm:max-w-[14rem]">
+                    <?php if (isset($component)) { $__componentOriginal391e5bef920d393958d3dc69b840c47c = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal391e5bef920d393958d3dc69b840c47c = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.tom-select','data' => ['wireModel' => 'statusFilter','placeholder' => 'Semua status','searchPlaceholder' => 'Cari status…']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('tom-select'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['wire-model' => 'statusFilter','placeholder' => 'Semua status','search-placeholder' => 'Cari status…']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $statusOptions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value => $label): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                            <option value="<?php echo e($value); ?>" <?php if($statusFilter === $value): echo 'selected'; endif; ?>><?php echo e($label); ?></option>
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                     <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal391e5bef920d393958d3dc69b840c47c)): ?>
+<?php $attributes = $__attributesOriginal391e5bef920d393958d3dc69b840c47c; ?>
+<?php unset($__attributesOriginal391e5bef920d393958d3dc69b840c47c); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal391e5bef920d393958d3dc69b840c47c)): ?>
+<?php $component = $__componentOriginal391e5bef920d393958d3dc69b840c47c; ?>
+<?php unset($__componentOriginal391e5bef920d393958d3dc69b840c47c); ?>
+<?php endif; ?>
+                </div>
             </div>
 
             <div class="overflow-x-auto">

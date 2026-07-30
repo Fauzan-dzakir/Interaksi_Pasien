@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Enums\BatchType;
 use App\Enums\DeliveryOrderStatus;
 use App\Enums\ItemBatchStatus;
+use App\Enums\ZoneBucket;
 use App\Models\DeliveryOrder;
 use App\Models\DeliveryOrderEvent;
 use App\Models\DeliveryOrderLine;
@@ -54,11 +55,11 @@ class DeliveryOrderService
     /**
      * CSSD menyimpan hasil pendataan fisik ("Simpan Pendataan").
      *
-     * Dari tiap baris pendataan dibuatkan batch beserta label QR-nya:
-     *   - Per Set     : qty N menghasilkan N batch, karena tiap set dikemas
-     *                   dan beredar sendiri-sendiri sehingga butuh QR masing-masing.
-     *   - Per Barang  : qty N menghasilkan 1 batch berisi N pcs, karena alat lepasan
-     *                   sejenis dikemas jadi satu.
+     * Dari tiap baris pendataan dibuatkan batch beserta label QR-nya: qty N pada
+     * baris manapun (Per Set maupun Per Barang) menghasilkan N batch terpisah,
+     * masing-masing dengan QR sendiri — supaya tiap unit fisik alat bisa
+     * dilacak/discan sendiri-sendiri (mis. dari 2 selang yang sama, cuma 1 yang
+     * dipakai unit, sisanya tetap tercatat belum dipakai).
      *
      * @param  array<int, array{line_type: string, instrument_set_id: ?int, item_id: ?int, quantity: int, notes: ?string}>  $lines
      */
@@ -92,8 +93,8 @@ class DeliveryOrderService
                     }
                 }
 
-                $batchCount = $type === BatchType::Set ? (int) $row['quantity'] : 1;
-                $perBatchQty = $type === BatchType::Set ? 1 : (int) $row['quantity'];
+                $batchCount = (int) $row['quantity'];
+                $perBatchQty = 1;
 
                 for ($i = 0; $i < $batchCount; $i++) {
                     $batch = ItemBatch::create([
@@ -156,6 +157,14 @@ class DeliveryOrderService
             return;
         }
 
+        // Ada alat yang dinyatakan hilang/rusak (Koreksi Admin) — order TIDAK boleh
+        // terlihat "Sedang Diproses"/"Selesai" seolah semua baik-baik saja. Ini prioritas
+        // TERTINGGI: tetap ditandai walau alat lain di order yang sama sudah normal selesai,
+        // supaya staf tahu order ini masih butuh tindak lanjut.
+        $hasIssue = $batches->contains(
+            fn (ItemBatch $b) => in_array($b->status, [ItemBatchStatus::Lost, ItemBatchStatus::Retired], true)
+        );
+
         $allReturned = $batches->every(
             fn (ItemBatch $b) => in_array($b->status, [
                 ItemBatchStatus::PickedUp,
@@ -166,7 +175,20 @@ class DeliveryOrderService
             ], true)
         );
 
-        $target = $allReturned ? DeliveryOrderStatus::Completed : DeliveryOrderStatus::Processing;
+        // Sudah keluar dari zona kotor/bersih (tersimpan, siap diambil, atau malah
+        // sudah diambil) — dari sisi CSSD pekerjaan cuci/sterilisasinya tuntas,
+        // tinggal menunggu unit mengambil. Tanpa tingkatan ini, order akan terus
+        // berlabel "Sedang Diproses" walau CSSD sudah tidak mengerjakan apa-apa lagi.
+        $doneProcessing = $batches->every(
+            fn (ItemBatch $b) => ! in_array($b->zone(), [ZoneBucket::Dirty, ZoneBucket::Clean], true)
+        );
+
+        $target = match (true) {
+            $hasIssue => DeliveryOrderStatus::HasIssue,
+            $allReturned => DeliveryOrderStatus::Completed,
+            $doneProcessing => DeliveryOrderStatus::ReadyForDistribution,
+            default => DeliveryOrderStatus::Processing,
+        };
 
         if ($order->status === $target) {
             return;
@@ -175,9 +197,12 @@ class DeliveryOrderService
         $from = $order->status;
         $order->update(['status' => $target]);
 
-        $this->recordEvent($order, $from, $target, $actor, $target === DeliveryOrderStatus::Completed
-            ? 'Seluruh alat sudah kembali ke unit.'
-            : 'Alat mulai diproses di CSSD.');
+        $this->recordEvent($order, $from, $target, $actor, match ($target) {
+            DeliveryOrderStatus::HasIssue => 'Ada alat pada order ini yang dinyatakan hilang/rusak — perlu tindak lanjut.',
+            DeliveryOrderStatus::Completed => 'Seluruh alat sudah kembali ke unit.',
+            DeliveryOrderStatus::ReadyForDistribution => 'CSSD selesai memproses seluruh alat, siap didistribusikan.',
+            default => 'Alat mulai diproses di CSSD.',
+        });
     }
 
     private function notifyUnit(DeliveryOrder $order): void

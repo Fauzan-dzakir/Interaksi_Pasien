@@ -53,10 +53,12 @@ class OrderQueue extends Component
             ->when($this->filterStatus, fn ($q) => $q->where('status', $this->filterStatus))
             ->when($this->filterUnit, fn ($q) => $q->where('origin_unit_id', $this->filterUnit))
             // Yang belum didata naik ke atas (itu antrian kerja yang menahan alur),
-            // dan di dalamnya order CITO didahulukan agar cepat diproses.
+            // dan di dalamnya order CITO didahulukan agar cepat diproses. Sisanya
+            // diurutkan dari yang paling lama dikirim supaya petugas tahu mana yang
+            // harus dikerjakan lebih dulu (kiriman baru turun ke bawah antrian).
             ->orderByRaw("CASE WHEN status = ? THEN 0 ELSE 1 END", [DeliveryOrderStatus::PendingCssdIntake->value])
             ->orderByDesc('is_cito')
-            ->latest('sent_at')
+            ->oldest('sent_at')
             ->paginate(15);
 
         return view('livewire.cssd.order-queue', [

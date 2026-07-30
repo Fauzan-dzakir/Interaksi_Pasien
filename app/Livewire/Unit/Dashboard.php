@@ -20,6 +20,17 @@ class Dashboard extends Component
     #[Url(as: 'zona', keep: false)]
     public string $zoneFilter = '';
 
+    #[Url(as: 'status', keep: false)]
+    public string $statusFilter = '';
+
+    #[Url(as: 'q', keep: false)]
+    public string $search = '';
+
+    public function resetFilters(): void
+    {
+        $this->reset(['zoneFilter', 'statusFilter', 'search']);
+    }
+
     public function render()
     {
         $unitId = auth()->user()->unit_id;
@@ -36,12 +47,21 @@ class Dashboard extends Component
             'count' => $activeBatches->filter(fn (ItemBatch $b) => $b->zone() === $zone)->count(),
         ]);
 
-        $filtered = $this->zoneFilter
-            ? $activeBatches->filter(fn (ItemBatch $b) => $b->zone()->value === $this->zoneFilter)
-            : $activeBatches;
+        $filtered = $activeBatches
+            ->when($this->zoneFilter, fn ($batches) => $batches->filter(fn (ItemBatch $b) => $b->zone()->value === $this->zoneFilter))
+            ->when($this->statusFilter, fn ($batches) => $batches->filter(fn (ItemBatch $b) => $b->status->value === $this->statusFilter))
+            ->when($this->search, function ($batches) {
+                $term = mb_strtolower(trim($this->search));
+
+                return $batches->filter(
+                    fn (ItemBatch $b) => str_contains(mb_strtolower($b->public_code), $term)
+                        || str_contains(mb_strtolower($b->displayName()), $term)
+                );
+            });
 
         return view('livewire.unit.dashboard', [
             'trackedZones' => $tracked,
+            'statusOptions' => ItemBatchStatus::options(),
             'batches' => $filtered->take(60),
             'totalActive' => $activeBatches->count(),
             'atUnitCount' => $activeBatches->filter(fn (ItemBatch $b) => $b->zone() === ZoneBucket::AtUnit)->count(),
@@ -56,6 +76,7 @@ class Dashboard extends Component
                     DeliveryOrderStatus::PendingCssdIntake,
                     DeliveryOrderStatus::IntakeRecorded,
                     DeliveryOrderStatus::Processing,
+                    DeliveryOrderStatus::ReadyForDistribution,
                 ])
                 ->latest('sent_at')
                 ->limit(5)

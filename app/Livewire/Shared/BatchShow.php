@@ -7,9 +7,12 @@ use App\Enums\ItemBatchStatus;
 use App\Exceptions\InvalidTransitionException;
 use App\Models\ItemBatch;
 use App\Models\ItemBatchStageCheck;
+use App\Models\User;
+use App\Notifications\ItemBatchIssueReported;
 use App\Services\DeliveryOrderService;
 use App\Services\ItemBatchTransitionService;
 use App\Services\QrCodeService;
+use Illuminate\Support\Facades\Notification;
 use InvalidArgumentException;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -129,6 +132,8 @@ class BatchShow extends Component
                 : $failTargets[0];
         } else {
             // Tidak ada tahap mundur yang relevan — status tidak berubah, hanya dicatat.
+            $this->notifyOriginUnitOfFailedChecklist($stage->label(), $failedItems->pluck('label')->implode(', '));
+
             session()->flash('status', 'Checklist tersimpan. Ada item tidak sesuai — tahap tidak berubah, tindak lanjuti secara manual.');
             $this->resetChecklist();
 
@@ -154,12 +159,38 @@ class BatchShow extends Component
             $orders->syncStatus($this->batch->currentDeliveryOrder, $user);
         }
 
+        if ($failedItems->isNotEmpty()) {
+            $this->notifyOriginUnitOfFailedChecklist($stage->label(), $failedItems->pluck('label')->implode(', '));
+        }
+
         $this->batch->refresh();
         $this->resetChecklist();
 
         session()->flash('status', $failedItems->isEmpty()
             ? "Checklist sesuai — alat dipindah ke \"{$target->label()}\"."
             : "Checklist dicatat — alat dikembalikan ke \"{$target->label()}\" karena ada item tidak sesuai.");
+    }
+
+    private function notifyOriginUnitOfFailedChecklist(string $stageLabel, string $failedNames): void
+    {
+        $this->notifyOriginUnit(
+            'Alat tidak lulus uji '.$stageLabel,
+            "{$this->batch->displayName()} ({$this->batch->public_code}) tidak lulus uji {$stageLabel} pada: {$failedNames}. Alat dikembalikan untuk diproses ulang.",
+        );
+    }
+
+    /** Beri tahu unit pemilik alat — dipakai untuk kejadian yang perlu diketahui unit (hilang/rusak/gagal uji). */
+    private function notifyOriginUnit(string $title, string $message): void
+    {
+        if (! $this->batch->origin_unit_id) {
+            return;
+        }
+
+        $recipients = User::active()->where('unit_id', $this->batch->origin_unit_id)->get();
+
+        if ($recipients->isNotEmpty()) {
+            Notification::send($recipients, new ItemBatchIssueReported($this->batch, $title, $message));
+        }
     }
 
     /** Jalur kegagalan QC yang butuh penilaian petugas CSSD. */
@@ -215,7 +246,7 @@ class BatchShow extends Component
     }
 
     /** Koreksi Admin — boleh melompati alur, tapi alasannya wajib dan tercatat. */
-    public function applyOverride(ItemBatchTransitionService $transitions): void
+    public function applyOverride(ItemBatchTransitionService $transitions, DeliveryOrderService $orders): void
     {
         $this->authorize('override', ItemBatch::class);
 
@@ -227,10 +258,12 @@ class BatchShow extends Component
             'overrideReason' => 'alasan koreksi',
         ]);
 
+        $target = ItemBatchStatus::from($this->overrideStatus);
+
         try {
             $transitions->adminOverride(
                 $this->batch,
-                ItemBatchStatus::from($this->overrideStatus),
+                $target,
                 auth()->user(),
                 $this->overrideReason,
             );
@@ -238,6 +271,19 @@ class BatchShow extends Component
             $this->addError('overrideReason', $e->getMessage());
 
             return;
+        }
+
+        // Tanpa ini, status order tetap "Sedang Diproses"/"Selesai" seolah tidak
+        // terjadi apa-apa — order harus ikut menandakan ada alat bermasalah.
+        if ($this->batch->currentDeliveryOrder) {
+            $orders->syncStatus($this->batch->currentDeliveryOrder, auth()->user());
+        }
+
+        if (in_array($target, [ItemBatchStatus::Lost, ItemBatchStatus::Retired], true)) {
+            $this->notifyOriginUnit(
+                $target === ItemBatchStatus::Lost ? 'Alat dinyatakan hilang' : 'Alat ditandai tidak dipakai lagi',
+                "{$this->batch->displayName()} ({$this->batch->public_code}) ditandai \"{$target->label()}\". Alasan: {$this->overrideReason}",
+            );
         }
 
         $this->showOverride = false;

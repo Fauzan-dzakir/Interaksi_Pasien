@@ -11,12 +11,16 @@
     </div>
 
     <div class="space-y-4">
+        {{-- Hanya panduan sesuai peran akun yang login yang ditampilkan — akun unit
+             tidak perlu melihat panduan Admin/CSSD yang tidak relevan untuk mereka. --}}
+
         {{-- ================= ADMIN ================= --}}
-        <details @if ($role === \App\Enums\UserRole::Admin) open @endif class="card overflow-hidden">
-            <summary class="cursor-pointer select-none px-5 py-4 text-sm font-semibold text-slate-900 hover:bg-slate-50">
+        @if ($role === \App\Enums\UserRole::Admin)
+        <div class="card overflow-hidden">
+            <div class="px-5 py-4 text-sm font-semibold text-slate-900 border-b border-slate-200">
                 Untuk Admin
-            </summary>
-            <div class="border-t border-slate-200 px-5 py-4 text-sm text-slate-700 space-y-4">
+            </div>
+            <div class="px-5 py-4 text-sm text-slate-700 space-y-4">
                 <div>
                     <h3 class="font-semibold text-slate-900">Master data (menu kiri: Unit, Katalog Alat, Set Alat, Lokasi Pengambilan)</h3>
                     <p class="mt-1">Data di sini <strong>tidak pernah benar-benar dihapus</strong> — hanya bisa dinonaktifkan. Ini disengaja, supaya riwayat order/alat lama yang menunjuk ke data tersebut tetap bisa dibaca saat audit. Kalau alat/unit sudah tidak dipakai, nonaktifkan saja, jangan minta dihapus dari database.</p>
@@ -38,14 +42,16 @@
                     <p class="mt-1">Tombol ini ada di halaman detail tiap alat. Dipakai <strong>hanya</strong> untuk membetulkan salah scan petugas atau menandai alat hilang/tidak dipakai lagi — bukan jalur normal. Alasan koreksi wajib diisi dan tercatat permanen dengan tanda "Koreksi Admin" di riwayatnya, supaya jelas beda dari perpindahan alur biasa.</p>
                 </div>
             </div>
-        </details>
+        </div>
+        @endif
 
         {{-- ================= CSSD ================= --}}
-        <details @if ($role === \App\Enums\UserRole::CssdStaff) open @endif class="card overflow-hidden">
-            <summary class="cursor-pointer select-none px-5 py-4 text-sm font-semibold text-slate-900 hover:bg-slate-50">
+        @if ($role === \App\Enums\UserRole::CssdStaff)
+        <div class="card overflow-hidden">
+            <div class="px-5 py-4 text-sm font-semibold text-slate-900 border-b border-slate-200">
                 Untuk Petugas CSSD
-            </summary>
-            <div class="border-t border-slate-200 px-5 py-4 text-sm text-slate-700 space-y-4">
+            </div>
+            <div class="px-5 py-4 text-sm text-slate-700 space-y-4">
                 <div>
                     <h3 class="font-semibold text-slate-900">1. Order Masuk</h3>
                     <p class="mt-1">Order berlabel <strong>CITO</strong> (merah) berarti mendesak — dahulukan. Klik <strong>"Data Sekarang"</strong>, hitung fisik isi kiriman, lalu catat per baris: pilih <strong>Per Set</strong> (kalau alat dirakit jadi satu set) atau <strong>Per Barang</strong> (alat lepasan sejenis digabung). Untuk baris Per Set, akan muncul checklist isi set — centang tiap alat yang sesuai, uncheck + beri catatan kalau ada yang tidak sesuai/hilang. Checklist ini opsional tapi sangat disarankan sebagai bukti kelengkapan. Setelah "Simpan Pendataan", label QR otomatis dibuat dan unit dapat notifikasi.</p>
@@ -67,14 +73,16 @@
                     <p class="mt-1">Pilih unit tujuan, centang alat steril yang siap diserahkan, klik "Serahkan Alat" — ini membuat nomor <strong>PU-...</strong> dan unit langsung dapat notifikasi untuk konfirmasi. Kalau ada yang menanyakan nomor "PU-..." dari notifikasi tapi sudah tidak muncul di "Menunggu Konfirmasi", cari di kotak pencarian pada card <strong>Riwayat Distribusi</strong> di bawahnya — di situ semua serah terima (termasuk yang sudah dikonfirmasi) tetap tercatat.</p>
                 </div>
             </div>
-        </details>
+        </div>
+        @endif
 
         {{-- ================= UNIT / IBS ================= --}}
-        <details @if ($role === \App\Enums\UserRole::Nakes) open @endif class="card overflow-hidden">
-            <summary class="cursor-pointer select-none px-5 py-4 text-sm font-semibold text-slate-900 hover:bg-slate-50">
+        @if ($role === \App\Enums\UserRole::Nakes)
+        <div class="card overflow-hidden">
+            <div class="px-5 py-4 text-sm font-semibold text-slate-900 border-b border-slate-200">
                 Untuk Unit / IBS (Dokter, Perawat, Nakes)
-            </summary>
-            <div class="border-t border-slate-200 px-5 py-4 text-sm text-slate-700 space-y-4">
+            </div>
+            <div class="px-5 py-4 text-sm text-slate-700 space-y-4">
                 <div>
                     <h3 class="font-semibold text-slate-900">1. Buat Order (kirim alat kotor ke CSSD)</h3>
                     <p class="mt-1">Sebelum isi form, cek dulu bagian <strong>"Alat di Unit Ini"</strong> di atas form — tandai alat mana yang sudah dipakai (kosong itu wajar kalau belum pernah ada serah terima sebelumnya). Alat di daftar ini tidak bisa dihapus, hanya diubah status pakainya. Lalu isi form: nama pengantar, jam kirim, jumlah box, dan <strong>foto kondisi alat wajib diisi</strong> minimal 1 foto. Kalau CITO, isi jam kebutuhan saja (tanpa tanggal) — sistem otomatis pakai hari ini atau besok tergantung jam berapa sekarang. Rincian isi kiriman <strong>tidak</strong> diisi di sini — itu tugas CSSD saat menghitung fisik barangnya.</p>
@@ -92,6 +100,7 @@
                     <p class="mt-1">Ikon lonceng di pojok bawah sidebar. Ada dua jenis: "Pendataan CSSD selesai" (rincian order Anda sudah bisa dilihat) dan "Alat steril siap/dikirim" (perlu konfirmasi penerimaan).</p>
                 </div>
             </div>
-        </details>
+        </div>
+        @endif
     </div>
 </div>

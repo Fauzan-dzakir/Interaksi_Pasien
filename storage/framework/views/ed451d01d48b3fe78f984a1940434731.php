@@ -12,6 +12,12 @@
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
          <?php $__env->slot('actions', null, []); ?> 
+            
+            <form method="GET" action="<?php echo e(route('cssd.audit')); ?>" class="flex items-center">
+                <input type="search" name="q" class="field-input !h-auto w-40 sm:w-56"
+                       placeholder="Cari kode/nama alat…">
+                <button type="submit" class="btn-secondary ml-2 shrink-0">Cari Alat</button>
+            </form>
             <a href="<?php echo e(route('cssd.scan')); ?>" wire:navigate class="btn-primary">Buka Stasiun Scan</a>
          <?php $__env->endSlot(); ?>
      <?php echo $__env->renderComponent(); ?>

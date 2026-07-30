@@ -1,6 +1,12 @@
 <div wire:poll.20s>
     <x-page-header title="Dashboard CSSD" subtitle="Beban kerja dan posisi alat di setiap zona.">
         <x-slot:actions>
+            {{-- Cari langsung berdasarkan alat/kode label — tidak perlu lewat nomor order dulu. --}}
+            <form method="GET" action="{{ route('cssd.audit') }}" class="flex items-center">
+                <input type="search" name="q" class="field-input !h-auto w-40 sm:w-56"
+                       placeholder="Cari kode/nama alat…">
+                <button type="submit" class="btn-secondary ml-2 shrink-0">Cari Alat</button>
+            </form>
             <a href="{{ route('cssd.scan') }}" wire:navigate class="btn-primary">Buka Stasiun Scan</a>
         </x-slot:actions>
     </x-page-header>

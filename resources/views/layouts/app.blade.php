@@ -19,6 +19,10 @@
 </head>
 <body class="h-full bg-linear-to-br from-slate-50 via-slate-100 to-teal-50/50 text-slate-800 antialiased">
 
+@auth
+    <x-toast-stack />
+@endauth
+
 <div class="min-h-full flex flex-col md:flex-row">
     @auth
         @include('partials.navbar')

@@ -28,25 +28,27 @@
     <h2 class="mb-3 text-sm font-semibold text-slate-700">Operasional</h2>
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $operationalStats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $stat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
-            <div <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::$currentLoop['key'] = 'op-'.e($stat['label']).''; ?>wire:key="op-<?php echo e($stat['label']); ?>" class="card p-5">
+            <a href="<?php echo e(route($stat['route'], $stat['params'] ?? [])); ?>" wire:navigate <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::$currentLoop['key'] = 'op-'.e($stat['label']).''; ?>wire:key="op-<?php echo e($stat['label']); ?>"
+               class="card p-5 transition hover:border-teal-300 hover:shadow">
                 <div class="text-sm text-slate-500"><?php echo e($stat['label']); ?></div>
                 <div class="<?php echo \Illuminate\Support\Arr::toCssClasses([
                     'mt-1 text-3xl font-semibold',
                     'text-red-600' => ($stat['alert'] ?? false) && $stat['value'] > 0,
                     'text-slate-900' => ! (($stat['alert'] ?? false) && $stat['value'] > 0),
                 ]); ?>"><?php echo e($stat['value']); ?></div>
-            </div>
+            </a>
         <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
     </div>
 
     <h2 class="mb-3 mt-6 text-sm font-semibold text-slate-700">Posisi Alat per Zona</h2>
     <div class="grid gap-4 sm:grid-cols-3">
         <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $zoneTotals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
-            <div <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::$currentLoop['key'] = 'az-'.e($row['zone']->value).''; ?>wire:key="az-<?php echo e($row['zone']->value); ?>" class="card p-5">
+            <a href="<?php echo e(route($row['route'], $row['params'] ?? [])); ?>" wire:navigate <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::$currentLoop['key'] = 'az-'.e($row['zone']->value).''; ?>wire:key="az-<?php echo e($row['zone']->value); ?>"
+               class="card p-5 transition hover:border-teal-300 hover:shadow">
                 <div class="text-sm font-medium text-slate-700"><?php echo e($row['zone']->label()); ?></div>
                 <div class="mt-1 text-3xl font-semibold text-slate-900"><?php echo e($row['count']); ?></div>
                 <div class="mt-1 text-xs text-slate-400"><?php echo e($row['zone']->description()); ?></div>
-            </div>
+            </a>
         <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
     </div>
 

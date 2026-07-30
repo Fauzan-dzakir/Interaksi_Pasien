@@ -21,6 +21,7 @@
         \App\Enums\UserRole::CssdStaff => [
             'Utama' => [
                 ['route' => 'cssd.dashboard', 'label' => 'Dashboard', 'icon' => 'home'],
+                ['route' => 'cssd.audit', 'label' => 'Telusur Alat', 'icon' => 'search'],
             ],
             'Transaksi & Proses' => [
                 ['route' => 'cssd.orders', 'label' => 'Order Masuk', 'icon' => 'inbox'],
@@ -40,6 +41,7 @@
             'Transaksi' => [
                 ['route' => 'unit.orders', 'label' => 'Order Saya', 'icon' => 'clipboard'],
                 ['route' => 'unit.pickups', 'label' => 'Penerimaan', 'icon' => 'download'],
+                ['route' => 'unit.inventory', 'label' => 'Pendataan Alat di Unit', 'icon' => 'box'],
             ],
             'Bantuan' => [
                 ['route' => 'guide', 'label' => 'Panduan Penggunaan', 'icon' => 'help'],

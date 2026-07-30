@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Enums\ItemBatchStatus;
+use App\Enums\ZoneBucket;
 use App\Models\ItemBatch;
 use App\Models\ItemBatchEvent;
 use App\Models\Unit;
@@ -27,6 +28,9 @@ class AuditSearch extends Component
     #[Url(as: 'status', keep: false)]
     public string $filterStatus = '';
 
+    #[Url(as: 'zona', keep: false)]
+    public string $filterZone = '';
+
     #[Url(as: 'dari', keep: false)]
     public string $from = '';
 
@@ -40,7 +44,7 @@ class AuditSearch extends Component
 
     public function resetFilters(): void
     {
-        $this->reset(['search', 'filterUnit', 'filterStatus', 'from', 'to']);
+        $this->reset(['search', 'filterUnit', 'filterStatus', 'filterZone', 'from', 'to']);
         $this->resetPage();
     }
 
@@ -60,6 +64,10 @@ class AuditSearch extends Component
             })
             ->when($this->filterUnit, fn ($q) => $q->where('origin_unit_id', $this->filterUnit))
             ->when($this->filterStatus, fn ($q) => $q->where('status', $this->filterStatus))
+            ->when($this->filterZone, function ($q) {
+                $zone = ZoneBucket::from($this->filterZone);
+                $q->whereIn('status', collect($zone->statuses())->map(fn (ItemBatchStatus $s) => $s->value)->all());
+            })
             ->when($this->from, fn ($q) => $q->whereDate('status_changed_at', '>=', $this->from))
             ->when($this->to, fn ($q) => $q->whereDate('status_changed_at', '<=', $this->to))
             ->orderByDesc('status_changed_at')
@@ -69,6 +77,7 @@ class AuditSearch extends Component
             'batches' => $batches,
             'unitOptions' => Unit::orderBy('name')->get(['id', 'name']),
             'statusOptions' => ItemBatchStatus::options(),
+            'zoneOptions' => collect(ZoneBucket::cases())->mapWithKeys(fn (ZoneBucket $z) => [$z->value => $z->label()]),
             'lostCount' => ItemBatch::where('status', ItemBatchStatus::Lost)->count(),
             'overrideCount' => ItemBatchEvent::where('is_admin_override', true)->count(),
             'recentOverrides' => ItemBatchEvent::query()

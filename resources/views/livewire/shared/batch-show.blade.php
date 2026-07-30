@@ -1,4 +1,4 @@
-<div>
+<div wire:poll.15s>
     <x-page-header :title="$batch->public_code" :subtitle="$batch->displayName() . ' · ' . $batch->displayQuantity()">
         <x-slot:actions>
             @if ($canOverride)

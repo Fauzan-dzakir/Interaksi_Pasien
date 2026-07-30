@@ -7,25 +7,29 @@
     </x-page-header>
 
     {{--
-        Alat yang sudah pernah diambil dari CSSD dan masih di tangan unit ini.
-        Bukan bagian isi order (isi order tetap didata CSSD) — ini cuma supaya
-        unit bisa menandai per alat apakah sudah dipakai atau belum sebelum
-        nanti dikirim balik. Tidak bisa dihapus dari sini, cuma diubah statusnya.
+        Alat yang sudah ditandai dipakai (lewat menu "Pendataan Alat di Unit") — ini
+        alat kotor yang akan ikut dikirim balik lewat order ini. TAMPILAN SAJA, tidak
+        bisa diubah dari sini — untuk menandai alat mana yang dipakai, buka menu
+        "Pendataan Alat di Unit".
     --}}
     <div class="card mb-5">
-        <div class="border-b border-slate-200 px-5 py-4">
-            <h2 class="text-sm font-semibold text-slate-900">Alat di Unit Ini</h2>
-            <p class="mt-0.5 text-xs text-slate-500">
-                Alat hasil pengambilan sebelumnya dari CSSD. Tandai mana yang sudah dipakai —
-                ini membantu CSSD saat mendata isi order berikutnya.
-            </p>
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 px-5 py-4">
+            <div>
+                <h2 class="text-sm font-semibold text-slate-900">Alat Kotor (Sudah Dipakai)</h2>
+                <p class="mt-0.5 text-xs text-slate-500">
+                    Alat yang sudah ditandai dipakai — akan ikut dikirim balik lewat order ini.
+                </p>
+            </div>
+            <a href="{{ route('unit.inventory') }}" wire:navigate class="btn-secondary !px-3 !py-1.5 shrink-0">
+                Kelola di Pendataan Alat
+            </a>
         </div>
-
-        @error('heldBatches') <p class="field-error px-5 pt-3">{{ $message }}</p> @enderror
 
         @if ($heldBatches->isEmpty())
             <div class="px-5 py-8 text-center text-sm text-slate-400">
-                Belum ada alat yang pernah diambil dari CSSD — kalau ini pengiriman pertama, itu wajar.
+                Belum ada alat yang ditandai dipakai. Buka menu
+                <a href="{{ route('unit.inventory') }}" wire:navigate class="text-teal-700 hover:underline">Pendataan Alat di Unit</a>
+                untuk menandainya.
             </div>
         @else
             <div class="divide-y divide-slate-100">
@@ -36,37 +40,26 @@
                                 <span class="font-mono text-xs text-slate-500">{{ $batch->public_code }}</span>
                                 <div class="font-medium text-slate-900">{{ $batch->displayName() }}</div>
                             </div>
-
-                            @if ($batch->batch_type === \App\Enums\BatchType::Individual)
-                                <div class="flex items-center gap-2">
-                                    <x-state-pill :state="$batch->status" />
-                                    <button wire:click="toggleIndividualUsage({{ $batch->id }})"
-                                            class="btn-secondary !px-3 !py-1.5">
-                                        {{ $batch->status === \App\Enums\ItemBatchStatus::InUse ? 'Tandai Belum Dipakai' : 'Tandai Dipakai' }}
-                                    </button>
-                                </div>
-                            @else
-                                <x-state-pill :state="$batch->status" />
-                            @endif
+                            <x-state-pill :state="$batch->status" />
                         </div>
 
                         @if ($batch->batch_type === \App\Enums\BatchType::Set && $batch->instrumentSet)
                             <div class="mt-3 rounded-lg border border-slate-200 bg-slate-50/50 p-3">
-                                <p class="mb-2 text-xs font-semibold text-slate-500">Tandai per alat dalam set ini</p>
-                                <div class="space-y-1.5">
+                                <p class="mb-2 text-xs font-semibold text-slate-500">Isi set yang ditandai dipakai</p>
+                                <div class="space-y-1">
                                     @foreach ($batch->instrumentSet->items as $setItem)
                                         @php
                                             $mark = $batch->usageMarks->firstWhere('item_id', $setItem->id);
                                             $isUsed = $mark?->is_used ?? false;
                                         @endphp
-                                        <label wire:key="usage-{{ $batch->id }}-{{ $setItem->id }}"
-                                               class="flex items-center gap-2 text-sm text-slate-700">
-                                            <input type="checkbox" @checked($isUsed)
-                                                   wire:click="toggleSetItemUsage({{ $batch->id }}, {{ $setItem->id }})"
-                                                   class="rounded border-slate-300 text-teal-600 focus:ring-teal-500">
+                                        <div class="flex items-center gap-2 text-sm text-slate-700">
+                                            <span @class([
+                                                'text-emerald-600' => $isUsed,
+                                                'text-slate-300' => ! $isUsed,
+                                            ])>{{ $isUsed ? '✓' : '—' }}</span>
                                             {{ $setItem->name }}
                                             <span class="text-xs text-slate-400">({{ $setItem->pivot->quantity }}x)</span>
-                                        </label>
+                                        </div>
                                     @endforeach
                                 </div>
                             </div>
@@ -168,8 +161,16 @@
                     
                     @if ($photos)
                         <div class="mt-3 flex flex-wrap gap-2">
-                            @foreach ($photos as $photo)
-                                <img src="{{ $photo->temporaryUrl() }}" class="h-16 w-16 object-cover rounded-md border border-slate-200">
+                            @foreach ($photos as $index => $photo)
+                                <div wire:key="photo-{{ $index }}" class="group relative h-16 w-16">
+                                    <img src="{{ $photo->temporaryUrl() }}" class="h-16 w-16 rounded-md border border-slate-200 object-cover">
+                                    <button type="button" wire:click="removePhoto({{ $index }})"
+                                            wire:confirm="Hapus foto ini?"
+                                            class="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs font-bold text-white shadow hover:bg-red-700"
+                                            title="Hapus foto ini">
+                                        &times;
+                                    </button>
+                                </div>
                             @endforeach
                         </div>
                     @endif

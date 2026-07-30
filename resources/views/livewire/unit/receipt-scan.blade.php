@@ -1,4 +1,4 @@
-<div>
+<div wire:poll.20s>
     <x-page-header title="Scan Konfirmasi Penerimaan"
                    :subtitle="'Pindai QR alat steril untuk mengonfirmasi bahwa alat telah berada di ' . auth()->user()->unit->name . '.'" />
 

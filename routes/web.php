@@ -61,6 +61,9 @@ Route::middleware(['auth', 'role:cssd_staff,admin'])->prefix('cssd')->name('cssd
     Route::get('/label', Cssd\LabelPrint::class)->name('labels');
     Route::get('/ganti-barcode', Cssd\BarcodeReplacement::class)->name('barcode-replacement');
     Route::get('/distribusi', Cssd\Distribution::class)->name('distribution');
+    // Sama persis dengan Admin\AuditSearch (komponen dipakai ulang) — CSSD butuh
+    // cara mencari alat langsung, bukan cuma menelusuri lewat nomor order.
+    Route::get('/telusur', Admin\AuditSearch::class)->name('audit');
 });
 
 /*
@@ -73,4 +76,5 @@ Route::middleware(['auth', 'role:nakes'])->prefix('unit')->name('unit.')->group(
     Route::get('/order/{order}', Unit\OrderShow::class)->name('orders.show');
     Route::get('/penerimaan', Unit\PickupInbox::class)->name('pickups');
     Route::get('/scan-terima', Unit\ReceiptScan::class)->name('receipt-scan');
+    Route::get('/pendataan-alat', Unit\UnitInventory::class)->name('inventory');
 });

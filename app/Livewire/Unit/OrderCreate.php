@@ -4,16 +4,12 @@ namespace App\Livewire\Unit;
 
 use App\Enums\ItemBatchStatus;
 use App\Enums\PickupLocationRequestStatus;
-use App\Enums\ScanInputMethod;
 use App\Enums\UnitType;
-use App\Exceptions\InvalidTransitionException;
 use App\Models\DeliveryOrder;
 use App\Models\ItemBatch;
-use App\Models\ItemBatchUsageMark;
 use App\Models\PickupLocation;
 use App\Models\PickupLocationRequest;
 use App\Services\DeliveryOrderService;
-use App\Services\ItemBatchTransitionService;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -54,73 +50,11 @@ class OrderCreate extends Component
         $this->sent_at = now()->format('Y-m-d\TH:i');
     }
 
-    /**
-     * Alat "Per Barang" yang sedang dipegang unit ini — cuma satu status untuk
-     * seluruh batch, jadi tinggal dibalik antara "Sedang Dipakai" <-> "Sudah
-     * Diambil" (belum dipakai). Tidak bisa dihapus dari daftar, cuma diubah
-     * statusnya.
-     */
-    public function toggleIndividualUsage(int $batchId, ItemBatchTransitionService $transitions): void
+    /** Hapus satu foto dari daftar unggahan sebelum order dikirim (mis. foto ngeblur). */
+    public function removePhoto(int $index): void
     {
-        $batch = ItemBatch::where('id', $batchId)
-            ->where('origin_unit_id', auth()->user()->unit_id)
-            ->firstOrFail();
-
-        $target = $batch->status === ItemBatchStatus::InUse
-            ? ItemBatchStatus::PickedUp
-            : ItemBatchStatus::InUse;
-
-        try {
-            $transitions->transition(
-                $batch,
-                $target,
-                auth()->user(),
-                ScanInputMethod::Manual,
-                'Tandai pemakaian dari halaman Buat Order',
-            );
-        } catch (InvalidTransitionException $e) {
-            $this->addError('heldBatches', $e->getMessage());
-        }
-    }
-
-    /**
-     * Alat "Per Set" — satu QR mewakili satu set utuh, tapi unit perlu menandai
-     * isinya satu per satu (mis. gunting dipakai, needle holder tidak). Status
-     * batch (Sedang Dipakai / Sudah Diambil) mengikuti otomatis: sekali salah
-     * satu isinya ditandai dipakai, seluruh set otomatis jadi "Sedang Dipakai".
-     */
-    public function toggleSetItemUsage(int $batchId, int $itemId, ItemBatchTransitionService $transitions): void
-    {
-        $batch = ItemBatch::where('id', $batchId)
-            ->where('origin_unit_id', auth()->user()->unit_id)
-            ->firstOrFail();
-
-        $mark = ItemBatchUsageMark::firstOrNew([
-            'item_batch_id' => $batch->id,
-            'item_id' => $itemId,
-        ]);
-
-        $mark->is_used = ! $mark->is_used;
-        $mark->marked_by_user_id = auth()->id();
-        $mark->marked_at = now();
-        $mark->save();
-
-        $anyUsed = ItemBatchUsageMark::where('item_batch_id', $batch->id)->where('is_used', true)->exists();
-        $target = $anyUsed ? ItemBatchStatus::InUse : ItemBatchStatus::PickedUp;
-
-        if ($batch->status !== $target) {
-            try {
-                $transitions->transition(
-                    $batch,
-                    $target,
-                    auth()->user(),
-                    ScanInputMethod::Manual,
-                    'Tandai pemakaian isi set dari halaman Buat Order',
-                );
-            } catch (InvalidTransitionException $e) {
-                $this->addError('heldBatches', $e->getMessage());
-            }
-        }
+        unset($this->photos[$index]);
+        $this->photos = array_values($this->photos);
     }
 
     public function save(DeliveryOrderService $service): void
@@ -213,11 +147,12 @@ class OrderCreate extends Component
                 ? PickupLocation::active()->forUnit($unit->id)->orderBy('name')->get()
                 : collect(),
             'isIbs' => $unit?->type === UnitType::IbsOk,
-            // Alat yang sudah pernah diambil dari CSSD dan masih di tangan unit —
-            // kosong wajar kalau memang belum pernah ada serah terima sebelumnya.
+            // Alat yang SUDAH ditandai dipakai (lewat menu "Pendataan Alat di Unit") —
+            // ini alat kotor yang akan ikut dikirim balik lewat order ini. Tampilan saja,
+            // tidak bisa diubah statusnya dari sini lagi (lihat UnitInventory untuk itu).
             'heldBatches' => $unit
                 ? ItemBatch::where('origin_unit_id', $unit->id)
-                    ->whereIn('status', [ItemBatchStatus::PickedUp, ItemBatchStatus::InUse])
+                    ->where('status', ItemBatchStatus::InUse)
                     ->with(['instrumentSet.items', 'item', 'usageMarks'])
                     ->orderByDesc('status_changed_at')
                     ->get()

@@ -1,4 +1,4 @@
-<div>
+<div wire:poll.20s>
     <x-page-header title="Telusur Alat"
                    subtitle="Cari posisi terakhir alat beserta bukti waktu dan petugasnya." />
 
@@ -29,12 +29,11 @@
 
             <div>
                 <label class="field-label" for="f-unit">Unit</label>
-                <select wire:model.live="filterUnit" id="f-unit" class="field-input">
-                    <option value="">Semua unit</option>
+                <x-tom-select wire-model="filterUnit" placeholder="Semua unit" search-placeholder="Cari unit…">
                     @foreach ($unitOptions as $unit)
-                        <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                        <option value="{{ $unit->id }}" @selected($filterUnit == $unit->id)>{{ $unit->name }}</option>
                     @endforeach
-                </select>
+                </x-tom-select>
             </div>
 
             <div>
@@ -51,12 +50,19 @@
         <div class="flex flex-wrap items-end gap-3 border-t border-slate-200 p-4">
             <div class="flex-1 sm:max-w-xs">
                 <label class="field-label" for="f-status">Status</label>
-                <select wire:model.live="filterStatus" id="f-status" class="field-input">
-                    <option value="">Semua status</option>
+                <x-tom-select wire-model="filterStatus" placeholder="Semua status" search-placeholder="Cari status…">
                     @foreach ($statusOptions as $value => $label)
-                        <option value="{{ $value }}">{{ $label }}</option>
+                        <option value="{{ $value }}" @selected($filterStatus === $value)>{{ $label }}</option>
                     @endforeach
-                </select>
+                </x-tom-select>
+            </div>
+            <div class="flex-1 sm:max-w-xs">
+                <label class="field-label" for="f-zone">Zona</label>
+                <x-tom-select wire-model="filterZone" placeholder="Semua zona" search-placeholder="Cari zona…">
+                    @foreach ($zoneOptions as $value => $label)
+                        <option value="{{ $value }}" @selected($filterZone === $value)>{{ $label }}</option>
+                    @endforeach
+                </x-tom-select>
             </div>
             <button wire:click="resetFilters" class="btn-secondary">Reset Filter</button>
         </div>
