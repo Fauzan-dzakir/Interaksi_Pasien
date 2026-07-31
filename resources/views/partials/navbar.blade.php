@@ -134,6 +134,30 @@
                     </div>
                 </div>
             @endforeach
+
+            {{--
+                Dashboard telemetri gas EO — halaman statis mandiri (bukan Livewire),
+                dibuka di tab baru karena bukan bagian dari alur SPA aplikasi ini
+                (punya splash screen & desain sendiri, dari alat pihak ketiga ESP32).
+                Sengaja DI LUAR loop $nav di atas supaya tidak menyentuh logikanya.
+            --}}
+            @if (in_array($user->role, [\App\Enums\UserRole::CssdStaff, \App\Enums\UserRole::Admin], true))
+                <div>
+                    <h3 class="px-2 mb-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">Alat Tambahan</h3>
+                    <div class="space-y-1">
+                        <a href="{{ route('cssd.gas-monitor') }}" target="_blank" rel="noopener"
+                           class="flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900">
+                            <svg class="h-4.5 w-4.5 shrink-0" style="width:1.125rem;height:1.125rem" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/>
+                            </svg>
+                            <span class="truncate">Pemantauan Gas EO</span>
+                            <svg class="ml-auto h-3.5 w-3.5 shrink-0 text-slate-400" style="width:0.875rem;height:0.875rem" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            @endif
         </nav>
 
         <div class="border-t border-slate-200 p-4">

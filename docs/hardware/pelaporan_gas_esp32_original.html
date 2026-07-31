@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-OGAS · Dashboard Telemetri Gas ESP32</title>
+    <meta name="description" content="Dashboard monitoring, statistik, dan kontrol gas real-time menggunakan Web Serial API.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Chart.js for real-time visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons for modern, clean, non-emoji UI -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --surface-hover: #f1f5f9;
+            --border: #e2e8f0;
+            --border-hover: #cbd5e1;
+            
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            
+            --primary: #2563eb;
+            --primary-light: #eff6ff;
+            --primary-border: #bfdbfe;
+            
+            --success: #16a34a;
+            --success-light: #f0fdf4;
+            --success-border: #bbf7d0;
+            
+            --warning: #d97706;
+            --warning-light: #fef3c7;
+            --warning-border: #fde68a;
+            
+            --danger: #dc2626;
+            --danger-light: #fef2f2;
+            --danger-border: #fecaca;
+
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+            
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 24px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* ── Header ── */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding-bottom: 8px;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-box {
+            width: 44px;
+            height: 44px;
+            background: var(--primary);
+            color: white;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .logo-box svg {
+            width: 22px;
+            height: 22px;
+            stroke-width: 2.5px;
+        }
+
+        .brand-details h1 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-details p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .status-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Connection Button */
+        .btn-connection {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+        }
+
+        .btn-connection:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .btn-connection.connected {
+            background: var(--success-light);
+            border-color: var(--success-border);
+            color: var(--success);
+        }
+
+        .btn-connection svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            position: relative;
+        }
+
+        .status-indicator.active {
+            background: var(--success);
+        }
+
+        .status-indicator.active::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--success);
+            animation: pulse-ring 1.5s infinite;
+            left: 0;
+            top: 0;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            100% { transform: scale(2.2); opacity: 0; }
+        }
+
+        /* ── Grid Layouts ── */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+
+        /* ── Card Styling ── */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .card-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--text-muted);
+        }
+
+        .card-icon {
+            color: var(--text-secondary);
+            width: 20px;
+            height: 20px;
+            stroke-width: 2px;
+        }
+
+        /* ── Specific Cards ── */
+        .col-4 { grid-column: span 4; }
+        .col-6 { grid-column: span 6; }
+        .col-8 { grid-column: span 8; }
+        .col-12 { grid-column: span 12; }
+
+        @media (max-width: 1024px) {
+            .col-4 { grid-column: span 6; }
+            .col-8 { grid-column: span 12; }
+        }
+
+        @media (max-width: 768px) {
+            .col-4, .col-6, .col-8, .col-12 { grid-column: span 12; }
+        }
+
+        /* PPM Display */
+        .ppm-large-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 0;
+        }
+
+        .ppm-number {
+            font-size: 5.5rem;
+            font-weight: 800;
+            font-family: var(--font-mono);
+            line-height: 1;
+            letter-spacing: -3px;
+            color: var(--text-primary);
+        }
+
+        .ppm-label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            letter-spacing: 2px;
+        }
+
+        /* Status Badge */
+        .gas-badge {
+            margin-top: 16px;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            letter-spacing: 0.2px;
+        }
+
+        .gas-badge svg {
+            width: 12px;
+            height: 12px;
+            stroke-width: 3px;
+        }
+
+        .gas-safe {
+            background: var(--success-light);
+            color: var(--success);
+            border: 1px solid var(--success-border);
+        }
+
+        .gas-warning {
+            background: var(--warning-light);
+            color: var(--warning);
+            border: 1px solid var(--warning-border);
+        }
+
+        .gas-danger {
+            background: var(--danger-light);
+            color: var(--danger);
+            border: 1px solid var(--danger-border);
+            animation: soft-pulse 1s infinite alternate;
+        }
+
+        @keyframes soft-pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.03); }
+        }
+
+        /* Actuator Fan Control */
+        .actuator-status {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--bg);
+            padding: 16px;
+            border-radius: var(--radius-md);
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .fan-spinner {
+            width: 44px;
+            height: 44px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.5s ease;
+        }
+
+        .fan-spinner svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .fan-spinner.active {
+            color: var(--primary);
+            animation: spin-fan 1.5s linear infinite;
+        }
+
+        @keyframes spin-fan {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .actuator-info h3 {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .actuator-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Action Buttons */
+        .control-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .control-btn {
+            border: 1px solid var(--border);
+            background: var(--surface);
+            padding: 12px 8px;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .control-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .control-btn:hover:not(:disabled) {
+            background: var(--surface-hover);
+            border-color: var(--border-hover);
+            color: var(--text-primary);
+        }
+
+        .control-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .control-btn.active-on {
+            background: var(--success-light);
+            border-color: var(--success-border);
+            color: var(--success);
+        }
+
+        .control-btn.active-off {
+            background: var(--danger-light);
+            border-color: var(--danger-border);
+            color: var(--danger);
+        }
+
+        .control-btn.active-auto {
+            background: var(--primary-light);
+            border-color: var(--primary-border);
+            color: var(--primary);
+        }
+
+        /* ── Live Stats Card ── */
+        .stats-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-label svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .stat-val {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* ── Live Graph Card ── */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 240px;
+        }
+
+        /* ── Log Console Card ── */
+        .log-section {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .log-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .log-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .btn-action-small {
+            background: none;
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.15s ease;
+        }
+
+        .btn-action-small:hover {
+            border-color: var(--danger-border);
+            color: var(--danger);
+            background: var(--danger-light);
+        }
+
+        .console-box {
+            background: #0f172a;
+            color: #e2e8f0;
+            border-radius: var(--radius-md);
+            padding: 16px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            line-height: 1.6;
+            height: 200px;
+            overflow-y: auto;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+            scrollbar-width: thin;
+            scrollbar-color: #334155 #0f172a;
+        }
+
+        .console-box::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .console-box::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        .console-box::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+
+        .log-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 4px;
+            word-break: break-all;
+        }
+
+        .log-time {
+            color: #64748b;
+            flex-shrink: 0;
+            user-select: none;
+        }
+
+        .log-text.info { color: #94a3b8; }
+        .log-text.success { color: #4ade80; }
+        .log-text.warning { color: #fbbf24; }
+        .log-text.danger { color: #f87171; }
+        .log-text.cmd { color: #38bdf8; }
+
+        /* Rx/Tx Indicators */
+        .rxtx-container {
+            display: flex;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            align-items: center;
+        }
+
+        .led {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            transition: background 0.1s ease;
+            display: inline-block;
+        }
+
+        .led.flash-rx {
+            background: #38bdf8;
+            box-shadow: 0 0 6px #38bdf8;
+        }
+
+        .led.flash-tx {
+            background: #ec4899;
+            box-shadow: 0 0 6px #ec4899;
+        }
+
+        /* ── Splash Screen ── */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #ffffff;
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
+            font-family: var(--font-sans);
+        }
+
+        #splash-screen.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .splash-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            max-width: 320px;
+        }
+
+        .splash-logo-container {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-light);
+            border: 2px solid var(--primary);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.15);
+            animation: splash-pulse 2s infinite ease-in-out;
+        }
+
+        .splash-logo-container svg {
+            width: 40px;
+            height: 40px;
+            stroke-width: 2.2px;
+        }
+
+        .splash-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+        }
+
+        .splash-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-top: -12px;
+        }
+
+        .splash-loader-track {
+            width: 100%;
+            height: 4px;
+            background: #f1f5f9;
+            border-radius: 999px;
+            overflow: hidden;
+            margin-top: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .splash-loader-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--primary);
+            border-radius: 999px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 4px rgba(37, 99, 235, 0.3);
+        }
+
+        .splash-status-text {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes splash-pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 4px 20px rgba(37, 99, 235, 0.15); }
+            50% { transform: scale(1.04); box-shadow: 0 6px 30px rgba(37, 99, 235, 0.25); }
+        }
+
+        /* ── Footer ── */
+        footer {
+            text-align: center;
+            padding: 16px 0;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            border-top: 1px solid var(--border);
+            margin-top: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div class="splash-content">
+            <div class="splash-logo-container">
+                <i data-lucide="wind"></i>
+            </div>
+            <div class="splash-title">E-OGAS</div>
+            <div class="splash-subtitle">Telemetry & Control System</div>
+            <div class="splash-loader-track">
+                <div class="splash-loader-bar" id="splashBar"></div>
+            </div>
+            <div class="splash-status-text" id="splashStatus">Initializing system...</div>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <!-- Header -->
+        <header>
+            <div class="brand-section">
+                <div class="logo-box">
+                    <i data-lucide="wind"></i>
+                </div>
+                <div class="brand-details">
+                    <h1>E-OGAS TELEMETRY</h1>
+                    <p>Gas Monitoring & Control Dashboard</p>
+                </div>
+            </div>
+            
+            <div class="status-actions">
+                <div class="rxtx-container">
+                    <span>RX</span><span class="led" id="ledRx"></span>
+                    <span>TX</span><span class="led" id="ledTx"></span>
+                </div>
+                <button class="btn-connection" id="connectBtn">
+                    <span class="status-indicator" id="statusDot"></span>
+                    <i data-lucide="plug"></i>
+                    <span id="connectLabel">Hubungkan USB Serial</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Dashboard Grid -->
+        <main class="dashboard-grid">
+            
+            <!-- PPM Display Card -->
+            <section class="card col-4">
+                <div class="card-header">
+                    <span class="card-title">Kadar Gas Terdeteksi</span>
+                    <i data-lucide="alert-triangle" class="card-icon" style="color: var(--warning);"></i>
+                </div>
+                <div class="ppm-large-display">
+                    <div class="ppm-number" id="ppmVal">0</div>
+                    <div class="ppm-label">PPM</div>
+                    <span class="gas-badge gas-safe" id="gasBadge">
+                        <i data-lucide="shield-check" id="badgeIcon"></i>
+                        <span id="gasStatusText">Sistem Aman</span>
+                    </span>
+                </div>
+            </section>
+
+            <!-- Actuator Control Card -->
+            <section class="card col-4">
+                <div class="card-header">
+                    <span class="card-title">Kontrol Actuator Kipas</span>
+                    <i data-lucide="cpu" class="card-icon"></i>
+                </div>
+                <div class="actuator-status">
+                    <div class="fan-spinner" id="fanSpinnerIcon">
+                        <i data-lucide="fan"></i>
+                    </div>
+                    <div class="actuator-info">
+                        <h3 id="fanStateText">Kipas: Mati</h3>
+                        <p id="fanModeText">Mode: Otomatis</p>
+                    </div>
+                </div>
+                <div class="control-grid">
+                    <button class="control-btn" id="btnOn" disabled>
+                        <i data-lucide="power" style="color: var(--success);"></i>
+                        <span>ON</span>
+                    </button>
+                    <button class="control-btn" id="btnOff" disabled>
+                        <i data-lucide="power-off" style="color: var(--danger);"></i>
+                        <span>OFF</span>
+                    </button>
+                    <button class="control-btn" id="btnAuto" disabled>
+                        <i data-lucide="refresh-cw" style="color: var(--primary);"></i>
+                        <span>AUTO</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Stats & Diagnostics Card -->
+            <section class="card col-4">
+                <div class="card-header">
+                    <span class="card-title">Diagnostik Sesi</span>
+                    <i data-lucide="activity" class="card-icon"></i>
+                </div>
+                <div class="stats-list">
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <i data-lucide="trending-up" style="color: var(--danger);"></i>
+                            Kadar Maksimum
+                        </span>
+                        <span class="stat-val" id="statMax">0 PPM</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <i data-lucide="percent" style="color: var(--warning);"></i>
+                            Rata-rata PPM
+                        </span>
+                        <span class="stat-val" id="statAvg">0 PPM</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <i data-lucide="clock" style="color: var(--primary);"></i>
+                            Waktu Aktif
+                        </span>
+                        <span class="stat-val" id="statUptime">00:00:00</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">
+                            <i data-lucide="package" style="color: var(--success);"></i>
+                            Total Data Paket
+                        </span>
+                        <span class="stat-val" id="statPackets">0</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Real-Time Trend Graph -->
+            <section class="card col-8">
+                <div class="card-header">
+                    <span class="card-title">Grafik Tren Gas PPM</span>
+                    <i data-lucide="line-chart" class="card-icon"></i>
+                </div>
+                <div class="chart-container">
+                    <canvas id="ppmChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Activity Log Card -->
+            <section class="card col-4">
+                <div class="log-section">
+                    <div class="log-header">
+                        <span class="card-title">Log Aktivitas</span>
+                        <div class="log-controls">
+                            <button class="btn-action-small" id="btnClearLog">Clear</button>
+                        </div>
+                    </div>
+                    <div class="console-box" id="consoleLog">
+                        <!-- Logs inject here -->
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            E-OGAS Telemetry Console v2.5 &nbsp;·&nbsp; Web Serial API Monitoring System
+        </footer>
+
+    </div>
+
+    <script>
+        let port, writer;
+        let uptimeSeconds = 0;
+        let uptimeInterval = null;
+        let packetCount = 0;
+        let ppmHistory = [];
+        let maxPpm = 0;
+
+        // UI Selectors
+        const connectBtn = document.getElementById('connectBtn');
+        const statusDot = document.getElementById('statusDot');
+        const connectLabel = document.getElementById('connectLabel');
+        const ledRx = document.getElementById('ledRx');
+        const ledTx = document.getElementById('ledTx');
+        
+        const ppmVal = document.getElementById('ppmVal');
+        const gasBadge = document.getElementById('gasBadge');
+        const gasStatusText = document.getElementById('gasStatusText');
+        const badgeIcon = document.getElementById('badgeIcon');
+        
+        const fanSpinnerIcon = document.getElementById('fanSpinnerIcon');
+        const fanStateText = document.getElementById('fanStateText');
+        const fanModeText = document.getElementById('fanModeText');
+        
+        const btnOn = document.getElementById('btnOn');
+        const btnOff = document.getElementById('btnOff');
+        const btnAuto = document.getElementById('btnAuto');
+        
+        const statMax = document.getElementById('statMax');
+        const statAvg = document.getElementById('statAvg');
+        const statUptime = document.getElementById('statUptime');
+        const statPackets = document.getElementById('statPackets');
+        
+        const consoleLog = document.getElementById('consoleLog');
+        const btnClearLog = document.getElementById('btnClearLog');
+
+        // Log Function
+        function log(msg, type = 'info') {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('id-ID', { hour12: false });
+            
+            const row = document.createElement('div');
+            row.className = 'log-row';
+            
+            const timeSpan = document.createElement('span');
+            timeSpan.className = 'log-time';
+            timeSpan.textContent = `[${timeStr}]`;
+            
+            const textSpan = document.createElement('span');
+            textSpan.className = `log-text ${type}`;
+            textSpan.textContent = msg;
+            
+            row.appendChild(timeSpan);
+            row.appendChild(textSpan);
+            
+            consoleLog.appendChild(row);
+            
+            // Batasi log maksimal 100 entri terakhir agar tidak membuat browser lag
+            while (consoleLog.childNodes.length > 100) {
+                consoleLog.removeChild(consoleLog.firstChild);
+            }
+            
+            consoleLog.scrollTop = consoleLog.scrollHeight;
+        }
+
+        btnClearLog.addEventListener('click', () => {
+            consoleLog.innerHTML = '';
+            log('Log konsol dibersihkan.', 'success');
+        });
+
+        // Initialize Chart.js
+        const ctx = document.getElementById('ppmChart').getContext('2d');
+        const maxChartDataPoints = 30;
+        const chartData = {
+            labels: Array(maxChartDataPoints).fill(''),
+            datasets: [{
+                label: 'Konsentrasi Gas (PPM)',
+                data: Array(maxChartDataPoints).fill(0),
+                borderColor: '#2563eb',
+                borderWidth: 2,
+                backgroundColor: 'rgba(37, 99, 235, 0.05)',
+                fill: true,
+                tension: 0.3,
+                pointRadius: 2,
+                pointHoverRadius: 5
+            }]
+        };
+
+        const ppmChart = new Chart(ctx, {
+            type: 'line',
+            data: chartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    x: { display: false },
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: '#f1f5f9' },
+                        ticks: { color: '#64748b', font: { family: 'JetBrains Mono', size: 10 } }
+                    }
+                }
+            }
+        });
+
+        function updateChart(newPpm) {
+            chartData.datasets[0].data.push(newPpm);
+            if (chartData.datasets[0].data.length > maxChartDataPoints) {
+                chartData.datasets[0].data.shift();
+            }
+            ppmChart.update('none');
+        }
+
+        // Led Flashing
+        function flashLed(ledElement) {
+            ledElement.classList.add(ledElement.id === 'ledRx' ? 'flash-rx' : 'flash-tx');
+            setTimeout(() => {
+                ledElement.classList.remove('flash-rx', 'flash-tx');
+            }, 80);
+        }
+
+        // Uptime Timer
+        function startUptimeCounter() {
+            uptimeSeconds = 0;
+            clearInterval(uptimeInterval);
+            uptimeInterval = setInterval(() => {
+                uptimeSeconds++;
+                const hrs = String(Math.floor(uptimeSeconds / 3600)).padStart(2, '0');
+                const mins = String(Math.floor((uptimeSeconds % 3600) / 60)).padStart(2, '0');
+                const secs = String(uptimeSeconds % 60).padStart(2, '0');
+                statUptime.textContent = `${hrs}:${mins}:${secs}`;
+            }, 1000);
+        }
+
+        function stopUptimeCounter() {
+            clearInterval(uptimeInterval);
+        }
+
+        // Connection Action
+        connectBtn.addEventListener('click', async () => {
+            if (port) {
+                log('Koneksi sudah aktif.', 'warning');
+                return;
+            }
+
+            if (!('serial' in navigator)) {
+                log('Web Serial API tidak didukung pada browser ini. Gunakan Chrome, Edge, atau Opera.', 'danger');
+                return;
+            }
+
+            try {
+                log('Meminta akses ke Port USB Serial...', 'info');
+                port = await navigator.serial.requestPort();
+                
+                log('Membuka port serial dengan baud rate 115200...', 'info');
+                await port.open({ baudRate: 115200 });
+
+                statusDot.classList.add('active');
+                connectBtn.classList.add('connected');
+                connectLabel.textContent = 'Terhubung';
+                
+                [btnOn, btnOff, btnAuto].forEach(btn => btn.disabled = false);
+                
+                log('Koneksi serial ke ESP32 berhasil dibangun!', 'success');
+                startUptimeCounter();
+
+                // Setup TX writer
+                const encoder = new TextEncoderStream();
+                encoder.readable.pipeTo(port.writable);
+                writer = encoder.writable.getWriter();
+
+                // Start RX reading loop
+                readSerialData();
+            } catch (err) {
+                log(`Gagal terhubung: ${err.message}`, 'danger');
+            }
+        });
+
+        // Reader Stream
+        async function readSerialData() {
+            const decoder = new TextDecoderStream();
+            port.readable.pipeTo(decoder.writable);
+            const reader = decoder.readable.getReader();
+            let rxBuffer = '';
+
+            try {
+                while (true) {
+                    const { value, done } = await reader.read();
+                    if (done) break;
+
+                    if (value) {
+                        flashLed(ledRx);
+                        rxBuffer += value;
+                        let lines = rxBuffer.split('\n');
+                        rxBuffer = lines.pop(); // save incomplete line
+
+                        for (let line of lines) {
+                            line = line.trim();
+                            if (!line) continue;
+
+                            if (line.startsWith('{') && line.endsWith('}')) {
+                                try {
+                                    const parsed = JSON.parse(line);
+                                    updateUI(parsed);
+                                    
+                                    // Log PPM Telemetry success
+                                    const statusText = parsed.alarm ? 'BAHAYA' : 'AMAN';
+                                    const logType = parsed.alarm ? 'danger' : 'success';
+                                    log(`PPM: ${parsed.ppm} | Kipas: ${parsed.fan ? 'ON' : 'OFF'} | Status: ${statusText}`, logType);
+                                } catch (e) {
+                                    log(`Parsing JSON Gagal: ${line}`, 'warning');
+                                }
+                            } else {
+                                log(`[Serial Raw] ${line}`, 'info');
+                            }
+                        }
+                    }
+                }
+            } catch (err) {
+                log(`Kesalahan membaca data serial: ${err.message}`, 'danger');
+                disconnectDevice();
+            }
+        }
+
+        function disconnectDevice() {
+            stopUptimeCounter();
+            statusDot.classList.remove('active');
+            connectBtn.classList.remove('connected');
+            connectLabel.textContent = 'Hubungkan USB Serial';
+            [btnOn, btnOff, btnAuto].forEach(btn => btn.disabled = true);
+            port = null;
+            writer = null;
+            log('Device diputuskan.', 'warning');
+        }
+
+        // Send Control Command
+        async function sendCommand(cmd) {
+            if (!writer) {
+                log('Gagal mengirim perintah: Perangkat belum tersambung.', 'danger');
+                return;
+            }
+            try {
+                flashLed(ledTx);
+                await writer.write(cmd + '\n');
+                log(`Perintah dikirim -> "${cmd}"`, 'cmd');
+            } catch (err) {
+                log(`Gagal mengirim data serial: ${err.message}`, 'danger');
+            }
+        }
+
+        btnOn.addEventListener('click', () => sendCommand('FAN_ON'));
+        btnOff.addEventListener('click', () => sendCommand('FAN_OFF'));
+        btnAuto.addEventListener('click', () => sendCommand('AUTO'));
+
+        // Update UI Dashboard
+        function updateUI(data) {
+            packetCount++;
+            statPackets.textContent = packetCount;
+
+            // PPM Value update
+            const ppm = Number(data.ppm) || 0;
+            ppmVal.textContent = ppm;
+
+            // Stats Update
+            ppmHistory.push(ppm);
+            if (ppmHistory.length > 100) ppmHistory.shift();
+            
+            if (ppm > maxPpm) {
+                maxPpm = ppm;
+                statMax.textContent = `${maxPpm} PPM`;
+            }
+
+            const total = ppmHistory.reduce((acc, curr) => acc + curr, 0);
+            const avg = Math.round(total / ppmHistory.length);
+            statAvg.textContent = `${avg} PPM`;
+
+            // Chart update
+            updateChart(ppm);
+
+            // Status Badge update
+            gasBadge.className = 'gas-badge';
+            if (ppm >= 1000) {
+                gasBadge.classList.add('gas-danger');
+                gasStatusText.textContent = 'AWAS: Gas Tinggi!';
+                badgeIcon.setAttribute('data-lucide', 'shield-alert');
+            } else if (ppm >= 500) {
+                gasBadge.classList.add('gas-warning');
+                gasStatusText.textContent = 'Peringatan: Gas Sedang';
+                badgeIcon.setAttribute('data-lucide', 'shield-alert');
+            } else {
+                gasBadge.classList.add('gas-safe');
+                gasStatusText.textContent = 'Sistem Aman';
+                badgeIcon.setAttribute('data-lucide', 'shield-check');
+            }
+            // re-render dynamically changed icons
+            lucide.createIcons();
+
+            // Fan UI updates
+            if (data.fan) {
+                fanStateText.textContent = 'Kipas: Menyala';
+                fanSpinnerIcon.classList.add('active');
+                fanStateText.style.color = 'var(--success)';
+            } else {
+                fanStateText.textContent = 'Kipas: Mati';
+                fanSpinnerIcon.classList.remove('active');
+                fanStateText.style.color = 'var(--text-primary)';
+            }
+
+            fanModeText.textContent = data.manual ? 'Mode: Manual Web' : 'Mode: Otomatis Sensor';
+
+            // Active button indicators
+            btnOn.classList.remove('active-on');
+            btnOff.classList.remove('active-off');
+            btnAuto.classList.remove('active-auto');
+
+            if (data.manual === true && data.fan === true) {
+                btnOn.classList.add('active-on');
+            } else if (data.manual === true && data.fan === false) {
+                btnOff.classList.add('active-off');
+            } else if (data.manual === false) {
+                btnAuto.classList.add('active-auto');
+            }
+        }
+
+        // Splash Screen Loading Animation Sequence
+        window.addEventListener('DOMContentLoaded', () => {
+            const splashScreen = document.getElementById('splash-screen');
+            const splashBar = document.getElementById('splashBar');
+            const splashStatus = document.getElementById('splashStatus');
+
+            const steps = [
+                { percentage: 25, status: 'Memeriksa Web Serial API...' },
+                { percentage: 55, status: 'Menginisialisasi modul Chart.js...' },
+                { percentage: 85, status: 'Mengunggah aset grafis SVG...' },
+                { percentage: 100, status: 'Sistem Telemetri E-OGAS Siap!' }
+            ];
+
+            let stepIdx = 0;
+            
+            function runBootSequence() {
+                if (stepIdx < steps.length) {
+                    const currentStep = steps[stepIdx];
+                    splashBar.style.width = `${currentStep.percentage}%`;
+                    splashStatus.textContent = currentStep.status;
+                    stepIdx++;
+                    setTimeout(runBootSequence, 400); // 400ms per step
+                } else {
+                    // Hide splash screen with smooth fade transition
+                    setTimeout(() => {
+                        splashScreen.classList.add('fade-out');
+                        log('Inisialisasi boot berhasil. Selamat datang di konsol telemetry.', 'success');
+                    }, 500);
+                }
+            }
+
+            // Start boot sequencing
+            setTimeout(runBootSequence, 300);
+        });
+
+        // Init Lucide Icons & Logs
+        lucide.createIcons();
+        log('Aplikasi E-OGAS Telemetry siap.', 'success');
+        log('Silakan hubungkan perangkat ESP32 Anda melalui kabel USB dan klik tombol di atas.', 'info');
+    </script>
+</body>
+
+</html>

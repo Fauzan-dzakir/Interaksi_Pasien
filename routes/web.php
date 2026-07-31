@@ -64,6 +64,12 @@ Route::middleware(['auth', 'role:cssd_staff,admin'])->prefix('cssd')->name('cssd
     // Sama persis dengan Admin\AuditSearch (komponen dipakai ulang) — CSSD butuh
     // cara mencari alat langsung, bukan cuma menelusuri lewat nomor order.
     Route::get('/telusur', Admin\AuditSearch::class)->name('audit');
+
+    // Dashboard telemetri gas EO (alat pihak ketiga, ESP32 + Web Serial API).
+    // Halaman statis mandiri (bukan Livewire) — desain/JS-nya sengaja tidak
+    // disentuh dari punya pembuat aslinya, cuma dititipkan route + akses login
+    // di sini. Tidak menyimpan data apa pun ke database aplikasi ini.
+    Route::view('/pemantauan-gas', 'cssd.gas-monitor')->name('gas-monitor');
 });
 
 /*
