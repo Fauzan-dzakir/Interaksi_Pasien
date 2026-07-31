@@ -26,6 +26,13 @@
                     <option value="{{ $unit->id }}">{{ $unit->name }}</option>
                 @endforeach
             </select>
+
+            <select wire:model.live="filterZone" class="field-input sm:max-w-[14rem]">
+                <option value="">Semua zona</option>
+                @foreach ($zoneOptions as $zone)
+                    <option value="{{ $zone->value }}">{{ $zone->label() }}</option>
+                @endforeach
+            </select>
         </div>
 
         <div class="overflow-x-auto">
@@ -69,7 +76,18 @@
                             </td>
                             <td>{{ $order->box_count }}</td>
                             <td>{{ $order->item_batches_count ?: '—' }}</td>
-                            <td><x-state-pill :state="$order->status" /></td>
+                            <td>
+                                <x-state-pill :state="$order->status" />
+                                @if ($order->status === \App\Enums\DeliveryOrderStatus::Processing && ! empty($order->status_summary))
+                                    <div class="mt-2 flex flex-col gap-1">
+                                        @foreach ($order->status_summary as $label => $count)
+                                            <span class="text-xs text-slate-500 bg-slate-100 rounded px-2 py-0.5 w-fit border border-slate-200">
+                                                {{ $count }} {{ $label }}
+                                            </span>
+                                        @endforeach
+                                    </div>
+                                @endif
+                            </td>
                             <td class="text-right">
                                 <a href="{{ route('cssd.orders.show', $order->id) }}" wire:navigate
                                    class="{{ $needsIntake ? 'btn-primary !px-3 !py-1.5' : 'btn-secondary !px-3 !py-1.5' }} whitespace-nowrap">

@@ -3,6 +3,7 @@
 namespace App\Livewire\Cssd;
 
 use App\Enums\DeliveryOrderStatus;
+use App\Enums\ZoneBucket;
 use App\Models\DeliveryOrder;
 use App\Models\Unit;
 use Livewire\Attributes\Url;
@@ -26,6 +27,14 @@ class OrderQueue extends Component
     #[Url(as: 'unit', keep: false)]
     public string $filterUnit = '';
 
+    /**
+     * Filter zona kerja (kotor/bersih/siap distribusi) — supaya petugas yang
+     * bertugas di satu zona fisik bisa langsung lihat order mana saja yang
+     * alatnya sedang ada di zona itu, tanpa perlu buka satu-satu.
+     */
+    #[Url(as: 'zona', keep: false)]
+    public string $filterZone = '';
+
     public function updatedSearch(): void
     {
         $this->resetPage();
@@ -41,10 +50,15 @@ class OrderQueue extends Component
         $this->resetPage();
     }
 
+    public function updatedFilterZone(): void
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
         $orders = DeliveryOrder::query()
-            ->with(['originUnit', 'submittedBy'])
+            ->with(['originUnit', 'submittedBy', 'itemBatches:id,current_delivery_order_id,status'])
             ->withCount(['lines', 'itemBatches'])
             ->when($this->search, fn ($q) => $q->where(function ($sub) {
                 $sub->where('order_number', 'like', "%{$this->search}%")
@@ -52,6 +66,13 @@ class OrderQueue extends Component
             }))
             ->when($this->filterStatus, fn ($q) => $q->where('status', $this->filterStatus))
             ->when($this->filterUnit, fn ($q) => $q->where('origin_unit_id', $this->filterUnit))
+            ->when($this->filterZone, function ($q) {
+                $statuses = collect(ZoneBucket::from($this->filterZone)->statuses())
+                    ->map(fn ($s) => $s->value)
+                    ->all();
+
+                $q->whereHas('itemBatches', fn ($b) => $b->whereIn('status', $statuses));
+            })
             // Yang belum didata naik ke atas (itu antrian kerja yang menahan alur),
             // dan di dalamnya order CITO didahulukan agar cepat diproses. Sisanya
             // diurutkan dari yang paling lama dikirim supaya petugas tahu mana yang
@@ -65,6 +86,7 @@ class OrderQueue extends Component
             'orders' => $orders,
             'statusOptions' => DeliveryOrderStatus::options(),
             'unitOptions' => Unit::active()->orderBy('name')->get(['id', 'name']),
+            'zoneOptions' => ZoneBucket::trackedByUnit(),
             'pendingCount' => DeliveryOrder::awaitingIntake()->count(),
         ]);
     }

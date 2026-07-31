@@ -168,6 +168,43 @@
                 </div>
             @endif
 
+            @if ($dirtyZoneGroups->isNotEmpty())
+                <div class="card border-amber-200">
+                    <div class="border-b border-amber-200 bg-amber-50/50 px-5 py-4">
+                        <h2 class="text-sm font-semibold text-amber-900">Progres Zona Kotor</h2>
+                        <p class="mt-0.5 text-xs text-amber-800">
+                            Alat di tahap ini belum ditempel barcode fisik (baru ditempel saat pengemasan),
+                            jadi dipindahkan sekaligus per jumlah — bukan dibuka satu per satu.
+                        </p>
+                    </div>
+
+                    <div class="divide-y divide-slate-100">
+                        @foreach ($dirtyZoneGroups as $group)
+                            @php
+                                [$buttonLabel, $confirmText] = match ($group['status']) {
+                                    \App\Enums\ItemBatchStatus::ReturnedDirty => ['Mulai Cuci', 'Mulai cuci '.$group['count'].' alat?'],
+                                    \App\Enums\ItemBatchStatus::DirtyZoneWashing => ['Cuci Selesai → Mulai Pengeringan', 'Tandai '.$group['count'].' alat selesai dicuci dan mulai dikeringkan?'],
+                                    \App\Enums\ItemBatchStatus::DirtyZoneDrying => ['Pengeringan Selesai', 'Tandai '.$group['count'].' alat selesai dikeringkan? Alat akan masuk antrian cek kebersihan.'],
+                                    default => ['Lanjutkan', 'Lanjutkan?'],
+                                };
+                            @endphp
+                            <div wire:key="dzg-{{ $group['status']->value }}" class="flex flex-wrap items-center justify-between gap-3 px-5 py-3">
+                                <div>
+                                    <span class="font-semibold text-slate-900">{{ $group['count'] }}</span>
+                                    <span class="text-sm text-slate-600">alat — {{ $group['status']->label() }}</span>
+                                </div>
+                                <button type="button"
+                                        wire:click="advanceZoneGroup('{{ $group['status']->value }}')"
+                                        wire:confirm="{{ $confirmText }}"
+                                        class="btn-primary !px-3 !py-1.5 whitespace-nowrap">
+                                    {{ $buttonLabel }}
+                                </button>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
             @if ($recordedLines->isNotEmpty())
                 <div class="card">
                     <div class="border-b border-slate-200 px-5 py-4">
@@ -220,14 +257,26 @@
                             </thead>
                             <tbody>
                                 @foreach ($batches as $batch)
-                                    <tr wire:key="b-{{ $batch->id }}">
+                                    @php $qcStage = \App\Enums\BatchQcStage::forStatus($batch->status); @endphp
+                                    <tr wire:key="b-{{ $batch->id }}" @class(['bg-amber-50/40' => $qcStage])>
                                         <td class="font-mono text-xs font-medium text-slate-700">{{ $batch->public_code }}</td>
                                         <td>{{ $batch->displayName() }}</td>
                                         <td>{{ $batch->displayQuantity() }}</td>
-                                        <td><x-state-pill :state="$batch->status" /></td>
+                                        <td>
+                                            <x-state-pill :state="$batch->status" />
+                                            @if ($qcStage)
+                                                <div class="mt-1">
+                                                    <span class="text-xs font-medium text-amber-700 bg-amber-100 rounded px-2 py-0.5 w-fit border border-amber-200">
+                                                        Perlu cek {{ $qcStage->label() }}
+                                                    </span>
+                                                </div>
+                                            @endif
+                                        </td>
                                         <td class="text-right">
                                             <a href="{{ route('batches.show', $batch->id) }}" wire:navigate
-                                               class="btn-secondary !px-3 !py-1.5">Detail</a>
+                                               class="{{ $qcStage ? 'btn-primary' : 'btn-secondary' }} !px-3 !py-1.5 whitespace-nowrap">
+                                                {{ $qcStage ? 'Isi Checklist' : 'Detail' }}
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -244,7 +293,18 @@
                 <dl class="space-y-2.5 text-sm">
                     <div class="flex justify-between gap-4">
                         <dt class="text-slate-500">Status</dt>
-                        <dd><x-state-pill :state="$order->status" /></dd>
+                        <dd>
+                            <x-state-pill :state="$order->status" />
+                            @if ($order->status === \App\Enums\DeliveryOrderStatus::Processing && ! empty($order->status_summary))
+                                <div class="mt-2 flex flex-col items-end gap-1">
+                                    @foreach ($order->status_summary as $label => $count)
+                                        <span class="text-xs text-slate-500 bg-slate-100 rounded px-2 py-0.5 w-fit border border-slate-200">
+                                            {{ $count }} {{ $label }}
+                                        </span>
+                                    @endforeach
+                                </div>
+                            @endif
+                        </dd>
                     </div>
                     @foreach ([
                         'Unit Pengirim' => $order->originUnit->name,

@@ -113,6 +113,13 @@
         </div>
 
         <div class="grid gap-px bg-slate-200 sm:grid-cols-2 lg:grid-cols-4">
+            @php
+                $bulkStages = [
+                    \App\Enums\ItemBatchStatus::ReturnedDirty->value => 'Mulai Cuci',
+                    \App\Enums\ItemBatchStatus::DirtyZoneWashing->value => 'Cuci Selesai → Mulai Pengeringan',
+                    \App\Enums\ItemBatchStatus::DirtyZoneDrying->value => 'Pengeringan Selesai',
+                ];
+            @endphp
             @foreach ($stageBreakdown as $row)
                 <div wire:key="sb-{{ $row['status']->value }}" class="bg-white p-4">
                     <div class="flex items-start justify-between gap-2">
@@ -126,8 +133,22 @@
                             'text-slate-300' => $row['count'] === 0,
                         ])>{{ $row['count'] }}</div>
                     </div>
+
+                    @if ($row['count'] > 0 && isset($bulkStages[$row['status']->value]))
+                        <button type="button"
+                                wire:click="advanceZoneGroup('{{ $row['status']->value }}')"
+                                wire:confirm="Pindahkan SEMUA {{ $row['count'] }} alat lintas order dari '{{ $row['status']->label() }}' ke tahap berikutnya?"
+                                class="btn-primary mt-3 w-full !py-1.5 text-xs">
+                            {{ $bulkStages[$row['status']->value] }} ({{ $row['count'] }})
+                        </button>
+                    @endif
                 </div>
             @endforeach
         </div>
+        <p class="border-t border-slate-200 px-5 py-3 text-xs text-slate-500">
+            Tombol di atas memindahkan alat <strong>lintas order sekaligus</strong> — cocok untuk satu bak cuci/rak
+            pengering yang isinya campuran beberapa order. Untuk memproses satu order tertentu terpisah dari yang
+            lain (mis. order CITO), gunakan tombol yang sama di halaman detail order itu.
+        </p>
     </div>
 </div>

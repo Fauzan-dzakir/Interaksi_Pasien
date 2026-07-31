@@ -2,11 +2,16 @@
 
 namespace App\Livewire\Cssd;
 
+use App\Enums\BatchQcStage;
 use App\Enums\BatchType;
+use App\Enums\ItemBatchStatus;
+use App\Enums\ScanInputMethod;
 use App\Models\DeliveryOrder;
 use App\Models\InstrumentSet;
 use App\Models\Item;
+use App\Models\ItemBatch;
 use App\Services\DeliveryOrderService;
+use App\Services\ItemBatchTransitionService;
 use Livewire\Component;
 
 /**
@@ -98,6 +103,59 @@ class OrderIntake extends Component
             : [];
     }
 
+    /**
+     * Tujuan tahap berikutnya untuk pemindahan MASSAL per order — hanya untuk
+     * tahap yang murni linear (tidak ada checklist QC di titik itu) DAN alat
+     * belum ditempel barcode fisik (baru ditempel saat Packaging), jadi
+     * memang tidak masuk akal disuruh discan/dibuka satu-satu.
+     *
+     * @return array<string, ItemBatchStatus>
+     */
+    private function bulkAdvanceTargets(): array
+    {
+        return [
+            ItemBatchStatus::ReturnedDirty->value => ItemBatchStatus::DirtyZoneWashing,
+            ItemBatchStatus::DirtyZoneWashing->value => ItemBatchStatus::DirtyZoneDrying,
+            ItemBatchStatus::DirtyZoneDrying->value => ItemBatchStatus::CleanlinessCheckPending,
+        ];
+    }
+
+    /**
+     * Pindahkan SEKALIGUS seluruh alat pada order ini yang masih berada di
+     * $fromStatus ke tahap berikutnya. Tiap alat tetap dapat baris jejak
+     * audit sendiri (pelaku, jam, metode) lewat ItemBatchTransitionService —
+     * cuma dipicu satu tombol untuk semua, bukan satu-satu buka detail alat.
+     */
+    public function advanceZoneGroup(string $fromStatus, ItemBatchTransitionService $transitions, DeliveryOrderService $orders): void
+    {
+        $this->authorize('advanceStage', ItemBatch::class);
+
+        $targets = $this->bulkAdvanceTargets();
+
+        if (! isset($targets[$fromStatus])) {
+            return;
+        }
+
+        $target = $targets[$fromStatus];
+        $user = auth()->user();
+
+        $batches = $this->order->itemBatches()->where('status', $fromStatus)->get();
+
+        $moved = 0;
+        foreach ($batches as $batch) {
+            if ($transitions->transition($batch, $target, $user, ScanInputMethod::Manual, 'Tindakan massal per order')) {
+                $moved++;
+            }
+        }
+
+        $orders->syncStatus($this->order, $user);
+        $this->order->refresh();
+
+        session()->flash('status', $moved > 0
+            ? "{$moved} alat dipindah ke tahap \"{$target->label()}\"."
+            : 'Tidak ada alat yang dipindahkan.');
+    }
+
     public function save(DeliveryOrderService $service): void
     {
         $this->authorize('recordIntake', $this->order);
@@ -176,10 +234,28 @@ class OrderIntake extends Component
             'setOptions' => InstrumentSet::active()->orderBy('name')->get(['id', 'code', 'name']),
             'itemOptions' => Item::active()->orderBy('code')->get(['id', 'code', 'name']),
             'recordedLines' => $this->order->lines()->with(['instrumentSet', 'item', 'recordedBy', 'itemChecks.item'])->get(),
-            'batches' => $this->order->itemBatches()->with(['instrumentSet', 'item'])->orderBy('public_code')->get(),
+            // Alat yang lagi menunggu checklist QC dinaikkan ke atas — itu pekerjaan
+            // yang menahan alur, supaya tim di zona terkait langsung tahu alat mana
+            // yang perlu ditindaklanjuti tanpa harus menyisir seluruh daftar.
+            'batches' => $this->order->itemBatches()->with(['instrumentSet', 'item'])->orderBy('public_code')->get()
+                ->sortBy(fn ($batch) => BatchQcStage::forStatus($batch->status) ? 0 : 1)
+                ->values(),
             // Deklarasi unit saat membuat order — rujukan pembanding SAJA untuk hitung
             // fisik CSSD, bukan pengganti pendataan resmi (yang tetap dilakukan di bawah).
             'declaredBatches' => $this->order->declaredBatches()->with(['instrumentSet', 'item'])->get(),
+            // Ringkasan per tahap linear di zona kotor — belum ada barcode fisik di
+            // titik ini, jadi ditampilkan sebagai jumlah per tahap + satu tombol
+            // pindah massal, bukan daftar per-alat yang harus dibuka satu-satu.
+            'dirtyZoneGroups' => $this->order->itemBatches()
+                ->whereIn('status', array_keys($this->bulkAdvanceTargets()))
+                ->get()
+                ->groupBy(fn (ItemBatch $b) => $b->status->value)
+                ->map(fn ($group, $statusValue) => [
+                    'status' => ItemBatchStatus::from($statusValue),
+                    'count' => $group->count(),
+                ])
+                ->sortBy(fn (array $g) => array_search($g['status']->value, array_keys($this->bulkAdvanceTargets())))
+                ->values(),
         ]);
     }
 }
