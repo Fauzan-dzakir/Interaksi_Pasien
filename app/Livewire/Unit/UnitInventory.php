@@ -121,11 +121,15 @@ class UnitInventory extends Component
 
     /**
      * Alat "Per Set" — satu QR mewakili satu set utuh, tapi unit perlu menandai
-     * isinya satu per satu (mis. gunting dipakai, needle holder tidak). Status
-     * batch (Sedang Dipakai / Sudah Diambil) mengikuti otomatis: sekali salah
-     * satu isinya ditandai dipakai, seluruh set otomatis jadi "Sedang Dipakai".
+     * isinya satu per satu (mis. gunting dipakai, needle holder tidak).
+     *
+     * SENGAJA tidak langsung memindahkan status batch di sini — kalau langsung
+     * dipindah begitu SATU item dicentang, set itu langsung hilang dari daftar
+     * real-time ini (render() cuma tampilkan status PickedUp), padahal petugas
+     * belum selesai mencentang sisa isi set yang lain. Perpindahan status baru
+     * terjadi lewat confirmSetUsage() setelah petugas menekan tombol konfirmasi.
      */
-    public function toggleSetItemUsage(int $batchId, int $itemId, ItemBatchTransitionService $transitions): void
+    public function toggleSetItemMark(int $batchId, int $itemId): void
     {
         $batch = ItemBatch::where('id', $batchId)
             ->where('origin_unit_id', auth()->user()->unit_id)
@@ -140,23 +144,42 @@ class UnitInventory extends Component
         $mark->marked_by_user_id = auth()->id();
         $mark->marked_at = now();
         $mark->save();
+    }
+
+    /**
+     * Tombol konfirmasi per set — dipencet setelah petugas selesai mencentang
+     * isi set yang dipakai (boleh satu atau beberapa sekaligus). Di sinilah
+     * status batch baru benar-benar pindah ke "Sedang Dipakai".
+     */
+    public function confirmSetUsage(int $batchId, ItemBatchTransitionService $transitions): void
+    {
+        $batch = ItemBatch::where('id', $batchId)
+            ->where('origin_unit_id', auth()->user()->unit_id)
+            ->firstOrFail();
 
         $anyUsed = ItemBatchUsageMark::where('item_batch_id', $batch->id)->where('is_used', true)->exists();
-        $target = $anyUsed ? ItemBatchStatus::InUse : ItemBatchStatus::PickedUp;
 
-        if ($batch->status !== $target) {
-            try {
-                $transitions->transition(
-                    $batch,
-                    $target,
-                    auth()->user(),
-                    ScanInputMethod::Manual,
-                    'Pendataan Alat di Unit — tandai pemakaian isi set',
-                );
-            } catch (InvalidTransitionException $e) {
-                $this->addError('batches', $e->getMessage());
-            }
+        if (! $anyUsed) {
+            $this->addError('batches', 'Centang minimal satu alat dalam set ini sebelum konfirmasi.');
+
+            return;
         }
+
+        try {
+            $transitions->transition(
+                $batch,
+                ItemBatchStatus::InUse,
+                auth()->user(),
+                ScanInputMethod::Manual,
+                'Pendataan Alat di Unit — konfirmasi pemakaian isi set',
+            );
+        } catch (InvalidTransitionException $e) {
+            $this->addError('batches', $e->getMessage());
+
+            return;
+        }
+
+        $this->flash('success', "{$batch->displayName()} ({$batch->public_code}) ditandai sedang dipakai.");
     }
 
     private function flash(string $type, string $message): void

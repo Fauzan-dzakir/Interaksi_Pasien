@@ -30,7 +30,13 @@
 
     <main class="min-w-0 px-4 py-6 sm:px-6 lg:px-8 print:max-w-none print:p-0">
         @if (session('status'))
-            <div class="mb-4 rounded-lg border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm text-emerald-800 print:hidden">
+            {{-- x-init dispatch bikin pesan yang sama juga muncul sebagai pop-up
+                 mengambang di atas layar (lihat x-toast-stack), bukan cuma banner
+                 diam di sini — supaya aksi seperti "Order terkirim" atau "Pendataan
+                 disimpan" (yang redirect ke halaman lain) dapat feedback pop-up yang
+                 sama seperti aksi scan. --}}
+            <div x-data x-init="$dispatch('toast', { type: 'success', message: @js(session('status')) })"
+                 class="mb-4 rounded-lg border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm text-emerald-800 print:hidden">
                 {{ session('status') }}
             </div>
         @endif

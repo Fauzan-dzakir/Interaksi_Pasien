@@ -17,8 +17,8 @@ enum SterilizationMethod: string
     {
         return match ($this) {
             self::Autoclave => 'Autoclave (Steam)',
-            self::Plasma => 'Plasma',
-            self::Gas => 'Etilen Oksida (EO)',
+            self::Plasma => 'Plasma (H2O2)',
+            self::Gas => 'Etilen Oksida (EO Gas)',
         };
     }
 

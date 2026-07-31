@@ -53,6 +53,7 @@
                                 </div>
 
                                 @if ($batch->batch_type === \App\Enums\BatchType::Set && $batch->instrumentSet)
+                                    @php $usedCount = $batch->usageMarks->where('is_used', true)->count(); @endphp
                                     <div class="mt-3 rounded-lg border border-slate-200 bg-slate-50/50 p-3">
                                         <p class="mb-2 text-xs font-semibold text-slate-500">Tandai per alat dalam set ini</p>
                                         <div class="space-y-1.5">
@@ -64,13 +65,20 @@
                                                 <label wire:key="usage-{{ $batch->id }}-{{ $setItem->id }}"
                                                        class="flex items-center gap-2 text-sm text-slate-700">
                                                     <input type="checkbox" @checked($isUsed)
-                                                           wire:click="toggleSetItemUsage({{ $batch->id }}, {{ $setItem->id }})"
+                                                           wire:click="toggleSetItemMark({{ $batch->id }}, {{ $setItem->id }})"
                                                            class="rounded border-slate-300 text-teal-600 focus:ring-teal-500">
                                                     {{ $setItem->name }}
                                                     <span class="text-xs text-slate-400">({{ $setItem->pivot->quantity }}x)</span>
                                                 </label>
                                             @endforeach
                                         </div>
+
+                                        <button type="button" wire:click="confirmSetUsage({{ $batch->id }})"
+                                                @disabled($usedCount === 0)
+                                                wire:confirm="Konfirmasi {{ $usedCount }} alat dalam set ini sedang dipakai? Set akan pindah ke daftar alat kotor."
+                                                class="btn-primary mt-3 w-full !py-1.5 text-xs disabled:cursor-not-allowed disabled:opacity-40">
+                                            {{ $usedCount > 0 ? "Konfirmasi Pemakaian ({$usedCount} alat)" : 'Centang alat yang dipakai dulu' }}
+                                        </button>
                                     </div>
                                 @endif
                             </div>

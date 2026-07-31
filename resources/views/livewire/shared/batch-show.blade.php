@@ -75,7 +75,35 @@
                 </div>
             @endif
 
-            @if ($canAdvance && count($nextOptions) > 0 && ! $qcStage)
+            {{--
+                Kasus khusus: dari "Sedang Dipakai" (InUse), satu-satunya nextOptions adalah
+                "Sudah Diambil Unit" (PickedUp) — tapi ini BUKAN langkah maju dalam alur, itu
+                cuma tombol BATALKAN untuk salah tandai/scan di unit. Alat yang benar-benar
+                sudah dipakai TIDAK pernah balik jadi "returned_dirty" lewat barcode yang sama;
+                begitu unit mengirim baliknya, CSSD mendata ulang dan barcode ini otomatis
+                diganti baru (lihat Ganti Barcode / recordIntake). Makanya ditampilkan terpisah
+                dengan label & penjelasan yang jelas beda dari kartu "Pindahkan Tahap" biasa,
+                supaya tidak terlihat seperti alur maju yang muter balik.
+            --}}
+            @if ($canAdvance && $batch->status === \App\Enums\ItemBatchStatus::InUse && count($nextOptions) > 0)
+                <div class="card border-amber-200 p-5">
+                    <h2 class="text-sm font-semibold text-amber-900">↩ Batalkan Tanda "Sedang Dipakai"</h2>
+                    <p class="mt-0.5 text-xs text-amber-800">
+                        Ini BUKAN langkah maju — cuma untuk membatalkan kalau salah tandai/scan di unit.
+                        Alat yang benar-benar sudah dipakai tidak kembali lewat tombol ini; begitu
+                        alatnya benar-benar dikirim balik, CSSD akan mendata ulang dari awal di
+                        Zona Kotor dan barcode ini otomatis diganti yang baru.
+                    </p>
+
+                    <div class="mt-3">
+                        <button wire:click="moveTo('{{ \App\Enums\ItemBatchStatus::PickedUp->value }}')"
+                                wire:confirm="Batalkan tanda 'Sedang Dipakai' pada {{ $batch->public_code }}?"
+                                class="btn-secondary">
+                            ↩ Batalkan, kembalikan ke "Sudah Diambil Unit"
+                        </button>
+                    </div>
+                </div>
+            @elseif ($canAdvance && count($nextOptions) > 0 && ! $qcStage)
                 <div class="card p-5">
                     <h2 class="text-sm font-semibold text-slate-900">Pindahkan Tahap</h2>
                     <p class="mt-0.5 text-xs text-slate-500">
